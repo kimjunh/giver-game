@@ -1,28 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Giver-game application for CS169 / Effective Altruists of Berkeley
 
-Things you may want to cover:
+CodeClimate:
+{<img src="https://codeclimate.com/github/kimjunh/giver-game/badges/gpa.svg" />}[https://codeclimate.com/github/kimjunh/giver-game]
 
-* Ruby version
+TravisCI:
+{<img src="https://travis-ci.org/kimjunh/giver-game.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/kimjunh/giver-game]
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Pivotal Tracker: https://www.pivotaltracker.com/n/projects/1544779
