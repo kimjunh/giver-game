@@ -1,0 +1,12 @@
+language: ruby
+cache: bundler
+sudo: false
+rvm:
+  - 2.2.2
+env:
+  global:
+    - JRUBY_OPTS="-J-Xmx1024M --debug"
+matrix:
+  allow_failures:
+    - rvm: 1.9.3
+  fast_finish: true
