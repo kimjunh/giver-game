@@ -1,0 +1,35 @@
+{
+  "Cucumber Features": {
+    "coverage": {
+      "/home/ubuntu/workspace/giver-game/app/controllers/games_controller.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/giver-game/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/giver-game/app/helpers/application_helper.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1457511341
+  }
+}

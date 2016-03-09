@@ -15,6 +15,13 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+      
+    when /^the existing games page$/
+      play_game_path
+    when /^the tutorial page$/
+      tutorial_game_path
+    when /^the new games page$/
+      new_game_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
