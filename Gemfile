@@ -42,6 +42,7 @@ end
 group :test do
   gem 'rspec-rails', '2.14'
   gem 'simplecov', :require => false
+  gem 'test-unit'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   gem 'database_cleaner' # required by Cucumber
