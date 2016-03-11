@@ -5,6 +5,9 @@ Feature: Play a tutorial
   
   Background: tutorial exists 
   Given I am on the home page
+  And the following games exist:
+  | title                   | description                                 | charityA_title | charityB_title |
+  | Tutorial                | 'This is the tutorial for the Giving Game'  | 'Charity A'    | 'Charity B'    | 
   
   Scenario: Go to the tutorial page
     When I follow "Play Tutorial"

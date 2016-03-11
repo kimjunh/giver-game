@@ -1,36 +1,62 @@
 {
   "Cucumber Features": {
     "coverage": {
+      "/home/ubuntu/workspace/giver-game/app/models/givingGame.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/giver-game/app/models/article.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/giver-game/app/models/giving_game.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
       "/home/ubuntu/workspace/giver-game/app/controllers/games_controller.rb": [
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "/home/ubuntu/workspace/giver-game/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
-        null
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "/home/ubuntu/workspace/giver-game/app/helpers/application_helper.rb": [
-        1,
-        null
+        0,
+        0
       ]
     },
-    "timestamp": 1457511341
+    "timestamp": 1457677591
   },
   "RSpec": {
     "coverage": {
