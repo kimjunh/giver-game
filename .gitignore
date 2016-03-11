@@ -16,5 +16,5 @@
 !/log/.keep
 /tmp
 
-/coverage/*
-/spring-1000/*
+/coverage
+/spring-1000
