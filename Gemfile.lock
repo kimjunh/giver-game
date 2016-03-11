@@ -45,12 +45,16 @@ GEM
     arel (6.0.3)
     arrayfields (4.9.2)
     ast (2.2.0)
+    autoprefixer-rails (6.3.3.1)
+      execjs
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-rails (4.2.1)
       ZenTest (~> 4.5)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (8.2.2)
     cane (2.6.2)
@@ -321,8 +325,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   autotest
   autotest-rails
+  bootstrap-sass (~> 3.2.0)
   byebug
   coffee-rails (~> 4.1.0)
   cucumber-rails
