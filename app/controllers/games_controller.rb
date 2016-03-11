@@ -10,13 +10,10 @@ class GamesController < ApplicationController
   end
 
   def tutorial
-    @game = 
-    @charityUno = @game.name1 
-    @charityDos = @game.name2
-    if button pushed
-      flash[:notice] = "You loyal. You smart."
-    end
-    
+    @game = GivingGame.where(:title => 'Tutorial')
+    @charityOne = @game.charityA_title
+    @charityTwo = @game.charityB_title
+    @description = @game.description
   end
 
 end
