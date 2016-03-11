@@ -24,6 +24,8 @@ module NavigationHelpers
       new_game_path
     when /^the tutorial results page$/
       results_path
+    when /^the Create New Game page$/
+      new_game_path
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

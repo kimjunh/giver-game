@@ -4,7 +4,7 @@ Feature: Create a new game
   So that I can learn about charities and donate
 
 Background: tutorial exists 
-  Given there are no prexisting games
+  Given there are no preexisting games
 
   Scenario: Create the first game
     When I am on the Create New Game page
@@ -29,7 +29,7 @@ Background: tutorial exists
     And I should see "Second game successfully created"
     
   Scenario: Check for both games in the index page
-    When I am on the Game Index page
+    When I am on the existing games page
     Then I should see: "First game", "Second game", "10$", "1$"
     And I should see only "2" games.
     
