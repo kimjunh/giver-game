@@ -22,7 +22,9 @@ module NavigationHelpers
       tutorial_game_path
     when /^the new games page$/
       new_game_path
-
+    when /^the tutorial results page$/
+      results_path
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
