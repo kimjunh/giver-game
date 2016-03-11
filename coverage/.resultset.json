@@ -28,9 +28,20 @@
       "/home/ubuntu/workspace/giver-game/app/helpers/application_helper.rb": [
         1,
         null
+      ],
+      "/home/ubuntu/workspace/giver-game/app/models/giving_game.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1457511341
+    "timestamp": 1457680960
   },
   "RSpec": {
     "coverage": {
