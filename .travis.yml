@@ -6,6 +6,10 @@ rvm:
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024M --debug"
+script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
 matrix:
   allow_failures:
     - rvm: 1.9.3
