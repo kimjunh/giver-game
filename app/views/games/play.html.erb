@@ -2,7 +2,7 @@
 
 <% @games.each do |game| %>
    Game Title: <%= game.title %><br />
-   Money Per Vote: <%= game.per_transaction %><br /><br />
+   Money Per Vote: $<%= game.per_transaction %><br /><br />
    <% @counter = @counter + 1%>
 <%end %>
 <br />

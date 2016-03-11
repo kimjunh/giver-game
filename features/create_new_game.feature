@@ -36,6 +36,6 @@ Background: tutorial exists
 
   Scenario: Check for both games in the index page
     When I am on the existing games page
-    Then I should see: "First game", "Second game", "10", "1"
+    Then I should see: "First game", "Second game", "$10", "$1"
     Then I should see only "2" games
     
