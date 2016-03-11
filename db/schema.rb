@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310065714) do
+ActiveRecord::Schema.define(version: 20160311073603) do
 
-  create_table "giving_games", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "givingGames", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "release_date"
@@ -25,6 +32,20 @@ ActiveRecord::Schema.define(version: 20160310065714) do
     t.integer  "votesA"
     t.string   "charityB_title"
     t.integer  "votesB"
+  end
+
+  create_table "giving_games", force: :cascade do |t|
+    t.string   "title",                                   default: "default title"
+    t.text     "description",                             default: "default description"
+    t.datetime "release_date",                            default: '2016-03-11 07:48:40'
+    t.datetime "created_at",                              default: '2016-03-11 07:48:40', null: false
+    t.datetime "updated_at",                              default: '2016-03-11 07:48:40', null: false
+    t.decimal  "total_money",     precision: 8, scale: 2, default: 10.0
+    t.decimal  "per_transaction", precision: 8, scale: 2, default: 1.0
+    t.string   "charityA_title",                          default: "Charity A"
+    t.string   "charityB_title",                          default: "Charity B"
+    t.integer  "votesA",                                  default: 0
+    t.integer  "votesB",                                  default: 0
   end
 
 end

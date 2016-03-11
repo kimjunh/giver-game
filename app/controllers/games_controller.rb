@@ -5,6 +5,11 @@ class GamesController < ApplicationController
 
   def new
   end
+  
+  def create
+    GivingGame.new(params[:giving_game].permit(:title, :description, :total_money, :per_transaction, :charityA_title, :charityB_title))
+    redirect_to games_path
+  end
 
   def play
   end

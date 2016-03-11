@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/games/new', to: 'games#new', as: 'new_game'
   get '/games/play', to: 'games#play', as: 'play_game'
   get '/games/tutorial', to: 'games#tutorial', as: 'tutorial_game'
+  post '/games/create', to: 'games#create', as: 'create_game'
 
 #  get '/movies/:id/similar', to: 'movies#similar', as: 'search_directors'
 
