@@ -1,1 +1,9 @@
 <h1>Play an existing Giving Game</h1>
+
+<% @games.each do |game| %>
+   Game Title: <%= game.title %><br />
+   Money Per Vote: $<%= game.per_transaction %><br /><br />
+   <% @counter = @counter + 1%>
+<%end %>
+<br />
+Total Number of Games: <%= @counter.to_s %>
