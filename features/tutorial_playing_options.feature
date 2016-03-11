@@ -3,6 +3,11 @@ Feature: Tutorial and playing options
   I want to be able to have options about learning about the game, playing an existing game, or creating my own game
   So that I can learn about charities and choose how to go about a giving game
 
+  Background:
+    And the following games exist: # features/step_definitions/tutorial_steps.rb:1
+      | title    | description                                | charityA_title | charityB_title |
+      | Tutorial | 'This is the tutorial for the Giving Game' | Charity A      | Charity B      |
+
   Scenario: Clicking on the Tutorial link should direct users to the tutorial
     Given I am on the home page
     Then I should see "Play Tutorial" 
