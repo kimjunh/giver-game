@@ -17,6 +17,6 @@ class GamesController < ApplicationController
   end
   
   def results
-    @params = params
+    @charity = params[:charity]
   end
 end

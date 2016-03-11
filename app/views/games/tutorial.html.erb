@@ -2,5 +2,5 @@
 
 <p><%= @description %></p>
 
-<%= button_to "Donate to #{@charityOne}", results_path, method: :get, :params => {:charity => 'hi'} %>
+<%= button_to "Donate to #{@charityOne}", results_path(:charity => @charityOne) %>
 <%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo), :style => 'margin-top: 10px'%>
