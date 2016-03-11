@@ -1,6 +1,6 @@
 class GivingGames < ActiveRecord::Migration
   def change
-    create_table :givingGames do |t|
+    create_table :giving_games do |t|
       t.string :title
       t.text :description
       t.datetime :release_date
