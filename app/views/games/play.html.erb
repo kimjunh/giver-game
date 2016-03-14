@@ -14,7 +14,7 @@
       <% @games.each do |game| %>
          <tr>
             <td><%= game.title %></td>
-            <td><%= game.per_transaction %></td>
+            <td>$<%= game.per_transaction %></td>
          </tr>
          <% @counter = @counter + 1%>
       <% end %>
