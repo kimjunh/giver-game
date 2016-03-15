@@ -6,6 +6,8 @@ rvm:
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024M --debug"
+    - CODECLIMATE_REPO_TOKEN=549c22f4e2db072df829fc14ceaef0ac4db510d2896bff73517d4feb17a7d6cd
+    
 script: 
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
