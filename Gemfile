@@ -40,10 +40,11 @@ group :development, :test do
   gem 'sqlite3'
   gem 'autotest'
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+  gem 'rspec-rails', '3.3.2'
+
 end
 
 group :test do
-  gem 'rspec-rails', '2.14'
   gem 'simplecov', :require => false
   gem 'test-unit'
   gem 'cucumber-rails', :require => false
@@ -53,6 +54,7 @@ group :test do
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'rake'
+  gem "codeclimate-test-reporter", :require => nil
 end
 
 group :development do

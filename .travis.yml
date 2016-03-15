@@ -14,3 +14,6 @@ matrix:
   allow_failures:
     - rvm: 1.9.3
   fast_finish: true
+addons:
+  code_climate:
+    repo_token: 549c22f4e2db072df829fc14ceaef0ac4db510d2896bff73517d4feb17a7d6cd
