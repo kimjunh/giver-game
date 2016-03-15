@@ -1,9 +1,24 @@
-<h1>Play an existing Giving Game</h1>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag "play_style.css" %>
+</head>
 
-<% @games.each do |game| %>
-   Game Title: <%= game.title %><br />
-   Money Per Vote: $<%= game.per_transaction %><br /><br />
-   <% @counter = @counter + 1%>
-<%end %>
-<br />
-Total Number of Games: <%= @counter.to_s %>
+<body>
+   <div id="header">Play an existing Giving Game</div>
+
+   <table>
+      <tr>
+         <th>Game Title</th>
+         <th>Money Per Vote</th>
+      </tr>
+      <% @games.each do |game| %>
+         <tr>
+            <td><%= game.title %></td>
+            <td>$<%= game.per_transaction %></td>
+         </tr>
+         <% @counter = @counter + 1%>
+      <% end %>
+   </table>
+   <div id="counter"> Total Number of Games: <%= @counter.to_s %></div>
+
+</body>
