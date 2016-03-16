@@ -8,6 +8,7 @@ Feature: Play a tutorial
     And the following games exist:
     | title                   | description                                 | charityA_title | charityB_title |
     | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 
+    | Tutorial 2              | 'This is another tutorial!'                 | Charity 1      | Charity 2      |
   
   Scenario: Go to the tutorial page
     When I follow "Play Tutorial"
@@ -20,3 +21,11 @@ Feature: Play a tutorial
     And I should see "You have successfully donated!"
 
   Scenario: Select and play from multiple tutorials
+    Given I am on the home page
+    When I choose "Tutorial" from the dropdown menu in the navbar
+    And I press "Go"
+    Then The tutorial titled "Tutorial" should be there
+    Given I am on the home page
+    When I choose "Tutorial 2" from the dropdown menu in the navbar
+    And I press "Go"
+    Then The tutorial titled "Tutorial 2" should be there
