@@ -358,7 +358,6 @@ DEPENDENCIES
   rspec-rails (= 3.3.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  simplecov (= 0.11.1)
   spring
   sqlite3
   test-unit

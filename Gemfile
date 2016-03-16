@@ -45,7 +45,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'simplecov', '0.11.1', :require => false
+#  gem 'simplecov', '0.11.1', :require => false
   gem 'test-unit'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
