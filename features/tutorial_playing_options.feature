@@ -25,3 +25,4 @@ Feature: Tutorial and playing options
     Then I should see "Create a new giving game" 
     When I follow "Create a new giving game"
     Then I should be on the new games page
+

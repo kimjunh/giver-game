@@ -17,16 +17,14 @@ module NavigationHelpers
       '/'
       
     when /^the existing games page$/
-      play_game_path
+      play_index_path
     when /^the tutorial page$/
       tutorial_game_path
     when /^the new games page$/
       new_game_path
     when /^the tutorial results page$/
       results_path
-    when /^the Create New Game page$/
-      new_game_path
-      
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

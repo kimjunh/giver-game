@@ -3,12 +3,11 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :charityB_title)
   end
-
-  def index
+  
+  def home
   end
 
   def new
-    
   end
   
   def create
@@ -17,7 +16,7 @@ class GamesController < ApplicationController
     redirect_to root_path
   end
 
-  def play
+  def play_index
     @games = GivingGame.all
     @counter = 0
   end
