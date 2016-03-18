@@ -24,7 +24,11 @@ module NavigationHelpers
       new_game_path
     when /^the tutorial results page$/
       results_path
-
+    when /^the game page for "([^"]*)"$/
+      id = GivingGame.where(:title => $1).id
+      play_game_path(id)
+    
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
