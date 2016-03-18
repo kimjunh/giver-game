@@ -22,6 +22,11 @@ class GamesController < ApplicationController
   end
   
   def play_game
+    @game = GivingGame.find(params[:id])
+    @charityOne = @game.charityA_title
+    @charityTwo = @game.charityB_title
+    @description = @game.description
+    @title = @game.title
   end
 
   def tutorial

@@ -1,0 +1,6 @@
+<h1>Play the game: <%=@title %></h1>
+
+<p><%= @description %></p>
+
+<%= button_to "Donate to #{@charityOne}", results_path(:charity => @charityOne) %>
+<%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo), :style => 'margin-top: 10px'%>
