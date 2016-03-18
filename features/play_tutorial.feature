@@ -17,7 +17,7 @@ Feature: Play a tutorial
   Scenario: Play the sample game
     When I follow "Play Tutorial"
     And I press "Donate to Charity A"
-    Then I should be on the tutorial results page
+    Then I should be on the results page
     And I should see "You have successfully donated!"
 
   Scenario: Select and play from multiple tutorials
