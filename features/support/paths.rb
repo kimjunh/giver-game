@@ -22,7 +22,7 @@ module NavigationHelpers
       tutorial_game_path
     when /^the new games page$/
       new_game_path
-    when /^the tutorial results page$/
+    when /^the results page$/
       results_path
 
     # Add more mappings here.
