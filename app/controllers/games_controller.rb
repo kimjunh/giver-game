@@ -20,6 +20,9 @@ class GamesController < ApplicationController
     @games = GivingGame.all
     @counter = @games.length
   end
+  
+  def play_game
+  end
 
   def tutorial
     @game = GivingGame.where(:title => 'Tutorial').first
