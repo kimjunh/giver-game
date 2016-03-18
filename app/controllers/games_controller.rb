@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
   def play_index
     @games = GivingGame.all
-    @counter = 0
+    @counter = @games.length
   end
 
   def tutorial
