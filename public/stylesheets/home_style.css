@@ -16,6 +16,18 @@ body {
 	padding: 30px 0px;
 }
 
+#text-container {
+	width: 860px;
+	margin: 0px auto;
+	padding: 30px 0px;	
+}
+
+#em-container {
+	height: 60px;
+	vertical-align: middle;
+	line-height: 50px;
+}
+
 #links_container {
 	display: block;
 	margin: 0px auto;
@@ -31,16 +43,14 @@ a {
 	color: white;
 	font-weight: 300;
 	font-style: bold;
-	width: 200px;
+	width: 180px;
 	margin: 20px auto;
 	display: block;
 }
 
 .link {
 	text-align: center;
-	background-color: #4785DC;
 	padding: 10px;
-	width: 200px;
 	margin: 10px auto;
 	display: block;
 }
