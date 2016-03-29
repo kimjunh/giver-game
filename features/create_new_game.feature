@@ -11,7 +11,7 @@ Background: tutorial exists
   | Second game | something something else                   |      1          | Another one    | cold           |
 
   Scenario: Create the first game
-    When I am on the Create New Game page
+    When I am on the new games page
     And I fill in "Title" with "First game"
     And I fill in "Description" with "Descriptive description to describe"
     And I fill in "TotalMoney" with "1000"
@@ -23,7 +23,7 @@ Background: tutorial exists
     And I should see "First game successfully created"
   
   Scenario: Create the second game
-    When I am on the Create New Game page
+    When I am on the new games page
     And I fill in "Title" with "Second game"
     And I fill in "Description" with "Descriptive description to describe"
     And I fill in "TotalMoney" with "500"

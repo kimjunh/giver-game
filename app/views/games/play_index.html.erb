@@ -13,10 +13,9 @@
       </tr>
       <% @games.each do |game| %>
          <tr>
-            <td><%= game.title %></td>
-            <td><%= game.per_transaction %></td>
+            <td><%= link_to game.title, play_game_path(game.id)%></a></td>
+            <td>$<%= game.per_transaction %></td>
          </tr>
-         <% @counter = @counter + 1%>
       <% end %>
    </table>
    <div id="counter"> Total Number of Games: <%= @counter.to_s %></div>

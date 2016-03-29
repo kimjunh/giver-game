@@ -1,7 +1,7 @@
 Feature: Tutorial and playing options
   As a user
-  I want to be able to have options about learning about the game, playing an existing game, or creating my own game
-  So that I can learn about charities and choose how to go about a giving game
+  I want to have the option to be able to learn about the game, play an existing game, or create my own game
+  So that I can easily navigate through the site, learn about charities, and choose how to go about a giving game
 
   Background:
     And the following games exist: # features/step_definitions/tutorial_steps.rb:1
@@ -25,3 +25,4 @@ Feature: Tutorial and playing options
     Then I should see "Create a new giving game" 
     When I follow "Create a new giving game"
     Then I should be on the new games page
+
