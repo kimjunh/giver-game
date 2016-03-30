@@ -15,10 +15,10 @@ Scenario: Navigate to the home page
 Scenario: Navigate to the Create New Game page
   Given I am on the home page
   When I follow "Create New Game"
-  Then I should be on the Create New Game page
+  Then I should be on the new games page
   
 Scenario: Navigate to the Play Game page
   Given I am on the home page
   When I follow "Play Game"
-  Then I should be on the game index page
+  Then I should be on the existing games page
   
