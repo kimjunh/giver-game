@@ -25,7 +25,7 @@ module NavigationHelpers
     when /^the results page$/
       results_path
     when /^the game page for "([^"]*)"$/
-      id = GivingGame.where(:title => $1).id
+      id = GivingGame.where(:title => $1).first.id
       play_game_path(id)
     
       

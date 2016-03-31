@@ -7,7 +7,7 @@ Given /the following games exist/ do |games_table|
 end
 
 When(/^I choose "([^"]*)" from the dropdown menu in the navbar$/) do |tutorial|
-  select tutorial, from: "navbar_tutorial_menu"
+  select tutorial, :from => "navbar_select"
 end
 
 Then(/^The tutorial titled "([^"]*)" should be there$/) do |tutorial|

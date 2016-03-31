@@ -39,4 +39,8 @@ class GamesController < ApplicationController
   def results
     @charity = params[:charity]
   end
+  
+  def navbar_dropdown_redirect
+    redirect_to play_game_path(params[:navbar_select])
+  end
 end

@@ -1,6 +1,6 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag "play_style.css" %>
+    <%= stylesheet_link_tag "play_index_style.css" %>
 </head>
 
 <body>
@@ -10,11 +10,13 @@
       <tr>
          <th>Game Title</th>
          <th>Money Per Vote</th>
+         <th>Tutorial?</th>
       </tr>
       <% @games.each do |game| %>
          <tr>
             <td><%= link_to game.title, play_game_path(game.id)%></a></td>
             <td>$<%= game.per_transaction %></td>
+            <td class="third_col"><% if game.tutorial %>&#10004;<% end %></td>
          </tr>
       <% end %>
    </table>

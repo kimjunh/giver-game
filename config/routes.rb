@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/games/results', to: 'games#results', as: 'results'
   post '/games/create', to: 'games#create', as: 'create_game'
   get '/games/play/:id', to: 'games#play_game', as: 'play_game'
+  get '/games/navbar_dropdown_redirect', to: 'games#navbar_dropdown_redirect', as: 'navbar_dropdown_redirect'
 
 #  get '/movies/:id/similar', to: 'movies#similar', as: 'search_directors'
 
