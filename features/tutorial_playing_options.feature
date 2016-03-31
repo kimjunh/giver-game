@@ -11,7 +11,7 @@ Feature: Tutorial and playing options
   Scenario: Clicking on the Tutorial link should direct users to the tutorial
     Given I am on the home page
     Then I should see "Play Tutorial" 
-    When I follow "Play Tutorial"
+    When I follow "nav_tutorial"
     Then I should be on the tutorial page
 
   Scenario: Clicking on the play a game link should direct users to a list of existing games
