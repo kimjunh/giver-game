@@ -19,7 +19,16 @@
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to 'Home', root_path%></li>
       <li><%= link_to 'Create New Game', new_game_path%></li>
-      <li><%= link_to 'Play Tutorial', tutorial_game_path, id: 'nav_tutorial'%></li> 
+      <li>
+        <a class="dropdown-toggle" data-toggle="dropdown">Play Tutorial</a>
+        <ul class="dropdown-menu">
+            <%= @tutorials.each do |tutorial| %>
+              <li>
+                <%= link_to tutorial.title, play_game_path(:id => tutorial.id) %>
+              </li>
+            <% end %>
+        </ul>
+      </li>
       <li><%= link_to 'Play Game', play_index_path%></li> 
     </ul>
   </div>
