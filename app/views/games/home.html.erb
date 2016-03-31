@@ -5,13 +5,13 @@
 
 
 <body>
-    <div class='form'>
-        <%= form_tag navbar_dropdown_redirect_path, method: :get do %>
-        <div id="navbar_dropdown_menu">
-            <%= select_tag "navbar_select", options_for_select(GivingGame.where(:tutorial => true).collect {|g| [ g.title, g.id ] }), {prompt: 'Select Tutorial', onchange: "this.form.submit();"} %>
-        </div>
-        <% end %>
-    </div>
+    <!--<div class='form'>-->
+    <!--    <%= form_tag navbar_dropdown_redirect_path, method: :get do %>-->
+    <!--    <div id="navbar_dropdown_menu">-->
+    <!--        <%= select_tag "navbar_select", options_for_select(GivingGame.where(:tutorial => true).collect {|g| [ g.title, g.id ] }), {prompt: 'Select Tutorial', onchange: "this.form.submit();"} %>-->
+    <!--    </div>-->
+    <!--    <% end %>-->
+    <!--</div>-->
     
     <div id="header">
         Welcome to the Giving Game!

@@ -22,7 +22,7 @@
       <li>
         <a class="dropdown-toggle" data-toggle="dropdown">Play Tutorial</a>
         <ul class="dropdown-menu">
-            <%= @tutorials.each do |tutorial| %>
+            <% @tutorials.each do |tutorial| %>
               <li>
                 <%= link_to tutorial.title, play_game_path(:id => tutorial.id) %>
               </li>
