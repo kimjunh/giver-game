@@ -11,11 +11,11 @@ Feature: Play a tutorial
     | Tutorial 2              | 'This is another tutorial!'                 | Charity 1      | Charity 2      |
   
   Scenario: Go to the tutorial page
-    When I follow "Play Tutorial"
+    When I follow "home_tutorial"
     Then I should be on the tutorial page
 
   Scenario: Play the sample game
-    When I follow "Play Tutorial"
+    When I follow "home_tutorial"
     And I press "Donate to Charity A"
     Then I should be on the results page
     And I should see "You have successfully donated!"
