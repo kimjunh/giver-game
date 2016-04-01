@@ -6,8 +6,10 @@ Given /the following games exist/ do |games_table|
   end
 end
 
-When(/^I choose "([^"]*)" from the dropdown menu in the navbar$/) do |tutorial|
-  select tutorial, :from => "navbar_select"
+When(/^I follow "([^"]*)" from the dropdown menu in the navbar$/) do |tutorial|
+  within('ul.dropdown-menu', visible: false) do
+    click_link tutorial
+  end
 end
 
 Then(/^The tutorial titled "([^"]*)" should be there$/) do |tutorial|

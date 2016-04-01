@@ -20,10 +20,3 @@ Feature: Play a tutorial
     Then I should be on the results page
     And I should see "You have successfully donated!"
 
-  Scenario: Select and play from multiple tutorials
-    Given I am on the home page
-    When I choose "Tutorial" from the dropdown menu in the navbar
-    Then The tutorial titled "Tutorial" should be there
-    Given I am on the home page
-    When I choose "Tutorial2" from the dropdown menu in the navbar
-    Then The tutorial titled "Tutorial2" should be there

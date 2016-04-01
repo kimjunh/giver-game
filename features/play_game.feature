@@ -13,14 +13,14 @@ Feature: As a user who wants to play
   Scenario: Go to the games page and select a game 
     When I follow "Play a giving game"
     And I should be on the existing games page
-    Then I should see "Regular Game"
-    When I follow "Regular Game"
+    Then I should see "Regular Game" in my table
+    When I follow "Regular Game" in my table
     Then I should be on the game page for "Regular Game"
     And I should see "This is a game"
     
   Scenario: Go back to existing games page from game page 
     When I follow "Play a giving game"
-    And I follow "Regular Game"
+    And I follow "Regular Game" in my table
     And I press "Donate to Charity 3"
     And I should be on the results page
     When I follow "Go Back to Games List"

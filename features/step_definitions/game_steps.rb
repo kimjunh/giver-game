@@ -8,3 +8,16 @@ end
 Then(/^I should see only "([^"]*)" games$/) do |arg1|
   step "I should see \"Total Number of Games: #{arg1}\""
 end
+
+When /^I follow "(.*)" in my table$/ do |game|
+  within('table.games') do
+    click_link game
+  end
+end
+
+Then /^I should see "(.*)" in my table$/ do |game|
+  table_results = page.find('table.games')
+  table_results.should have_content(game)
+end
+
+    

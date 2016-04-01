@@ -21,7 +21,7 @@
       <li><%= link_to 'Create New Game', new_game_path%></li>
       <li>
         <a class="dropdown-toggle" data-toggle="dropdown">Play Tutorial</a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" id=dropdown>
             <% @tutorials.each do |tutorial| %>
               <li>
                 <%= link_to tutorial.title, play_game_path(:id => tutorial.id) %>
