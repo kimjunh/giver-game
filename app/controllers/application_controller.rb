@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :get_tutorials
   
+  #switch this out later
   def get_tutorials
     @tutorials = GivingGame.all
   end
