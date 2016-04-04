@@ -3,9 +3,10 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-# require 'simplecov'
+require 'simplecov'
+SimpleCov.start 'rails'
 require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+CodeClimate::TestReporter.start 'rails'
 
 require 'cucumber/rails'
 
