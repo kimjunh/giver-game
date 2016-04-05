@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   #switch this out later
   def get_tutorials
-    @tutorials = GivingGame.all
+    @tutorials = GivingGame.where(:tutorial => true)
   end
   
 end
