@@ -12,6 +12,7 @@ script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
+  - rake test:codeclimate
 matrix:
   allow_failures:
     - rvm: 1.9.3
