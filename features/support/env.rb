@@ -5,8 +5,8 @@
 # files.
 require 'simplecov'
 SimpleCov.start 'rails'
-# require "codeclimate-test-reporter"
-# CodeClimate::TestReporter.start
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 require 'cucumber/rails'
 

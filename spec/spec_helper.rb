@@ -2,8 +2,8 @@
 require 'simplecov'
 SimpleCov.start
 
-# require "codeclimate-test-reporter"
-# CodeClimate::TestReporter.start
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 SimpleCov::command_name ENV["TESTNAME"] if ENV["TESTNAME"]
 
