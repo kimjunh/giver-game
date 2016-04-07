@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329163506) do
+ActiveRecord::Schema.define(version: 20160407035614) do
 
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                   default: "default title"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160329163506) do
     t.string   "charityB_title",                          default: "Charity B"
     t.integer  "votesB",                                  default: 0
     t.boolean  "tutorial"
+    t.string   "descriptionA"
+    t.string   "descriptionB"
   end
 
 end
