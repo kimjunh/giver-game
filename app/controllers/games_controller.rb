@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :charityB_title)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :charityB_title, :tutorial)
   end
   
   def home
@@ -11,8 +11,12 @@ class GamesController < ApplicationController
   end
   
   def create
-    @game = GivingGame.create!(game_params)
-    flash[:notice] = "#{@game.title} successfully created."
+    if GivingGame.find_by title: params[:game][:title]
+      flash[:notice] = "There is already a Giving Game called #{params[:game][:title]}."
+    else
+      @game = GivingGame.create!(game_params)
+      flash[:notice] = "Giving Game #{@game.title} successfully created."
+    end
     redirect_to root_path
   end
 
@@ -38,9 +42,5 @@ class GamesController < ApplicationController
   
   def results
     @charity = params[:charity]
-  end
-  
-  def navbar_dropdown_redirect
-    redirect_to play_game_path(params[:navbar_select])
   end
 end

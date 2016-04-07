@@ -1,37 +1,43 @@
-<div id="container" class="container">
-<h1>Create a new Giving game </h1>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag "new_style.css" %>
+</head>
 
-<div class='form'>
-    <%= form_tag create_game_path, method: :post do %>
+<body>
+    <div id="container" class="container">
+        <div id=header>Create a new Giving game</div>
+
+        <div class='form'>
+            <%= form_tag create_game_path, method: :post do %>
     
-    <h4>Name of Game</h4>
-    <div class='field form-group'><%= text_field :game, :title, id: 'Title' %></div>
+            <div class=form-header>Name of Game</div>
+            <div class='field-form-group'><%= text_field :game, :title, id: 'Title' %></div>
     
-    <h4>Description</h4>
-    <div class='field form-group'><%= text_field :game, :description, id: 'Description' %></div>
+            <div class=form-header>Description</div>
+            <div class='field-form-group'><%= text_field :game, :description, id: 'Description' %></div>
     
-    <h4>Amount of Money</h4>
-    <div class='field form-group'><%= text_field :game, :total_money, id: 'TotalMoney' %></div>
+            <div class=form-header>Amount of Money</div>
+            <div class='field-form-group'><%= text_field :game, :total_money, id: 'TotalMoney' %></div>
     
-    <h4>Per Person Amount</h4>
-    <div class='field form-group'><%= text_field :game, :per_transaction, id: 'AmountPerVote' %></div>
+            <div class=form-header>Per Person Amount</div>
+            <div class='field-form-group'><%= text_field :game, :per_transaction, id: 'AmountPerVote' %></div>
     
-    <h4>Charity A</h4>
-    <div class='field form-group'><%= text_field :game, :charityA_title, id: 'Charity A' %></div>
+            <div class=form-header>Description A</div>
+            <div class='field form-group'><%= text_field :game, :charityA_description, id: 'Description A' %></div>
     
-    <h4>Description A</h4>
-    <div class='field form-group'><%= text_field :game, :charityA_description, id: 'Description A' %></div>
+            <div class=form-header>Charity B</div>
+            <div class='field form-group'><%= text_field :game, :charityB_title, id: 'Charity B' %></div>
     
-    <h4>Charity B</h4>
-    <div class='field form-group'><%= text_field :game, :charityB_title, id: 'Charity B' %></div>
+            <div class=form-header>Description B</div>
+            <div class='field form-group'><%= text_field :game, :charityB_description, id: 'Description B' %></div>
     
-    <h4>Description B</h4>
-    <div class='field form-group'><%= text_field :game, :charityB_description, id: 'Description B' %></div>
-    
-    
-    <div class="actions form-group">
-        <%= submit_tag 'Submit New Game' %>
-    </div>
-    <% end %>
+            <div class=form-header>Tutorial?</div>
+            <div class='field-form-group'><%= check_box :game, :tutorial, {}, true, false %></div>
+
+            <div class="actions-form-group">
+                <%= submit_tag 'Submit New Game' %>
+            </div>
+            <% end %>
+        </div>
 </div>
-</div>
+</body>

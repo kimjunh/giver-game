@@ -12,7 +12,7 @@ Background: tutorial exists
 
   Scenario: Create the first game
     When I am on the new games page
-    And I fill in "Title" with "First game"
+    And I fill in "Title" with "First Game"
     And I fill in "Description" with "Descriptive description to describe"
     And I fill in "TotalMoney" with "1000"
     And I fill in "AmountPerVote" with "10"
@@ -22,11 +22,11 @@ Background: tutorial exists
     And I fill in "Description B" with "Donates directly to people leaving America because of Trump's policies"
     And I press "Submit New Game"
     Then I should be on the home page
-    And I should see "First game successfully created"
+    And I should see "Giving Game First Game successfully created."
   
   Scenario: Create the second game
     When I am on the new games page
-    And I fill in "Title" with "Second game"
+    And I fill in "Title" with "Second Game"
     And I fill in "Description" with "Descriptive description to describe"
     And I fill in "TotalMoney" with "500"
     And I fill in "AmountPerVote" with "10"
@@ -36,7 +36,7 @@ Background: tutorial exists
     And I fill in "Description B" with "Provides malaria nets to locals."
     And I press "Submit New Game"
     Then I should be on the home page
-    And I should see "Second game successfully created"
+    And I should see "Giving Game Second Game successfully created."
 
   Scenario: Check for both games in the index page
     When I am on the existing games page
@@ -76,3 +76,15 @@ Background: tutorial exists
     Then I should be on the new games page
     And I should see "Some fields are empty or invalid: Amount of Money, Per Person Amount"
     And I should see "Please provide numeric value."    
+
+  Scenario: Try creating another game with same name
+    When I am on the new games page
+    And I fill in "Title" with "First game"
+    And I fill in "Description" with "Descriptive description to describe"
+    And I fill in "TotalMoney" with "1000"
+    And I fill in "AmountPerVote" with "10"
+    And I fill in "Charity A" with "Syrian Refugees"
+    And I fill in "Charity B" with "Trump Refugees"
+    And I press "Submit New Game"
+    Then I should be on the home page
+    And I should see "There is already a Giving Game called First game."
