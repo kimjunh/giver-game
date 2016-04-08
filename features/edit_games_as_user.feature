@@ -27,4 +27,4 @@ Feature: Edit existing giving games
       And I fill in "Title" with "Game 2"
       And I press "Finish"
       Then I should be on the games of user page for "Trader Joe"
-      And I should see "The title \"Game 2\" is already taken."
+      And I should see "The title Game 2 is already taken."
