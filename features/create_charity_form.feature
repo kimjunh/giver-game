@@ -5,7 +5,7 @@ Feature: Adding Charity Fields to Forms
   
   Scenario: Create a giving game with descriptions for each charity
     When I am on the new games page
-    When I fill out the form
+    When I fill out the form without descriptions
     And I fill in "Description A" with "Description 1."
     And I fill in "Description B" with "Description 2."
     And I upload an image to the form
