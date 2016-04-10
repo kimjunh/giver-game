@@ -27,13 +27,30 @@ class GamesController < ApplicationController
   end
   
   def create
+    success = true 
     if GivingGame.find_by title: params[:game][:title]
+      success = false
       flash[:notice] = "There is already a Giving Game called #{params[:game][:title]}."
     else
-      @game = GivingGame.create!(game_params)
-      flash[:notice] = "Giving Game #{@game.title} successfully created."
+      game = GivingGame.create(game_params)
+      if game.valid?
+        @game = game
+        flash[:notice] = "Giving Game #{@game.title} successfully created."
+      else
+        totalMessage = "There were the following errors: \n"
+        game.errors.messages.each do |key, message|
+          totalMessage += "#{key}: #{message} \n"
+        end
+        flash[:warning] = totalMessage
+        success = false
+      end
     end
-    redirect_to root_path
+    
+    if success
+      redirect_to root_path
+    else
+      redirect_to new_game_path
+    end
   end
 
   def play_index
