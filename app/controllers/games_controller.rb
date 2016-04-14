@@ -31,7 +31,7 @@ class GamesController < ApplicationController
     @charityTwo = @game.charityB_title
     @description = @game.description
     @title = @game.title
-    @showResults = @game.show_results
+    @showResults = true
   end
 
   def tutorial
@@ -42,7 +42,19 @@ class GamesController < ApplicationController
   end
   
   def results
-    @charity = params[:charity]
-    @game = params[:game]
+    @game = GivingGame.find(params[:id])
+    @title = @game.title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
+    @votesA = @game.votesA
+    @votesB = @game.votesB
+    
+    if @votesA > @votesB
+      @leadingCharity = @game.charityA_title
+    elsif @votesA < @votesB
+      @leadingCharity = @game.charityB_title
+    else
+      @leadingCharity = nil
+    end
   end
 end
