@@ -6,12 +6,17 @@ Feature: Display votes
   Background: games exist
     Given I am on the existing games page
     And the following games exist:
-    | title                   | description                                 | charityA_title | charityB_title | votesA | votesB |
-    | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 0      | 0      |
+    | title                   | description                                 | charityA_title | charityB_title | votesA | votesB | show_results
+    | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 0      | 0      | true
   
   Scenario: Select game and vote
     When I follow "Tutorial" 
     And I press "Donate to Charity A"
     Then I should be on the results page
     And I should see "Votes for Charity A: 1"
+
+  Scenario: Selecting one charity and confirming the votes for the other charity did not increase
+    When I follow "Tutorial"
+    And I press "Donate to Charity A"
+    Then I should be on the results page
     And I should see "Votes for Charity B: 0"
