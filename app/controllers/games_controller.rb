@@ -31,6 +31,7 @@ class GamesController < ApplicationController
     @charityTwo = @game.charityB_title
     @description = @game.description
     @title = @game.title
+    @showResults = @game.show_results
   end
 
   def tutorial
