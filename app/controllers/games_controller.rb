@@ -10,6 +10,22 @@ class GamesController < ApplicationController
   def new
   end
   
+  def edit
+    @game = GivingGame.find(params[:id])
+  end
+  
+  def update
+    if GivingGame.find_by title: params[:game][:title]
+      flash[:notice] = "The title #{params[:game][:title]} is already taken."
+      redirect_to edit_game_path(current_user.id, params[:id])
+    else
+      @game = GivingGame.find params[:id]
+      @game.update_attributes!(game_params)
+      flash[:notice] = "Successfully edited."
+      redirect_to user_profile_path(current_user.id)
+    end
+  end
+  
   def create
     if GivingGame.find_by title: params[:game][:title]
       flash[:notice] = "There is already a Giving Game called #{params[:game][:title]}."

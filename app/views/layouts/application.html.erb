@@ -16,7 +16,7 @@
       <a class="navbar-brand">Giving Game</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Home', root_path%></li>
+      <li><%= link_to 'Home', root_path%></li>
       <li><%= link_to 'Create New Game', new_game_path%></li>
       <li>
         <a class="dropdown-toggle" data-toggle="dropdown">Play Tutorial</a>
@@ -28,7 +28,16 @@
             <% end %>
         </ul>
       </li>
-      <li><%= link_to 'Play Game', play_index_path%></li> 
+      <li><%= link_to 'Play Game', play_index_path %></li>
+      <li><% if user_signed_in? %>
+          <%= link_to 'Profile', user_profile_path(current_user.id) %>
+          <% end %></li>
+      <li><% if user_signed_in? %>
+          <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+          <% else %>
+          <%= link_to 'Sign In', new_user_session_path %>
+          <% end %>
+      </li>
     </ul>
   </div>
 </nav>

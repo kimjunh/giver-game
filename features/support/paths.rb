@@ -27,15 +27,17 @@ module NavigationHelpers
     when /^the game page for "([^"]*)"$/
       id = GivingGame.where(:title => $1).first.id
       play_game_path(id)
-    when /^the new user page$/
-      new_user_path
-    when /^the user page for "([^"]"*)"$/
-      id = User.where(:username => $1).first.id
-      user_path(id)
-    when /^the games of user page for "([^"]"*)"$/
-      user = User.where(:username => $1).first
-      user_game_path(user.id, user.games)
-      
+    when /^the sign in page$/
+      new_user_session_path
+    when /^the sign up page$/
+      new_user_registration_path
+    when /^the user page for "([^"]*)"$/
+      id = User.where(:email => $1).first.id
+      user_profile_path(id)
+    when /^the edit page for "([^"]*)"$/
+      game = GivingGame.where(:title => $1).first
+      edit_game_path(game.user_id, game.id)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

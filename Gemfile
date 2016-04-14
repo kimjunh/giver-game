@@ -27,6 +27,11 @@ gem 'autoprefixer-rails'
 # sweet alert
 gem 'sweetalert-rails'
 
+#user authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

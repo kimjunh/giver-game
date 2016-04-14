@@ -1,0 +1,26 @@
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag "profile_style.css" %>
+</head>
+
+<body>
+    <div id=container>
+        <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
+        <div id=header>
+            <%= @user.uid %>'s Profile
+        </div>
+        <div id=table-header>
+            Edit Your Games
+        </div>
+        <table class=games>
+            <tr>
+             <th>Game Title</th>
+            </tr>
+        <% @games.each do |game| %>
+             <tr>
+                <td><%= link_to game.title, edit_game_path(current_user.id, game.id)%></a></td>
+             </tr>
+          <% end %>
+        </table>
+    </div>
+</body>

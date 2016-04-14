@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users do
+    get '/signup', to: 'users/registrations#new', as: 'new_user_registration'
+  end
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,7 +16,9 @@ Rails.application.routes.draw do
   post '/games/results', to: 'games#results', as: 'results'
   post '/games/create', to: 'games#create', as: 'create_game'
   get '/games/play/:id', to: 'games#play_game', as: 'play_game'
-  get '/games/navbar_dropdown_redirect', to: 'games#navbar_dropdown_redirect', as: 'navbar_dropdown_redirect'
+  get '/users/:id', to: 'users#profile', as: 'user_profile'
+  get '/users/:id/games/edit/:id', to: 'games#edit', as: 'edit_game'
+  post '/users/:id/games/update/:id', to: 'games#update', as: 'update_game'
 
 #  get '/movies/:id/similar', to: 'movies#similar', as: 'search_directors'
 

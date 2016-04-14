@@ -6,39 +6,40 @@ Feature: Create user accounts
   Background: Users exist
     
     Given the following users exist:
-      | username | password |     email             |
-      | Daniel   | lol      |  daniel@gmail.com     |
+      | uid      | password | password_confirmation|     email             |
+      | Daniel   | lollolol |  lollolol            |  daniel@gmail.com     |
     
   #Happy Path!
   Scenario: Create a user account
     When I am on the home page
-    And I go to the new user page
-    And I fill in "Username" with "Rohin"
-    And I fill in "Password" with "ppaasssswwoorrdd"
-    And I fill in "Email" with "rohinshah@gmail.com"
-    And I press "Create New User"
-    Then I should be on the user page for "Rohin"
-    And I should see "Welcome, Rohin!"
-    
-  #Sad Path.
-  Scenario: Attempt to create a user account with already existing username
-    When I am on the home page
-    And I go to the new user page
-    And I fill in "Username" with "Daniel"
-    And I fill in "Password" with "nope"
-    And I fill in "Email" with "email@gmail.com"
-    And I press "Create New User"
-    Then I should be on the new user page
-    And I should see "Username is already taken."
+    And I go to the sign in page
+    And I go to the sign up page
+    And I fill in "user[uid]" with "Rohin"
+    And I fill in "user[password]" with "ppaasssswwoorrdd"
+    And I fill in "user[password_confirmation]" with "ppaasssswwoorrdd"
+    And I fill in "user[email]" with "rohinshah@gmail.com"
+    And I press "submit"
+    Then I should be on the home page
+    And I should see "Welcome! You have signed up successfully."
   
   #Sad Path
-  Scenario: Attempt to create a user account with already existing password
+  Scenario: Attempt to create a user account with already existing email
     When I am on the home page
-    And I go to the new user page
-    And I fill in "Username" with "DragonSlayer"
-    And I fill in "Password" with "destructi0n"
-    And I fill in "Email" with "daniel@gmail.com"
-    And I press "Create New User"
-    Then I should be on the new user page
-    And I should see "Email is already taken."
-    
+    And I go to the sign in page
+    And I go to the sign up page
+    And I fill in "user[uid]" with "DragonSlayer"
+    And I fill in "user[password]" with "destructi0n"
+    And I fill in "user[password_confirmation]" with "destructi0n"
+    And I fill in "user[email]" with "daniel@gmail.com"
+    And I press "submit"
+    And I should see "Email has already been taken"
+  
+  #Sad Path
+  Scenario: Attempt to create a user account with empty password
+    When I am on the home page
+    And I go to the sign in page
+    And I go to the sign up page
+    And I fill in "user[uid]" with "DragonRider"
+    And I fill in "user[email]" with "rydah@gmail.com"
+    And I press "submit"
+    And I should see "Password can't be blank"
