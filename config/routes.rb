@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/games/new', to: 'games#new', as: 'new_game'
   get '/games/play_index', to: 'games#play_index', as: 'play_index'
   get '/games/tutorial', to: 'games#tutorial', as: 'tutorial_game'
-  get '/games/results', to: 'games#results', as: 'results'
+  get '/games/results/:id', to: 'games#results', as: 'results'
   post '/games/create', to: 'games#create', as: 'create_game'
   get '/games/play/:id', to: 'games#play_game', as: 'play_game'
   get '/games/navbar_dropdown_redirect', to: 'games#navbar_dropdown_redirect', as: 'navbar_dropdown_redirect'
