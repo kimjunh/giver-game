@@ -35,7 +35,10 @@ class GamesController < ApplicationController
   end
 
   def tutorial
-    @game = GivingGame.where(:title => 'Tutorial').first
+    number_of_games = GivingGame.where(:tutorial => true).count
+    index = rand(number_of_games)
+    games = GivingGame.where(:tutorial => true).collect{|i| i}
+    @game = games[index]
     @charityOne = @game.charityA_title
     @charityTwo = @game.charityB_title
     @description = @game.description
@@ -43,16 +46,25 @@ class GamesController < ApplicationController
   
   def results
     @game = GivingGame.find(params[:id])
+    @charityVotedFor = params[:charity]
     @title = @game.title
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
+    
+    if @charityVotedFor == @charityA
+      @game.voteForA
+    else
+      @game.voteForB
+    end
+    
     @votesA = @game.votesA
     @votesB = @game.votesB
     
+    # show which charity is in the lead
     if @votesA > @votesB
-      @leadingCharity = @game.charityA_title
+      @leadingCharity = @charityA
     elsif @votesA < @votesB
-      @leadingCharity = @game.charityB_title
+      @leadingCharity = @charityB
     else
       @leadingCharity = nil
     end
