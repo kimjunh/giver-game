@@ -27,11 +27,11 @@ class GamesController < ApplicationController
   
   def play_game
     @game = GivingGame.find(params[:id])
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
     @title = @game.title
-    @showResults = @game.show_results
+    @showResults = true
   end
 
   def tutorial
@@ -39,8 +39,8 @@ class GamesController < ApplicationController
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
     @game = games[index]
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
   end
   
