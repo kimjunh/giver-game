@@ -1,4 +1,32 @@
-<h1>You have successfully donated!</h1>
-<p>Your choice: <%= @charity %></p>
+<div class="container">
+    <div class="row">
+        <div class="page-header"><h1><small>Results:</small> <small class="game-name-header"><%=@title %></small></h1></div>
+    </div>
+    <div class="row top-buffer" style="text-align: center">
+         <div class="panel panel-default">
+            <div class="panel-body">
+                <% if @leadingCharity == nil %>
+                    <h3>The votes are tied!</h3>
+                <% else %>
+                    <h3>Leading Charity:<%= @leadingCharity %></h3>
+                <% end %> 
+            </div>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-lg-6" style="text-align: center">
+            <button class="btn <%= 'btn-success' if @leadingCharity == @charityA %><%= 'btn-danger' if @leadingCharity == @charityB %><%= 'btn-primary' if @leadingCharity == nil %> btn-lg" type="button">
+              Votes for <%= @charityA %>:<span class="badge left-buffer"><%= @votesA %></span>
+            </button>
+        </div>
+        <div class="col-lg-6" style="text-align: center">
+            <button class="btn <%= 'btn-success' if @leadingCharity == @charityB %><%= 'btn-danger' if @leadingCharity == @charityA %><%= 'btn-primary' if @leadingCharity == nil %> btn-lg" type="button">
+              Votes for <%= @charityB %>:<span class="badge left-buffer"><%= @votesB %></span>
+            </button>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <%= link_to "Go Back to Games List", play_index_path %>
+    </div>
+</div>
 
-<%= link_to "Go Back to Games List", play_index_path %>
