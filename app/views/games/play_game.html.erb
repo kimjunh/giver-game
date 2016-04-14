@@ -2,5 +2,17 @@
 
 <p><%= @description %></p>
 
-<%= button_to "Donate to #{@charityOne}", results_path(:charity => @charityOne) %>
-<%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo), :style => 'margin-top: 10px'%>
+<%= button_to "Donate to #{@charityOne}", results_path(:charity => @charityOne), :remote => true, :onclick => "vote_success('#{@charityOne}');" %>
+<%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo), :remote => true, :onclick => "vote_success('#{@charityTwo}');", :style => 'margin-top: 10px'%>
+
+<script>
+    var vote_success = function(name) {
+    sweetAlert({
+        title: 'Donation Successful!',
+        text: 'Your choice: ' + name,
+        type: 'success',
+    }, function() {
+        window.location = '<%= play_index_path %>'
+    });
+};
+</script>
