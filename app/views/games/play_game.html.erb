@@ -2,5 +2,12 @@
 
 <p><%= @description %></p>
 
+<img src="http://41.media.tumblr.com/tumblr_mc7xf57QGn1qfg8rlo1_1280.jpg"></br>
+<%= @descriptionA %>
 <%= button_to "Donate to #{@charityOne}", results_path(:charity => @charityOne) %>
-<%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo), :style => 'margin-top: 10px'%>
+</br>
+
+<img src="https://img.buzzfeed.com/buzzfeed-static/static/2014-07/16/11/enhanced/webdr10/enhanced-20139-1405523602-5.jpg"></br>
+<%= @descriptionB %>
+<%= button_to "Donate to #{@charityTwo}", results_path(:charity => @charityTwo) %>
+</br>
