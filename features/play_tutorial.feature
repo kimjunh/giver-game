@@ -8,7 +8,6 @@ Feature: Play a tutorial
     And the following games exist:
     | title        | id | description                                 | charityA_title | charityB_title | tutorial |
     | Tutorial     |  1 | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | true     |
-    | Tutorial2    |  2 | 'This is another tutorial!'                 | Charity 1      | Charity 2      | true     |
   
   Scenario: Go to the tutorial page
     When I follow "home_tutorial"

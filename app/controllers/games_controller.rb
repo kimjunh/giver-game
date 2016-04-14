@@ -21,7 +21,7 @@ class GamesController < ApplicationController
   end
 
   def play_index
-    @games = GivingGame.all
+    @games = GivingGame.where(:expiration_time > DateTime.now)
     @counter = @games.length
   end
   
