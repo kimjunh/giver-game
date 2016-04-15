@@ -23,6 +23,7 @@ class GamesController < ApplicationController
   def play_index
     @games = GivingGame.all
     @counter = @games.length
+    @charityVotedFor = params[:charity]
   end
   
   def play_game
@@ -42,6 +43,7 @@ class GamesController < ApplicationController
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
     @description = @game.description
+    @showResults = true
   end
   
   def results

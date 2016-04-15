@@ -23,3 +23,13 @@
    <div id="counter"> Total Number of Games: <%= @counter.to_s %></div>
 
 </body>
+
+<script>
+   if ('<%= @charityVotedFor %>' !== '') {
+      sweetAlert({
+        title: 'Donation Successful!',
+        text: 'Your choice: ' + '<%= @charityVotedFor %>',
+        type: 'success',
+      });
+   }
+</script>

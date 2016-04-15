@@ -8,7 +8,7 @@
                 <% if @leadingCharity == nil %>
                     <h3>The votes are tied!</h3>
                 <% else %>
-                    <h3>Leading Charity:<%= @leadingCharity %></h3>
+                    <h3>Leading Charity: <%= @leadingCharity %></h3>
                 <% end %> 
             </div>
         </div>
@@ -16,12 +16,12 @@
     <div class="row top-buffer">
         <div class="col-lg-6" style="text-align: center">
             <button class="btn <%= 'btn-success' if @leadingCharity == @charityA %><%= 'btn-danger' if @leadingCharity == @charityB %><%= 'btn-primary' if @leadingCharity == nil %> btn-lg" type="button">
-              Votes for <%= @charityA %>:<span class="badge left-buffer"><%= @votesA %></span>
+              Votes for <%= @charityA %>: <span class="badge left-buffer"><%= @votesA %></span>
             </button>
         </div>
         <div class="col-lg-6" style="text-align: center">
             <button class="btn <%= 'btn-success' if @leadingCharity == @charityB %><%= 'btn-danger' if @leadingCharity == @charityA %><%= 'btn-primary' if @leadingCharity == nil %> btn-lg" type="button">
-              Votes for <%= @charityB %>:<span class="badge left-buffer"><%= @votesB %></span>
+              Votes for <%= @charityB %>: <span class="badge left-buffer"><%= @votesB %></span>
             </button>
         </div>
     </div>
@@ -29,4 +29,12 @@
         <%= link_to "Go Back to Games List", play_index_path %>
     </div>
 </div>
+
+<script>
+    sweetAlert({
+        title: 'Donation Successful!',
+        text: 'Your choice: ' + '<%= @charityVotedFor %>',
+        type: 'success',
+    });
+</script>
 
