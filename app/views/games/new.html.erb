@@ -29,7 +29,7 @@
             <div class='field-form-group'><%= text_field :game, :descriptionA, id: 'Description A' %></div>
             
             <!--some image uploader-->
-            <%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
+            <%= form_for @giving_game, :html => { :multipart => true } do |form| %>
                 <%= form.file_field :avatar %>
             <% end %>
     
