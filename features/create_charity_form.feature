@@ -8,7 +8,7 @@ Feature: Adding Charity Fields to Forms
     When I fill out the form without descriptions
     And I fill in "Description A" with "Description 1."
     And I fill in "Description B" with "Description 2."
-    And I upload an image to the form
+#    And I upload an image to the form
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game First Game successfully created."
