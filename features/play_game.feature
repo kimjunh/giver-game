@@ -22,6 +22,6 @@ Feature: As a user who wants to play
     When I follow "Play a giving game"
     And I follow "Regular Game" in my table
     And I press "Donate to Charity 3"
-    And I should be on the results page
+    And I should be on the results page for "Regular Game"
     When I follow "Go Back to Games List"
     Then I should be on the existing games page
