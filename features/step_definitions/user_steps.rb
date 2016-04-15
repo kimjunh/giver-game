@@ -12,13 +12,13 @@ Given(/^some games and some users exist:$/) do
   games.each do |game|
       GivingGame.create!(game)
   end
-  user = User.create! :email => 'j0e@tr8er.org', :password => 'TRAITORJOE', :password_confirmation => 'TRAITORJOE', :uid => 'Traitor_JOSEPHINE', :giving_games => GivingGame.all, :id => 1
+  user = User.create! :email => 'j0e@tr8er.org', :password => 'TRAITORJOE', :password_confirmation => 'TRAITORJOE', :username => 'Traitor_JOSEPHINE', :giving_games => GivingGame.all, :id => 1
 end
 
-Given(/^I am logged in as "([^"]*)"$/) do |arg1|
+Given(/^I am logged in as "([^"]*)" with password "([^"]*)"/) do |email, password|
   step "I go to the sign in page"
-  step "I fill in \"user_email\" with \"j0e@tr8er.org\""
-  step "I fill in \"user_password\" with \"TRAITORJOE\""
+  step "I fill in \"user_login\" with \"#{email}\""
+  step "I fill in \"user_password\" with \"#{password}\""
   step "I press \"log-in\""
   step "I should see \"Signed in successfully.\""
 end

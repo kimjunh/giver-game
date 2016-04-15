@@ -15,6 +15,7 @@ Feature: Play a tutorial
 
   Scenario: Play the sample game
     When I follow "home_tutorial"
+    And The game "Tutorial" should be able to show results
     And I press "Donate to Charity A"
     Then I should be on the results page for "Tutorial"
     And I should see "Leading Charity: Charity A"

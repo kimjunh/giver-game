@@ -49,4 +49,10 @@ Then /^I should see "(.*)" in my table$/ do |game|
   table_results.should have_content(game)
 end
 
-    
+And /^The game "(.*)" should be able to show results$/ do |game|
+  GivingGame.where(:title => game).first.show_results.should == true
+end
+
+And /^The game "(.*)" should not be able to show results$/ do |game|
+  GivingGame.where(:title => game).first.show_results.should == false
+end    
