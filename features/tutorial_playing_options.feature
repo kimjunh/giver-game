@@ -5,8 +5,8 @@ Feature: Tutorial and playing options
 
   Background:
     And the following games exist: # features/step_definitions/tutorial_steps.rb:1
-      | title    | description                                | charityA_title | charityB_title |
-      | Tutorial | 'This is the tutorial for the Giving Game' | Charity A      | Charity B      |
+      | title    | description                                | charityA_title | charityB_title | tutorial |
+      | Tutorial | 'This is the tutorial for the Giving Game' | Charity A      | Charity B      | true     |
 
   Scenario: Clicking on the Tutorial link should direct users to the tutorial
     Given I am on the home page

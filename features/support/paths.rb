@@ -22,8 +22,9 @@ module NavigationHelpers
       tutorial_game_path
     when /^the new games page$/
       new_game_path
-    when /^the results page$/
-      results_path
+    when /^the results page for "([^"]*)"$/
+      id = GivingGame.where(:title => $1).first.id
+      results_path(id)
     when /^the game page for "([^"]*)"$/
       id = GivingGame.where(:title => $1).first.id
       play_game_path(id)
