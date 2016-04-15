@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407035614) do
+ActiveRecord::Schema.define(version: 20160414212610) do
 
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                   default: "default title"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20160407035614) do
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
+    t.boolean  "show_results"
+    t.datetime "expiration_time"
   end
 
 end
