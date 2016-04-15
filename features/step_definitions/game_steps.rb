@@ -40,7 +40,7 @@ When /^I fill out the form without descriptions$/ do
 end
 
 When /^I upload an image to the form$/ do
-  attach_file(:png_file, File.join(RAILS_ROOT, 'features', 'upload-files', 'img_1.csv'))
+  attach_file(:png_file, File.join(Rails.root, 'features', 'upload-files', 'img_1.png'))
   click_button "Attach image"
 end
 

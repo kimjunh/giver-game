@@ -12,11 +12,4 @@ Feature: Adding Charity Fields to Forms
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game First Game successfully created."
-    
-  Scenario: Create a giving game with empty descriptions for each charity
-    When I am on the new games page
-    When I fill out the form without descriptions
-    And I press "Submit New Game"
-    Then I should be on the new games page
-    And I should see "Some fields are empty or invalid: Description A, Description B"
-    
+ 
