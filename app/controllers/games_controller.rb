@@ -32,7 +32,7 @@ class GamesController < ApplicationController
     @charityB = @game.charityB_title
     @description = @game.description
     @title = @game.title
-    @showResults = true
+    @showResults = @game.show_results
   end
 
   def tutorial
@@ -43,7 +43,7 @@ class GamesController < ApplicationController
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
     @description = @game.description
-    @showResults = true
+    @showResults = @game.show_results
   end
   
   def results
