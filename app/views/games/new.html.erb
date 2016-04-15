@@ -27,11 +27,6 @@
     
             <div class=form-header>Description A</div>
             <div class='field-form-group'><%= text_field :game, :descriptionA, id: 'Description A' %></div>
-            
-            <!--some image uploader-->
-            <%= form_for @giving_game, :html => { :multipart => true } do |form| %>
-                <%= form.file_field :giving_game %>
-            <% end %>
     
             <div class=form-header>Charity B</div>
             <div class='field-form-group'><%= text_field :game, :charityB_title, id: 'Charity B' %></div>
