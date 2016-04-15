@@ -6,15 +6,15 @@ Feature: Create user accounts
   Background: Users exist
     
     Given the following users exist:
-      | uid      | password | password_confirmation|     email             |
-      | Daniel   | lollolol |  lollolol            |  daniel@gmail.com     |
+      | username      | password | password_confirmation|     email             |
+      | Daniel        | lollolol |  lollolol            |  daniel@gmail.com     |
     
   #Happy Path!
   Scenario: Create a user account
     When I am on the home page
     And I go to the sign in page
     And I go to the sign up page
-    And I fill in "user[uid]" with "Rohin"
+    And I fill in "user[username]" with "Rohin"
     And I fill in "user[password]" with "ppaasssswwoorrdd"
     And I fill in "user[password_confirmation]" with "ppaasssswwoorrdd"
     And I fill in "user[email]" with "rohinshah@gmail.com"
@@ -27,7 +27,7 @@ Feature: Create user accounts
     When I am on the home page
     And I go to the sign in page
     And I go to the sign up page
-    And I fill in "user[uid]" with "DragonSlayer"
+    And I fill in "user[username]" with "DragonSlayer"
     And I fill in "user[password]" with "destructi0n"
     And I fill in "user[password_confirmation]" with "destructi0n"
     And I fill in "user[email]" with "daniel@gmail.com"
@@ -39,7 +39,18 @@ Feature: Create user accounts
     When I am on the home page
     And I go to the sign in page
     And I go to the sign up page
-    And I fill in "user[uid]" with "DragonRider"
+    And I fill in "user[username]" with "DragonRider"
     And I fill in "user[email]" with "rydah@gmail.com"
     And I press "submit"
     And I should see "Password can't be blank"
+
+  #Sad Path
+  Scenario: Attempt to create a user account with empty username
+    When I am on the home page
+    And I go to the sign in page
+    And I go to the sign up page
+    And I fill in "user[email]" with "rydah@gmail.com"
+    And I fill in "user[password]" with "destructi0n"
+    And I fill in "user[password_confirmation]" with "destructi0n"
+    And I press "submit"
+    And I should see "Username can't be blank"

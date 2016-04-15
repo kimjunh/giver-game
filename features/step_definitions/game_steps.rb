@@ -40,7 +40,7 @@ When /^I fill out the form without descriptions$/ do
 end
 
 When /^I upload an image to the form$/ do
-  attach_file(:png_file, File.join(RAILS_ROOT, 'features', 'upload-files', 'img_1.csv'))
+  attach_file(:png_file, File.join(Rails.root, 'features', 'upload-files', 'img_1.png'))
   click_button "Attach image"
 end
 
@@ -49,4 +49,10 @@ Then /^I should see "(.*)" in my table$/ do |game|
   table_results.should have_content(game)
 end
 
-    
+And /^The game "(.*)" should be able to show results$/ do |game|
+  GivingGame.where(:title => game).first.show_results.should == true
+end
+
+And /^The game "(.*)" should not be able to show results$/ do |game|
+  GivingGame.where(:title => game).first.show_results.should == false
+end    

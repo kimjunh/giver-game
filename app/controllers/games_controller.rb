@@ -1,13 +1,17 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial, :show_results)
   end
   
   def home
   end
 
   def new
+    if current_user.nil?
+      flash[:warning] = "You must be logged in to create a new giving game."
+      redirect_to new_user_session_path
+    end
   end
   
   def edit
@@ -15,50 +19,102 @@ class GamesController < ApplicationController
   end
   
   def update
-    if GivingGame.find_by title: params[:game][:title]
+    existing_game = GivingGame.find_by title: params[:game][:title]
+    @game = GivingGame.find params[:id]
+    if existing_game and @game.id != existing_game.id
       flash[:notice] = "The title #{params[:game][:title]} is already taken."
       redirect_to edit_game_path(current_user.id, params[:id])
     else
-      @game = GivingGame.find params[:id]
-      @game.update_attributes!(game_params)
-      flash[:notice] = "Successfully edited."
-      redirect_to user_profile_path(current_user.id)
+      @game.assign_attributes(game_params)
+      if @game.valid?
+        @game.save
+        flash[:notice] = "Successfully edited."
+        redirect_to user_profile_path(current_user.id)
+      else
+        totalMessage = "There were the following errors: \n"
+        @game.errors.messages.each do |key, message|
+          totalMessage += "#{key}: #{message} \n"
+        end
+        flash[:warning] = totalMessage
+        redirect_to user_profile_path(current_user.id)
+      end
     end
   end
   
   def create
-    if GivingGame.find_by title: params[:game][:title]
-      flash[:notice] = "There is already a Giving Game called #{params[:game][:title]}."
-    else
-      @game = GivingGame.create!(game_params)
+    success = true 
+    game = GivingGame.create(game_params)
+    if game.valid?
+      @game = game
       flash[:notice] = "Giving Game #{@game.title} successfully created."
+      current_user.add_to_giving_games(game)
+    else
+      totalMessage = "There were the following errors: \n"
+      game.errors.messages.each do |key, message|
+        totalMessage += "#{key}: #{message} \n"
+      end
+      flash[:warning] = totalMessage
+      success = false
     end
-    redirect_to root_path
+    
+    if success
+      redirect_to root_path
+    else
+      redirect_to new_game_path
+    end
   end
 
   def play_index
-    @games = GivingGame.all
+    @games = GivingGame.where('expiration_time > ? or expiration_time IS NULL', DateTime.now)
     @counter = @games.length
+    @charityVotedFor = params[:charity]
   end
   
   def play_game
     @game = GivingGame.find(params[:id])
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
     @title = @game.title
     @descriptionA = @game.descriptionA
     @descriptionB = @game.descriptionB
+    @showResults = @game.show_results
   end
 
   def tutorial
-    @game = GivingGame.where(:title => 'Tutorial').first
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    number_of_games = GivingGame.where(:tutorial => true).count
+    index = rand(number_of_games)
+    games = GivingGame.where(:tutorial => true).collect{|i| i}
+    @game = games[index]
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
+    @showResults = @game.show_results
   end
   
   def results
-    @charity = params[:charity]
+    @game = GivingGame.find(params[:id])
+    @charityVotedFor = params[:charity]
+    @title = @game.title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
+    
+    if @charityVotedFor == @charityA
+      @game.voteForA
+    else
+      @game.voteForB
+    end
+    
+    @votesA = @game.votesA
+    @votesB = @game.votesB
+    
+    # show which charity is in the lead
+    if @votesA > @votesB
+      @leadingCharity = @charityA
+    elsif @votesA < @votesB
+      @leadingCharity = @charityB
+    else
+      @leadingCharity = nil
+    end
   end
 end

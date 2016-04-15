@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415050849) do
+ActiveRecord::Schema.define(version: 20160415112043) do
 
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                      default: "default title"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20160415050849) do
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
+    t.boolean  "show_results"
+    t.datetime "expiration_time"
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -49,10 +51,11 @@ ActiveRecord::Schema.define(version: 20160415050849) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
-    t.string   "uid"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

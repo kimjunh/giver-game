@@ -9,18 +9,34 @@ Feature: Edit existing giving games
     
     #Happy Path
     Scenario: Edit a game
-      Given I am logged in as "j0e@tr8er.org"
+      Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "Title" with "Game 1000"
       And I press "Finish"
       And I should see "Successfully edited."
-      
+
+    Scenario: Edit a game leaving title as is
+      Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
+      When I am on the user page for "j0e@tr8er.org"
+      And I go to the edit page for "Game 1"
+      And I fill in "TotalMoney" with "1000"
+      And I press "Finish"
+      And I should see "Successfully edited."
+
     #Sad Path
-    Scenario: Attempt to edit a game
-      Given I am logged in as "j0e@tr8er.org"
+    Scenario: Attempt to edit a game to a name that already exists
+      Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "Title" with "Game 2"
       And I press "Finish"
       And I should see "The title Game 2 is already taken."
+      
+    Scenario: Attempt to edit a game with invalid values
+      Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
+      When I am on the user page for "j0e@tr8er.org"
+      And I go to the edit page for "Game 1"
+      And I fill in "TotalMoney" with "alotofmoney"
+      And I press "Finish"
+      And I should see "There were the following errors"

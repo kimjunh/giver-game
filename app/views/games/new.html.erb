@@ -16,7 +16,7 @@
             <div class=form-header>Description</div>
             <div class='field-form-group'><%= text_field :game, :description, id: 'Description' %></div>
     
-            <div class=form-header>Amount of Money</div>
+            <div class=form-header>Goal Amount of Money to Reach</div>
             <div class='field-form-group'><%= text_field :game, :total_money, id: 'TotalMoney' %></div>
     
             <div class=form-header>Per Person Amount</div>
@@ -37,10 +37,13 @@
             <div class=form-header>Tutorial?</div>
             <div class='field-form-group'><%= check_box :game, :tutorial, {}, true, false %></div>
 
+            <div class=form-header>Show Results?</div>
+            <div class='field-form-group'><%= check_box :game, :show_results, {}, true, false %></div>
+
             <div class="actions-form-group">
                 <%= submit_tag 'Submit New Game' %>
             </div>
             <% end %>
         </div>
-</div>
+    </div>
 </body>
