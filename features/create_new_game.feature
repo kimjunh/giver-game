@@ -47,7 +47,7 @@ Background: tutorial exists
     When I am on the new games page
     And I press "Submit New Game"
     Then I should be on the new games page
-    And I should see "Some fields are empty or invalid: Title, Description, Amount of Money, Per Person Amount, Charity A, Description A, Charity B, Description B"
+    And I should see "There were the following errors"
     
   Scenario: Forms should not allow alphabet values for Money
     When I am on the new games page
@@ -59,10 +59,10 @@ Background: tutorial exists
     And I fill in "Description A" with "Provides money directly to groups of impoverished people."
     And I fill in "Charity B" with "Malaria Nets"
     And I fill in "Description B" with "Provides malaria nets to locals."
+    And I press "Submit New Game"
     Then I should be on the new games page
-    And I should see "Some fields are empty or invalid: Amount of Money, Per Person Amount"
-    And I should see "Please provide numeric value."
-    
+    And I should see "There were the following errors"
+
   Scenario: Forms should not allow non-numeric symbols for Money
     When I am on the new games page
     And I fill in "Title" with "Second game"
@@ -73,9 +73,9 @@ Background: tutorial exists
     And I fill in "Description A" with "Provides money directly to groups of impoverished people."
     And I fill in "Charity B" with "Malaria Nets"
     And I fill in "Description B" with "Provides malaria nets to locals."
+    And I press "Submit New Game"
     Then I should be on the new games page
-    And I should see "Some fields are empty or invalid: Amount of Money, Per Person Amount"
-    And I should see "Please provide numeric value."    
+    And I should see "There were the following errors"
 
   Scenario: Try creating another game with same name
     When I am on the new games page
@@ -86,5 +86,5 @@ Background: tutorial exists
     And I fill in "Charity A" with "Syrian Refugees"
     And I fill in "Charity B" with "Trump Refugees"
     And I press "Submit New Game"
-    Then I should be on the home page
-    And I should see "There is already a Giving Game called First game."
+    Then I should be on the new games page
+    And I should see "There were the following errors"

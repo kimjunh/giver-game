@@ -1,6 +1,9 @@
 class GivingGame < ActiveRecord::Base
   belongs_to :user
 
+  # titles of giving games should be unique
+  validates :title, uniqueness: true
+  
   # needs titles for all of the titles of things.
   validates_presence_of :title, :charityA_title, :charityB_title, :total_money, :per_transaction
 

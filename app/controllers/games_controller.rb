@@ -28,22 +28,17 @@ class GamesController < ApplicationController
   
   def create
     success = true 
-    if GivingGame.find_by title: params[:game][:title]
-      success = false
-      flash[:notice] = "There is already a Giving Game called #{params[:game][:title]}."
+    game = GivingGame.create(game_params)
+    if game.valid?
+      @game = game
+      flash[:notice] = "Giving Game #{@game.title} successfully created."
     else
-      game = GivingGame.create(game_params)
-      if game.valid?
-        @game = game
-        flash[:notice] = "Giving Game #{@game.title} successfully created."
-      else
-        totalMessage = "There were the following errors: \n"
-        game.errors.messages.each do |key, message|
-          totalMessage += "#{key}: #{message} \n"
-        end
-        flash[:warning] = totalMessage
-        success = false
+      totalMessage = "There were the following errors: \n"
+      game.errors.messages.each do |key, message|
+        totalMessage += "#{key}: #{message} \n"
       end
+      flash[:warning] = totalMessage
+      success = false
     end
     
     if success
