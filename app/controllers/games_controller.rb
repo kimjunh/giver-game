@@ -37,28 +37,56 @@ class GamesController < ApplicationController
   end
 
   def play_index
-    @games = GivingGame.all
+    @games = GivingGame.where('expiration_time > ? or expiration_time IS NULL', DateTime.now)
     @counter = @games.length
+    @charityVotedFor = params[:charity]
   end
   
   def play_game
     @game = GivingGame.find(params[:id])
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
     @title = @game.title
     @descriptionA = @game.descriptionA
     @descriptionB = @game.descriptionB
+    @showResults = @game.show_results
   end
 
   def tutorial
-    @game = GivingGame.where(:title => 'Tutorial').first
-    @charityOne = @game.charityA_title
-    @charityTwo = @game.charityB_title
+    number_of_games = GivingGame.where(:tutorial => true).count
+    index = rand(number_of_games)
+    games = GivingGame.where(:tutorial => true).collect{|i| i}
+    @game = games[index]
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
     @description = @game.description
+    @showResults = @game.show_results
   end
   
   def results
-    @charity = params[:charity]
+    @game = GivingGame.find(params[:id])
+    @charityVotedFor = params[:charity]
+    @title = @game.title
+    @charityA = @game.charityA_title
+    @charityB = @game.charityB_title
+    
+    if @charityVotedFor == @charityA
+      @game.voteForA
+    else
+      @game.voteForB
+    end
+    
+    @votesA = @game.votesA
+    @votesB = @game.votesB
+    
+    # show which charity is in the lead
+    if @votesA > @votesB
+      @leadingCharity = @charityA
+    elsif @votesA < @votesB
+      @leadingCharity = @charityB
+    else
+      @leadingCharity = nil
+    end
   end
 end
