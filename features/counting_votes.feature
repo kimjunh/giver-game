@@ -6,8 +6,8 @@ Feature: Display votes
   Background: games exist
     Given I am on the home page
     And the following games exist:
-    | title                   | description                                 | charityA_title | charityB_title | votesA | votesB |
-    | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 0      | 0      |
+    | title                   | description                                 | charityA_title | charityB_title | votesA | votesB | show_results |
+    | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 0      | 0      | true         |
   
   Scenario: Select game and vote
     When I follow "Play a giving game"
