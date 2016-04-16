@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20160415112043) do
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
-    t.boolean  "show_results"
-    t.datetime "expiration_time"
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "show_results"
+    t.datetime "expiration_time"
   end
 
   create_table "users", force: :cascade do |t|

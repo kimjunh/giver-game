@@ -39,7 +39,39 @@
 
             <div class=form-header>Show Results?</div>
             <div class='field-form-group'><%= check_box :game, :show_results, {}, true, false %></div>
+            
+            <!--starts here-->
+            <!--idk why the choose file tag won't center properly-->
+            
+            <%= form_tag({:action => :create}, :multipart => true) %>
+            <div class=form-header>Upload photos<br/><br/>
+                Charity A:</div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <div class="input-group">
+                        <%= file_field(:game, :image) %>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row --></br>
 
+
+            <!--have to create migration for second photo first-->
+
+            <!--<div class=form-header>Charity B:</div>-->
+            <!--<div class="row">-->
+            <!--    <div class="col-lg-4 col-lg-offset-4">-->
+            <!--        <div class="input-group">-->
+            <!--            <%= file_field(:game, :image) %>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+               
+            </p>
+            </form>
+            <br/>
+            
+            <!--ends here-->
+            
             <div class="actions-form-group">
                 <%= submit_tag 'Submit New Game' %>
             </div>
