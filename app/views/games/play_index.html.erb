@@ -9,14 +9,18 @@
    <table class=games>
       <tr>
          <th>Game Title</th>
+         <th>Goal</th>
          <th>Money Per Vote</th>
          <th>Tutorial?</th>
+         <th>Can See Results?</th>
       </tr>
       <% @games.each do |game| %>
          <tr>
             <td><%= link_to game.title, play_game_path(game.id)%></a></td>
+            <td>$<%= game.total_money%></td>
             <td>$<%= game.per_transaction %></td>
             <td class="third_col"><% if game.tutorial %>&#10004;<% end %></td>
+            <td class="results_col"><% if game.show_results %>&#10004;<% end %></td>
          </tr>
       <% end %>
    </table>

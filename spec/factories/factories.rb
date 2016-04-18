@@ -13,5 +13,13 @@ FactoryGirl.define do
     charityB_title 'charity B'
     votesB 0
   end
-  
+end
+
+FactoryGirl.define do
+  factory :user do
+    email { "fake@fake.com" }
+    username "FAKER"
+    password "password"
+    password_confirmation "password"
+  end
 end

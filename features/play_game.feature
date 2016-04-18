@@ -21,6 +21,7 @@ Feature: As a user who wants to play
   Scenario: Go back to existing games page from game page 
     When I follow "Play a giving game"
     And I follow "Regular Game" in my table
+    And The game "Regular Game" should be able to show results
     And I press "Donate to Charity 3"
     And I should be on the results page for "Regular Game"
     When I follow "Go Back to Games List"
