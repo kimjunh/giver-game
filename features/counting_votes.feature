@@ -9,7 +9,11 @@ Feature: Display votes
     | title                   | description                                 | charityA_title | charityB_title | votesA | votesB | show_results |
     | Tutorial                | 'This is the tutorial for the Giving Game'  | Charity A      | Charity B      | 0      | 0      | true         |
     | NoShow                  | 'This is a game without showing results on' | Charity A      | Charity B      | 100    | 0      | false        |
-  
+    And the following users exist:
+    | username           | password   | password_confirmation  |     email             |
+    | Traitor_JOSEPHINE   | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
+    Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
+    
   Scenario: Select game and vote
     When I follow "Play a giving game"
     And I should be on the existing games page

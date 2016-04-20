@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20160415112043) do
     t.string   "descriptionA"
     t.string   "descriptionB"
     t.boolean  "show_results"
-    t.datetime "expiration_time"
     t.integer  "user_id"
+    t.datetime "expiration_time"
   end
 
   create_table "users", force: :cascade do |t|
