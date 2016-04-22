@@ -78,3 +78,11 @@ end
 And /^The game "(.*)" should not be able to show results$/ do |game|
   GivingGame.where(:title => game).first.show_results.should == false
 end    
+
+When(/^I upload an image called "([^"]*)"$/) do |image|
+  attach_file(:image_A, File.join(RAILS_ROOT, 'features', 'upload-files', "/features/upload-files/#{image}"))
+end
+
+Then /^I should see the image "(.+)"$/ do |image|
+    page.should have_xpath("//img[@src=\"/public/images/#{image}\"]")
+end

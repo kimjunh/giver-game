@@ -50,6 +50,4 @@ Feature: As a user who wants to play
     When I follow "Play a giving game"
     And I follow "Regular Game" in my table
     Then I should be on the sign in page
-
-    
   

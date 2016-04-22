@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20160415112043) do
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
-    t.boolean  "show_results"
     t.integer  "user_id"
+    t.boolean  "show_results"
     t.datetime "expiration_time"
   end
 

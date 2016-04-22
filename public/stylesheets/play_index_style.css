@@ -18,6 +18,9 @@ tr:nth-child(even) {
     text-align: center;
 }
 
+.results_col {
+    text-align: center;
+}
 
 th {
     background-color: #D19E18;
