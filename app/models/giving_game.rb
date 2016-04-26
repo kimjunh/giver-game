@@ -3,10 +3,10 @@ class GivingGame < ActiveRecord::Base
 
   # titles of giving games should be unique
   validates :title, uniqueness: true
-  
+  validates :total_money, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :per_transaction, :numericality => { :greater_than_or_equal_to => 0 }
   # needs titles for all of the titles of things.
   validates_presence_of :title, :charityA_title, :charityB_title, :total_money, :per_transaction
-
   #validates that the moneys need to be numebrs
   validates_numericality_of :per_transaction, :total_money
 

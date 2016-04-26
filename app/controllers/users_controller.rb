@@ -3,6 +3,6 @@ class UsersController < ApplicationController
   
   def profile
     @user = current_user
-    @games = @user.giving_games
+    @games = current_user.giving_games
   end
 end

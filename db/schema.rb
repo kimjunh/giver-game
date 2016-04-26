@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160415050849) do
+=======
+ActiveRecord::Schema.define(version: 20160415112043) do
+>>>>>>> 1c63218c76011a991fe2b8ebac9d4183d64388f3
 
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                      default: "default title"
@@ -29,10 +33,7 @@ ActiveRecord::Schema.define(version: 20160415050849) do
     t.string   "descriptionA"
     t.string   "descriptionB"
     t.integer  "user_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+
     t.boolean  "show_results"
     t.datetime "expiration_time"
   end
@@ -51,10 +52,11 @@ ActiveRecord::Schema.define(version: 20160415050849) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
-    t.string   "uid"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

@@ -1,13 +1,17 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial, :show_results)
   end
   
   def home
   end
 
   def new
+    if current_user.nil?
+      flash[:warning] = "You must be logged in to create a new giving game."
+      redirect_to new_user_session_path
+    end
   end
   
   def edit
@@ -15,14 +19,25 @@ class GamesController < ApplicationController
   end
   
   def update
-    if GivingGame.find_by title: params[:game][:title]
+    existing_game = GivingGame.find_by title: params[:game][:title]
+    @game = GivingGame.find params[:id]
+    if existing_game and @game.id != existing_game.id
       flash[:notice] = "The title #{params[:game][:title]} is already taken."
       redirect_to edit_game_path(current_user.id, params[:id])
     else
-      @game = GivingGame.find params[:id]
-      @game.update_attributes!(game_params)
-      flash[:notice] = "Successfully edited."
-      redirect_to user_profile_path(current_user.id)
+      @game.assign_attributes(game_params)
+      if @game.valid?
+        @game.save
+        flash[:notice] = "Successfully edited."
+        redirect_to user_profile_path(current_user.id)
+      else
+        totalMessage = "There were the following errors: \n"
+        @game.errors.messages.each do |key, message|
+          totalMessage += "#{key}: #{message} \n"
+        end
+        flash[:warning] = totalMessage
+        redirect_to user_profile_path(current_user.id)
+      end
     end
   end
   
@@ -32,6 +47,7 @@ class GamesController < ApplicationController
     if game.valid?
       @game = game
       flash[:notice] = "Giving Game #{@game.title} successfully created."
+      current_user.add_to_giving_games(game)
     else
       totalMessage = "There were the following errors: \n"
       game.errors.messages.each do |key, message|

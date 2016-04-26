@@ -4,12 +4,14 @@ require 'factory_girl'
 RSpec.describe GivingGame, :type => :model do
     describe 'processes votes' do
         it 'should allow you to vote for charity a' do
+            User.any_instance.stub(:add_to_giving_games)
             givingGame = FactoryGirl.build(:giving_game)
             givingGame.voteForA
             
             givingGame.votesA.should == 1
         end
         it 'should allow you to vote for charity b' do
+            User.any_instance.stub(:add_to_giving_games)
             givingGame = FactoryGirl.build(:giving_game)
             givingGame.voteForB
             
@@ -23,7 +25,7 @@ RSpec.describe GivingGame, :type => :model do
             :total_money => 10.00, :per_transaction => 1.00, 
             :charityA_title => "charity A", :descriptionA => "description A", 
             :charityB_title => "charity B", :descriptionB => "description B", 
-            :tutorial => false}
+            :tutorial => false, :show_results => true}
             givingGame = GivingGame.create(givingParams)
             givingGame.valid?.should be true
         end

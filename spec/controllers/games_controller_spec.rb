@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'factory_girl'
 
 RSpec.describe GamesController, :type => :controller do
+  login_user
+
   describe 'POST - /games/create SUCCESS' do
     it 'should redirect you to the home page' do 
       params = {:game => {:title => "title", :description => "description", 
@@ -40,6 +42,7 @@ RSpec.describe GamesController, :type => :controller do
     end
     
     it 'should add warning messages for invalid entries' do 
+      User.any_instance.stub(:add_to_giving_games)
       params = {:game => {:title => nil, :description => nil, 
             :total_money => nil, :per_transaction => nil, 
             :charityA_title => nil, :descriptionA => nil, 
@@ -50,4 +53,5 @@ RSpec.describe GamesController, :type => :controller do
       expect(controller).to set_flash[:warning]
     end
   end
+  
 end
