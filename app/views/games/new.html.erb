@@ -1,3 +1,4 @@
+
 <head>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "new_style.css" %>
@@ -14,7 +15,7 @@
             <div class='field-form-group'><%= text_field :game, :title, id: 'Title' %></div>
     
             <div class=form-header>Description</div>
-            <div class='field-form-group'><%= text_field :game, :description, id: 'Description' %></div>
+            <div class='field-form-group'><%= text_area :game, :description, id: 'Description', class: "tinymce"%></div>
     
             <div class=form-header>Goal Amount of Money to Reach</div>
             <div class='field-form-group'><%= text_field :game, :total_money, id: 'TotalMoney' %></div>
@@ -26,13 +27,13 @@
             <div class='field-form-group'><%= text_field :game, :charityA_title, id: 'Charity A' %></div>
     
             <div class=form-header>Description A</div>
-            <div class='field-form-group'><%= text_field :game, :descriptionA, id: 'Description A' %></div>
+            <div class='field-form-group'><%= text_area :game, :descriptionA, id: 'Description A', class: 'tinymce' %></div>
     
             <div class=form-header>Charity B</div>
             <div class='field-form-group'><%= text_field :game, :charityB_title, id: 'Charity B' %></div>
     
             <div class=form-header>Description B</div>
-            <div class='field-form-group'><%= text_field :game, :descriptionB, id: 'Description B' %></div>
+            <div class='field-form-group'><%= text_area :game, :descriptionB, id: 'Description B', class: 'tinymce' %></div>
     
             <div class=form-header>Tutorial?</div>
             <div class='field-form-group'><%= check_box :game, :tutorial, {}, true, false %></div>
@@ -47,3 +48,5 @@
         </div>
     </div>
 </body>
+
+<%= tinymce %>

@@ -5,7 +5,7 @@
     <div class="row top-buffer" style="text-align: center">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h4><%= @description %></h4>
+                <h4><%=raw @description %></h4>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="row" style="margin-bottom: 30px">
                  <div class="col-sm-6 col-sm-offset-3">
-                     <span style="text-align: center"><%= @descriptionA %></span>
+                     <span style="text-align: center"><%= raw @descriptionA %></span>
                 </div>
             </div>
             <!--<%= button_tag "Donate to #{@charityA}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityA}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
@@ -30,7 +30,7 @@
             </div>
             <div class="row" style="margin-bottom: 30px">
                 <div class="col-sm-6 col-sm-offset-3">
-                     <span style="text-align: center"><%= @descriptionB %></span>
+                     <span style="text-align: center"><%= raw @descriptionB %></span>
                 </div>
             </div>
             <!--<%= button_tag "Donate to #{@charityB}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityB}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
