@@ -4,7 +4,7 @@ Feature: Make Games End
   I want to set expiration dates and money limits for games that control when they end
 
   Background:
-    Given I am on the home page:
+    Given I am on the home page
     And the following games exist:
     | title        | id | description                                 | charityA_title | charityB_title | expire |
     | Expirein     |  1 | 'This game should expire'                   | Charity A      | Charity B      | true   |

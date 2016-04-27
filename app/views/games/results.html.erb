@@ -31,10 +31,12 @@
 </div>
 
 <script>
-    sweetAlert({
-        title: 'Donation Successful!',
-        text: 'Your choice: ' + '<%= @charityVotedFor %>',
-        type: 'success',
-    });
+    <% if @charityVotedFor != nil %>
+        sweetAlert({
+            title: 'Donation Successful!',
+            text: 'Your choice: ' + '<%= @charityVotedFor %>',
+            type: 'success',
+        });
+    <% end %>
 </script>
 

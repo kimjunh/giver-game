@@ -43,8 +43,8 @@ Feature: As a user who wants to play
     When I follow "Go Back to Games List"
     And I follow "Regular Game" in my table
     And I press "Donate to Charity 3"
-    Then I should be on the game page for "Regular Game"
-    And I should see "You cannot play a game more than once"
+    Then I should be on the existing games page
+    And I should see "You have already played that game"
 
   Scenario: Only users should be able to play a game
     When I follow "Play a giving game"
