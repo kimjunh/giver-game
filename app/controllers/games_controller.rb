@@ -91,9 +91,11 @@ class GamesController < ApplicationController
     @description = @game.description
     @showResults = @game.show_results
   end
+  
   def archive
-    @game = GivingGame.where(:expired => true)
+    @game = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
   end
+  
   def results
     @game = GivingGame.find(params[:id])
     @charityVotedFor = params[:charity]
