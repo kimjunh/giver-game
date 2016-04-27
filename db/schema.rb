@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160427013221) do
     t.string   "descriptionA"
     t.string   "descriptionB"
     t.boolean  "show_results"
+    t.integer  "user_id"
     t.datetime "expiration_time"
     t.integer  "user_id"
     t.boolean  "expired"
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160427013221) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "username"
+    t.text     "played_games"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

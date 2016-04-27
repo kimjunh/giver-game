@@ -20,9 +20,7 @@
                 </div>
             </div>
             <!--<%= button_tag "Donate to #{@charityA}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityA}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
-            <% if @showResults %> <%= button_to "Donate to #{@charityA}", results_path(:id => @game.id, :charity => @charityA), :class => "btn btn-primary btn-lg" %>
-            <% else %> <%= button_to "Donate to #{@charityA}", play_index_path(:charity => @charityA), :class => "btn btn-primary btn-lg" %>
-            <% end %>
+            <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg" %>
         </div>
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
@@ -34,9 +32,7 @@
                 </div>
             </div>
             <!--<%= button_tag "Donate to #{@charityB}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityB}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
-            <% if @showResults %> <%= button_to "Donate to #{@charityB}", results_path(:id => @game.id, :charity => @charityB), :class => "btn btn-primary btn-lg" %>
-            <% else %> <%= button_to "Donate to #{@charityB}", play_index_path(:charity => @charityB), :class => "btn btn-primary btn-lg" %>
-            <% end %>
+            <%= button_to "Donate to #{@charityB}", check_played_path(:id =>@game.id, :charity => @charityB, :show_results => @showResults), :class => "btn btn-primary btn-lg" %>
         </div>
     </div>
 </div>

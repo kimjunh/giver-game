@@ -13,9 +13,15 @@ class User < ActiveRecord::Base
   }  
   has_many :giving_games
   attr_accessor :login
+  serialize :played_games,Array
   
-  def add_to_giving_games(game)
+  def add_to_created_giving_games(game)
     self.giving_games << game
+    self.save
+  end
+
+  def add_to_played_giving_games(game)
+    self.played_games << game.id
     self.save
   end
   
