@@ -12,6 +12,7 @@ class GamesController < ApplicationController
       flash[:warning] = "You must be logged in to create a new giving game."
       redirect_to new_user_session_path
     end
+    @game = params[:game]
   end
   
   def edit
@@ -44,6 +45,7 @@ class GamesController < ApplicationController
   def create
     success = true 
     game = GivingGame.create(game_params)
+
     if game.valid?
       @game = game
       flash[:notice] = "Giving Game #{@game.title} successfully created."
@@ -60,7 +62,7 @@ class GamesController < ApplicationController
     if success
       redirect_to root_path
     else
-      redirect_to new_game_path
+      redirect_to new_game_path params[:game]
     end
   end
 
