@@ -47,7 +47,7 @@ class GamesController < ApplicationController
     if game.valid?
       @game = game
       flash[:notice] = "Giving Game #{@game.title} successfully created."
-      current_user.add_to_giving_games(game)
+      current_user.add_to_created_giving_games(game)
     else
       totalMessage = "There were the following errors: \n"
       game.errors.messages.each do |key, message|
@@ -71,14 +71,21 @@ class GamesController < ApplicationController
   end
   
   def play_game
-    @game = GivingGame.find(params[:id])
-    @charityA = @game.charityA_title
-    @charityB = @game.charityB_title
-    @description = @game.description
-    @title = @game.title
-    @descriptionA = @game.descriptionA
-    @descriptionB = @game.descriptionB
-    @showResults = @game.show_results
+    chosen_game = GivingGame.find(params[:id])
+
+    if current_user.nil? and !chosen_game.tutorial?
+      flash[:warning] = "You must be logged in to play an actual giving game."
+      redirect_to new_user_session_path
+    else
+      @game = chosen_game
+      @charityA = @game.charityA_title
+      @charityB = @game.charityB_title
+      @description = @game.description
+      @title = @game.title
+      @descriptionA = @game.descriptionA
+      @descriptionB = @game.descriptionB
+      @showResults = @game.show_results
+    end
   end
 
   def tutorial
@@ -92,8 +99,28 @@ class GamesController < ApplicationController
     @showResults = @game.show_results
   end
   
+  def check_if_played_and_reroute
+    game = GivingGame.find(params[:id])
+    show_results = params[:show_results]
+    charity = params[:charity]
+    if current_user.played_games.include? game.id
+      flash[:warning] = "You have already played that game."
+      redirect_to play_index_path
+    else
+      if !game.tutorial
+        current_user.add_to_played_giving_games(game)
+      end
+      if show_results == 'true'
+        redirect_to results_path(:id => game.id, :charity => charity)
+      else
+        redirect_to play_index_path(:charity => charity)
+      end
+    end
+  end
+  
   def results
     @game = GivingGame.find(params[:id])
+    
     @charityVotedFor = params[:charity]
     @title = @game.title
     @charityA = @game.charityA_title
@@ -117,4 +144,7 @@ class GamesController < ApplicationController
       @leadingCharity = nil
     end
   end
+  
+  
+  
 end

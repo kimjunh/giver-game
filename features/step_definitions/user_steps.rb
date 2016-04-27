@@ -11,9 +11,9 @@ Given(/^some games and some users exist:$/) do
         {:title => 'Game 2', :description =>'This is not a tutorial', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false, :user_id => 1},
         {:title => 'Game 3', :description =>'This is not a tutorial', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false}]
   games.each do |game|
-      GivingGame.create!(game)
+    GivingGame.create!(game)
   end
-  user = User.create! :email => 'j0e@tr8er.org', :password => 'TRAITORJOE', :password_confirmation => 'TRAITORJOE', :username => 'Traitor_JOSEPHINE', :giving_games => GivingGame.first, :id => 1
+  user = User.create! :email => 'j0e@tr8er.org', :password => 'TRAITORJOE', :password_confirmation => 'TRAITORJOE', :username => 'Traitor_JOSEPHINE', :giving_games => [GivingGame.first], :id => 1
 end
 
 Given(/^I am logged in as "([^"]*)" with password "([^"]*)"/) do |email, password|
