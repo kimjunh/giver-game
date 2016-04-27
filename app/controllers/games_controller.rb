@@ -119,7 +119,7 @@ class GamesController < ApplicationController
   end
 
   def archive
-    @game = GivingGame.where(:expired => true)
+    @games = GivingGame.where(:expired => true)
   end
 
   def results
