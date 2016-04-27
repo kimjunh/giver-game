@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="page-header">
+                <h3>Archive for Expired Games</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Game Title</th>
+                        <th>Goal</th>
+                        <th>Money Per Vote</th>
+                        <th>Can See Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @games.each do |game| %>
+                        <tr>
+                            <td><%= link_to game.title, archive_results_path(game.id)%></a></td>
+                            <td>$<%= game.total_money%></td>
+                            <td>$<%= game.per_transaction %></td>
+                            <td><% if game.show_results %>&#10004;<% end %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
