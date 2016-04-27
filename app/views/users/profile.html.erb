@@ -10,15 +10,19 @@
             <%= @user.username %>'s Profile
         </div>
         <div id=table-header>
-            Edit Your Games
+            Your Games
         </div>
         <table class=games>
             <tr>
-             <th>Game Title</th>
+             <th>Games</th>
+             <th>Edit Game</th>
+             <th>See Results</th>
             </tr>
         <% @games.each do |game| %>
              <tr>
-                <td><%= link_to game.title, edit_game_path(current_user.id, game.id)%></a></td>
+                <td><%= game.title%></a></td>
+                <td><a href=<%= edit_game_path(current_user.id, game.id)%>><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-pencil"></i></button></a></td>
+                <td><a href=<%= results_path(:id => game.id)%>><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-signal"></i></button></a></td>
              </tr>
           <% end %>
         </table>

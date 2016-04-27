@@ -8,7 +8,7 @@ end
 
 Given(/^some games and some users exist:$/) do
   games = [{:title => 'Game 1', :description =>'This is game', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false, :user_id => 1},
-        {:title => 'Game 2', :description =>'This is not a tutorial', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false, :user_id => 1},
+        {:title => 'Game 2', :description =>'This is not a tutorial', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false},
         {:title => 'Game 3', :description =>'This is not a tutorial', :charityA_title => 'Charity A', :charityB_title => 'Charity B', :tutorial => false}]
   games.each do |game|
     GivingGame.create!(game)
