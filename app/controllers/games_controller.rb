@@ -117,7 +117,11 @@ class GamesController < ApplicationController
       end
     end
   end
-  
+
+  def archive
+    @game = GivingGame.where(:expired => true)
+  end
+
   def results
     @game = GivingGame.find(params[:id])
     
