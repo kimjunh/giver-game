@@ -13,7 +13,7 @@ Feature: Edit existing giving games
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "Title" with "Game 1000"
-      And I press "Finish"
+      And I press "Submit Changes"
       And I should see "Successfully edited."
 
     Scenario: Edit a game leaving title as is
@@ -21,7 +21,7 @@ Feature: Edit existing giving games
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "TotalMoney" with "1000"
-      And I press "Finish"
+      And I press "Submit Changes"
       And I should see "Successfully edited."
 
     #Sad Path
@@ -30,13 +30,13 @@ Feature: Edit existing giving games
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "Title" with "Game 2"
-      And I press "Finish"
-      And I should see "The title Game 2 is already taken."
+      And I press "Submit Changes"
+      And I should see "Title has already been taken"
       
     Scenario: Attempt to edit a game with invalid values
       Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
       When I am on the user page for "j0e@tr8er.org"
       And I go to the edit page for "Game 1"
       And I fill in "TotalMoney" with "alotofmoney"
-      And I press "Finish"
-      And I should see "There were the following errors"
+      And I press "Submit Changes"
+      And I should see "is not a number"

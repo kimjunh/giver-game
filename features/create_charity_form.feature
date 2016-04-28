@@ -12,8 +12,8 @@ Background:
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
     When I am on the new games page
     When I fill out the form without descriptions
-    And I fill in "Description A" with "Description 1."
-    And I fill in "Description B" with "Description 2."
+    And I fill in "DescriptionA" with "Description 1."
+    And I fill in "DescriptionB" with "Description 2."
     And I upload an image called "img_1.png"
     And I press "Submit New Game"
     Then I should be on the home page
