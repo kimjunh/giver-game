@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/users/:id/games/edit/:id', to: 'games#edit', as: 'edit_game'
   post '/users/:id/games/update/:id', to: 'games#update', as: 'update_game'
   post '/games/check', to: 'games#check_if_played_and_reroute', as: 'check_played'
+  get '/games/archive', to: 'games#archive', as: 'archive'
+  get 'games/archive/:id', to: 'games#archive_game', as: 'archive_game'
 
 
 #  get '/movies/:id/similar', to: 'movies#similar', as: 'search_directors'
