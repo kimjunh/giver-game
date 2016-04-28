@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160428000955) do
-
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                   default: "default title"
     t.text     "description",                             default: "default description"

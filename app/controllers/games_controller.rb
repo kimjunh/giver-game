@@ -124,9 +124,13 @@ class GamesController < ApplicationController
       end
     end
   end
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 3146f77ed55d64aeb7d4eecc1bad74175dd83c25
   def archive
-    @game = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
+    @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
   end
   
   def results
