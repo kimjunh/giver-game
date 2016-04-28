@@ -12,7 +12,11 @@ class GamesController < ApplicationController
       flash[:warning] = "You must be logged in to create a new giving game."
       redirect_to new_user_session_path
     end
-    @game = params[:game]
+    print("Session[:game] is currently: #{session[:game]}")
+    @game = GivingGame.new(session[:game]) || GivingGame.new()
+    if @session and @session.key? :game
+      @session.delete(:game)
+    end
   end
   
   def edit
@@ -53,16 +57,20 @@ class GamesController < ApplicationController
     else
       totalMessage = "There were the following errors: \n"
       game.errors.messages.each do |key, message|
+        if params[:game].key? key
+          params[:game].delete(key)
+        end
         totalMessage += "#{key}: #{message} \n"
       end
       flash[:warning] = totalMessage
+      session[:game] = params[:game]
       success = false
     end
     
     if success
       redirect_to root_path
     else
-      redirect_to new_game_path params[:game]
+      redirect_to new_game_path
     end
   end
 
