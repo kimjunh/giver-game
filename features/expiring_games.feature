@@ -6,8 +6,10 @@ Feature: Make Games End
   Background:
     Given I am on the home page
     And the following games exist:
-    | title        | id | description                                 | charityA_title | charityB_title | expire |
-    | Expirein     |  1 | 'This game should expire'                   | Charity A      | Charity B      | true   |
+    | title        | id | description                                 | charityA_title | charityB_title | expired | expiration_time          | total_money | per_transaction  | votesA |    
+    | Expirein     |  1 | 'This game should expire'                   | Charity A      | Charity B      | true    |                          | 100         | 1                |        |
+    | Expire2      |  2 | 'This game should also expire'              | Charity 1      | Charity 2      | false   | 2016-04-20 01:00:00 UTC  | 100         | 1                |        |
+    | Expire3      |  3 | 'This game should also expire too'          | Charity 4      | Charity 5      | false   |                          | 100         | 1                | 99     |
     And the following users exist:
     | username           | password   | password_confirmation  |     email             |
     | Traitor_JOSEPHINE  | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
@@ -15,6 +17,7 @@ Feature: Make Games End
   Scenario: Should not be able to play a game that is expired
     When I follow "Play a giving game"
     Then I should not see "Expirein"
+    And I should not see "Expire2"
     
   Scenario: Create a game with an expiration field
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
@@ -22,3 +25,8 @@ Feature: Make Games End
     Then I should see "Expiration Date"
     And I should see "Money Limit"
   
+  Scenario: If the vote limit is reached, the game should not be played
+    When I follow "Play a giving game"
+    And I follow "Expire3"
+    And I press "Donate to Charity 4"
+    Then I should not see "Expire3"
