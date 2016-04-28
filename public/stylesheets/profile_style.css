@@ -22,24 +22,24 @@ body {
 	text-align: center;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
+/*tr:nth-child(even) {*/
+/*    background-color: #f2f2f2*/
+/*}*/
 
-th {
-    background-color: #D19E18;
-    color: white;
-    text-align: center;
-    height: 30px;
-}
+/*th {*/
+/*    background-color: #D19E18;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    height: 30px;*/
+/*}*/
 
-table {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-    padding: 20px;
-    text-align: center;
-}
+/*table {*/
+/*    width: 40%;*/
+/*    margin-left: 30%;*/
+/*    margin-right: 30%;*/
+/*    padding: 20px;*/
+/*    text-align: center;*/
+/*}*/
 
 #table-header {
 	text-align: center;

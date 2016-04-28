@@ -28,6 +28,7 @@
         </ul>
       </li>
       <li><%= link_to 'Play Game', play_index_path %></li>
+      <li><%= link_to 'View Expired Games', archive_path %></li>
       <li><% if user_signed_in? %>
           <%= link_to 'Profile', user_profile_path(current_user.id) %>
           <% end %></li>
@@ -41,7 +42,7 @@
   </div>
 </nav>
 <body>
-<div class="well">
+<div class="container">
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class:"alert alert-#{name}"%>
 <% end -%>
@@ -50,4 +51,7 @@
 </div>
 
 </body>
+<footer>
+  <div class="footer"></div>
+</footer>
 </html>

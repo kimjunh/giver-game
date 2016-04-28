@@ -27,6 +27,27 @@
                 <div class="col-sm-4">
                     <div id="butt"><%= link_to 'Create a new giving game', new_game_path, class:'btn btn-default btn-sm', :style=>'color:#244354' %></div>
                 </div>                
+                <div class="col-sm-4">
+                    <div>
+                        <%= link_to tutorial_game_path, class:'btn btn-default btn-sm', id:'home_tutorial' do %>
+                            <i class="fa fa-graduation-cap" aria-hidden="true" style="padding-right: 5px"></i>Play Tutorial
+                        <% end %>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        <%= link_to play_index_path, class:'btn btn-default btn-sm' do %>
+                            <i class="fa fa-child" aria-hidden="true" style="padding-right: 5px"></i>Play a giving game
+                        <% end %>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        <%= link_to new_game_path, class:'btn btn-default btn-sm' do %>
+                            <i class="fa fa-plus-circle" aria-hidden="true" style="padding-right: 5px"></i>Create a giving game
+                        <% end %>
+                    </div>
+                </div>        
             </div>
         </div>
     </div>

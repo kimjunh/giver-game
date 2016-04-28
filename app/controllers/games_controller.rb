@@ -12,7 +12,6 @@ class GamesController < ApplicationController
       flash[:warning] = "You must be logged in to create a new giving game."
       redirect_to new_user_session_path
     end
-    print("Session[:game] is currently: #{session[:game]}")
     @game = GivingGame.new(session[:game]) || GivingGame.new()
     if @session and @session.key? :game
       @session.delete(:game)
@@ -21,14 +20,12 @@ class GamesController < ApplicationController
   
   def edit
     if session[:game]
-      print "SESSION GAME: #"
       @game = GivingGame.new(session[:game])
       @game.id = params[:id]
       session.delete :game
     else
       @game = GivingGame.find(params[:id])
     end
-    print "HERE'S YOUR GAME: #{@game.id}"
   end
   
   def update
@@ -44,7 +41,7 @@ class GamesController < ApplicationController
         if params.key? key 
           params.delete key  
         end
-        totalMessage += "#{key}: #{message} \n"
+        totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
       flash[:warning] = totalMessage
       session[:game] = params[:game]
@@ -61,14 +58,14 @@ class GamesController < ApplicationController
       flash[:notice] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
-      totalMessage = "There were the following errors: \n"
+      totalMessage = ""
       game.errors.messages.each do |key, message|
         if params[:game].key? key
           params[:game].delete(key)
         end
-        totalMessage += "#{key}: #{message} \n"
+        totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
-      flash[:warning] = totalMessage
+      flash[:danger] = totalMessage
       session[:game] = params[:game]
       success = false
     end
@@ -81,7 +78,7 @@ class GamesController < ApplicationController
   end
 
   def play_index
-    @games = GivingGame.where('expiration_time > ? or expiration_time IS NULL', DateTime.now)
+    @games = GivingGame.where("expired = ? OR expiration_time > ?", false, DateTime.now)
     @counter = @games.length
     @charityVotedFor = params[:charity]
   end
@@ -119,6 +116,13 @@ class GamesController < ApplicationController
     game = GivingGame.find(params[:id])
     show_results = params[:show_results]
     charity = params[:charity]
+    total_moneyA = game.votesA * game.per_transaction
+    total_moneyB = game.votesB * game.per_transaction
+    money_allowed = game.total_money
+    if total_moneyA >= money_allowed or total_moneyB >= money_allowed
+      game.expired = true
+      game.save
+    end
     if current_user.played_games.include? game.id
       flash[:warning] = "You have already played that game."
       redirect_to play_index_path
@@ -134,9 +138,25 @@ class GamesController < ApplicationController
     end
   end
   
+  def archive
+    @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
+    @counter = @games.length
+  end
+  
+  def archive_game
+      @game = GivingGame.find(params[:id])
+      @charityA = @game.charityA_title
+      @charityB = @game.charityB_title
+      @description = @game.description
+      @title = @game.title
+      @descriptionA = @game.descriptionA
+      @descriptionB = @game.descriptionB
+      @showResults = @game.show_results
+  end
+  
   def results
     @game = GivingGame.find(params[:id])
-    
+    @expired = @game.expired
     @charityVotedFor = params[:charity]
     @title = @game.title
     @charityA = @game.charityA_title
