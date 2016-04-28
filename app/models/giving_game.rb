@@ -9,6 +9,11 @@ class GivingGame < ActiveRecord::Base
   # needs titles for all of the titles of things.
   validates_presence_of :title, :charityA_title, :charityB_title, :total_money, :per_transaction
 
+  require 'carrierwave/orm/activerecord'
+
+  mount_uploader :charityA_image, CharityAImageUploader
+  mount_uploader :charityB_image, CharityBImageUploader
+
   def voteForA
     self.votesA += 1
     self.save

@@ -34,6 +34,9 @@ gem 'sweetalert-rails'
 # font awesome
 gem "font-awesome-rails"
 
+# image uploading
+gem "carrierwave"
+
 #user authentication
 gem 'devise'
 gem 'omniauth'
