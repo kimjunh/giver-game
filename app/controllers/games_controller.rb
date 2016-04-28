@@ -123,18 +123,18 @@ class GamesController < ApplicationController
       game.expired = true
       game.save
     end
-    if current_user.played_games.include? game.id
-      flash[:warning] = "You have already played that game."
-      redirect_to play_index_path
-    else
-      if !game.tutorial
-        current_user.add_to_played_giving_games(game)
-      end
-      if show_results == 'true'
-        redirect_to results_path(:id => game.id, :charity => charity)
+    if !game.tutorial
+      if current_user.played_games.include? game.id
+        flash[:warning] = "You have already played that game."
+        redirect_to play_index_path
       else
-        redirect_to play_index_path(:charity => charity)
+          current_user.add_to_played_giving_games(game)
       end
+    end
+    if show_results == 'true'
+      redirect_to results_path(:id => game.id, :charity => charity)
+    else
+      redirect_to play_index_path(:charity => charity)
     end
   end
   
