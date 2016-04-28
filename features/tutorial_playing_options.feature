@@ -26,8 +26,8 @@ Feature: Tutorial and playing options
 
   Scenario: Clicking on the create a new game link should direct users to a page with the option to start a new game
     Given I am on the home page
-    Then I should see "Create a new giving game" 
+    Then I should see "Create New Game" 
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
-    When I follow "Create a new giving game"
+    When I follow "Create New Game"
     Then I should be on the new games page
 
