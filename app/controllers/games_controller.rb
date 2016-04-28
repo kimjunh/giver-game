@@ -143,7 +143,7 @@ class GamesController < ApplicationController
   
   def results
     @game = GivingGame.find(params[:id])
-    
+    @expired = @game.expired
     @charityVotedFor = params[:charity]
     @title = @game.title
     @charityA = @game.charityA_title

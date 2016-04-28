@@ -1,12 +1,30 @@
 <div class="container">
     <div class="row">
-        <div class="page-header"><h1><small>Results:</small> <small class="game-name-header"><%=@title %></small></h1></div>
+        <div class="page-header">
+            <div class="pull-right">
+                <% if @expired %>
+                    <%= link_to archive_game_path(params[:id]), class:'btn btn-default' do %>
+                        <i class="fa fa-arrow-left" aria-hidden="true" style="padding-right: 5px"></i>Go back to Game Page
+                    <% end %>
+                    <%= link_to archive_path, class:'btn btn-default' do %>
+                        <i class="fa fa-hourglass-end" aria-hidden="true" style="padding-right: 5px"></i>Go to Expired Games List
+                    <% end %>
+                <% else %>
+                    <%= link_to play_index_path, class:'btn btn-default' do %>
+                        <i class="fa fa-list-ul" aria-hidden="true" style="padding-right: 5px"></i>Go to Games List
+                    <% end %>
+                <% end %>
+            </div>
+            <h1><small>Results:</small> <small class="game-name-header"><%=@title %></small></h1>
+        </div>
     </div>
     <div class="row top-buffer" style="text-align: center">
          <div class="panel panel-default">
             <div class="panel-body">
                 <% if @leadingCharity == nil %>
                     <h3>The votes are tied!</h3>
+                <% elsif @expired %>
+                    <h3>Winning Charity: <%= @leadingCharity %></h3>
                 <% else %>
                     <h3>Leading Charity: <%= @leadingCharity %></h3>
                 <% end %> 
@@ -25,16 +43,15 @@
             </button>
         </div>
     </div>
-    <div class="row top-buffer">
-        <%= link_to "Go Back to Games List", play_index_path %>
-    </div>
 </div>
 
 <script>
-    sweetAlert({
-        title: 'Donation Successful!',
-        text: 'Your choice: ' + '<%= @charityVotedFor %>',
-        type: 'success',
-    });
+    if (!<%= @expired %>) {
+        sweetAlert({
+            title: 'Donation Successful!',
+            text: 'Your choice: ' + '<%= @charityVotedFor %>',
+            type: 'success',
+        });
+    }
 </script>
 
