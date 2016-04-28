@@ -24,11 +24,9 @@
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
                 <% if @game.charityA_image_identifier.nil? %>
-                    <% default = asset_path("default-photo.jpg") %>
-                    <%= image_tag default, :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag asset_path("default-photo.jpg"), :style => "width: 300px; margin-bottom: 50px;"%>
                 <% else %>
-                    <%= src_a="public/uploads/giving_game/charityA_image/#{@game.id.to_s}/#{@game.charityA_image}" %>
-                    <%= image_tag src_a, :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag @game.charityA_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
                 <% end %>
             </div>
             <div class="row" style="margin-bottom: 30px">
@@ -41,11 +39,9 @@
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
                 <% if @game.charityB_image_identifier.nil? %>
-                    <% default = asset_path("default-photo.jpg") %>
-                    <%= image_tag default, :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag asset_path("default-photo.jpg"), :style => "width: 300px; margin-bottom: 50px;"%>
                 <% else %>
-                    <%= src_b="public/uploads/giving_game/charityB_image/#{@game.id.to_s}/#{@game.charityB_image}" %>
-                    <%= image_tag src_b, :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag @game.charityB_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
                 <% end %>
             </div>
             <div class="row" style="margin-bottom: 30px">

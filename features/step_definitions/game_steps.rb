@@ -96,5 +96,5 @@ When(/^I upload an image called "([^"]*)"$/) do |image|
 end
 
 Then /^I should see the image "(.+)"$/ do |image|
-    page.should have_xpath("//img[@src=\"/public/uploads/giving_game/charityA_image/1/#{image}\"]")
+   expect(page).to have_xpath("//img[contains(@src,'#{image}')]")
 end

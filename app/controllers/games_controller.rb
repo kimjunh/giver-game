@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results, :charityA_image, :charityB_image)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results, :charityA_image, :charityB_image, :charityA_image_cache, :charityB_image_cache)
   end
   
   def home
@@ -51,10 +51,7 @@ class GamesController < ApplicationController
 
   def create
     success = true
-    params.fetch(:charityA_image, nil)
-    params.fetch(:charityB_image, nil)
     game = GivingGame.create(game_params)
-
     if game.valid?
       @game = game
       flash[:success] = "Giving Game #{@game.title} successfully created."
@@ -71,12 +68,12 @@ class GamesController < ApplicationController
       session[:game] = params[:game]
       success = false
     end
-    
     if success
       redirect_to root_path
     else
       redirect_to new_game_path
     end
+    
   end
 
   def play_index

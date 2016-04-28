@@ -16,7 +16,7 @@
         
         <div class='well'><div id=header>Create a new Giving game</div></div>
         <div class='form'>
-        <%= form_tag create_game_path, method: :post do %>
+        <%= form_tag create_game_path, method: :post, multipart: true do %>
             <%= render 'giving_game_form' %>
         
             <div class="actions-form-group">
