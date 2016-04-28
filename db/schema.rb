@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160428061159) do
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
-    t.integer  "user_id"
     t.boolean  "show_results"
     t.datetime "expiration_time"
+    t.integer  "user_id"
     t.boolean  "expired",                                 default: false
     t.string   "charityA_image"
     t.string   "charityB_image"
