@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20160428023351) do
     t.string   "descriptionA"
     t.string   "descriptionB"
     t.boolean  "show_results"
-    t.integer  "user_id"
     t.datetime "expiration_time"
+    t.integer  "user_id"
     t.boolean  "expired",                                 default: false
   end
 
