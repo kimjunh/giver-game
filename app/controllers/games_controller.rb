@@ -156,6 +156,7 @@ class GamesController < ApplicationController
   
   def results
     @game = GivingGame.find(params[:id])
+    @owner = @game.user_id
     @expired = @game.expired
     @charityVotedFor = params[:charity]
     @title = @game.title
@@ -170,6 +171,12 @@ class GamesController < ApplicationController
     
     @votesA = @game.votesA
     @votesB = @game.votesB
+    
+    @current_moneyA = @votesA * @game.per_transaction
+    @current_moneyB = @votesB * @game.per_transaction
+    @total_money = @game.total_money
+    @votes_progressA = (@current_moneyA / @total_money) * 100
+    @votes_progressB = (@current_moneyB / @total_money) * 100
     
     # show which charity is in the lead
     if @votesA > @votesB
