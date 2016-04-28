@@ -11,10 +11,10 @@
     </div>
     <div class="row top-buffer">
         <div class="col-lg-6" style="text-align: center">
-            <%= button_to "Donate to #{@charityA}", increment_votes_path(:id => @game.id, :charity => @charityA), :class => "btn btn-primary btn-lg" %>
+            <%= button_to "Donate to #{@charityA}", check_played_path(:id => @game.id, :charity => @charityA), :class => "btn btn-primary btn-lg" %>
         </div>
         <div class="col-lg-6" style="text-align: center">
-            <%= button_to "Donate to #{@charityB}", increment_votes_path(:id => @game.id, :charity => @charityB), :class => "btn btn-primary btn-lg" %>
+            <%= button_to "Donate to #{@charityB}", check_played_path(:id => @game.id, :charity => @charityB), :class => "btn btn-primary btn-lg" %>
         </div>
     </div>
 </div>

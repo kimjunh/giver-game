@@ -118,8 +118,15 @@ class GamesController < ApplicationController
   
   def check_if_played_and_reroute
     game = GivingGame.find(params[:id])
-    show_results = params[:show_results]
+    charityA = game.charityA_title
+    charityB = game.charityB_title
     charity = params[:charity]
+    if charity == charityA
+      game.voteForA
+    elsif charity == charityB
+      game.voteForB
+    end
+    show_results = game.show_results
     total_moneyA = game.votesA * game.per_transaction
     total_moneyB = game.votesB * game.per_transaction
     money_allowed = game.total_money
@@ -127,36 +134,20 @@ class GamesController < ApplicationController
       game.expired = true
       game.save
     end
-    if current_user.played_games.include? game.id
+    if current_user.present? and current_user.played_games.include? game.id
       flash[:warning] = "You have already played that game."
       redirect_to play_index_path
     else
       if !game.tutorial
         current_user.add_to_played_giving_games(game)
       end
-      if show_results == 'true'
-        redirect_to increment_votes_path(:id => game.id, :charity => charity)
+      if show_results == true
+        redirect_to results_path(:id => game.id, :charity => charity)
       else
         redirect_to play_index_path(:charity => charity)
       end
     end
   end
-  
-  def increment_votes_and_reroute
-    @game = GivingGame.find(params[:id])
-    @charityVotedFor = params[:charity]
-    if @charityVotedFor == @charityA
-      @game.voteForA
-    else
-      @game.voteForB
-    end
-    if @game.show_results
-      redirect_to results_path(:id => @game.id, :charity => @charityVotedFor)
-    else
-      redirect_to play_index_path(:charity => @charityVotedFor)
-    end
-  end
-    
   
   def archive
     @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
