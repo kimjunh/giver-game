@@ -1,7 +1,10 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial, :show_results)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results)
+    if params[:expiration_time]
+      params[:expiration_time] = Date.civil(params[:expiration_time][:year].to_i, params[:expiration_time][:month].to_i, params[:expiration_time][:day].to_i)
+    end
   end
   
   def home
@@ -98,6 +101,8 @@ class GamesController < ApplicationController
       @descriptionA = @game.descriptionA
       @descriptionB = @game.descriptionB
       @showResults = @game.show_results
+      @expiration_time = @game.expiration_time
+      @tutorial = @game.tutorial
     end
   end
 
@@ -109,7 +114,6 @@ class GamesController < ApplicationController
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
     @description = @game.description
-    @showResults = @game.show_results
   end
   
   def check_if_played_and_reroute
@@ -131,12 +135,28 @@ class GamesController < ApplicationController
         current_user.add_to_played_giving_games(game)
       end
       if show_results == 'true'
-        redirect_to results_path(:id => game.id, :charity => charity)
+        redirect_to increment_votes_path(:id => game.id, :charity => charity)
       else
         redirect_to play_index_path(:charity => charity)
       end
     end
   end
+  
+  def increment_votes_and_reroute
+    @game = GivingGame.find(params[:id])
+    @charityVotedFor = params[:charity]
+    if @charityVotedFor == @charityA
+      @game.voteForA
+    else
+      @game.voteForB
+    end
+    if @game.show_results
+      redirect_to results_path(:id => @game.id, :charity => @charityVotedFor)
+    else
+      redirect_to play_index_path(:charity => @charityVotedFor)
+    end
+  end
+    
   
   def archive
     @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
@@ -162,16 +182,8 @@ class GamesController < ApplicationController
     @title = @game.title
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
-    
-    if @charityVotedFor == @charityA
-      @game.voteForA
-    else
-      @game.voteForB
-    end
-    
     @votesA = @game.votesA
     @votesB = @game.votesB
-    
     @current_moneyA = @votesA * @game.per_transaction
     @current_moneyB = @votesB * @game.per_transaction
     @total_money = @game.total_money

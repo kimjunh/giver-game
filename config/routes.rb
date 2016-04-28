@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post '/games/check', to: 'games#check_if_played_and_reroute', as: 'check_played'
   get '/games/archive', to: 'games#archive', as: 'archive'
   get 'games/archive/:id', to: 'games#archive_game', as: 'archive_game'
+  get '/games/vote', to: 'games#increment_votes_and_reroute', as: 'increment_votes'
 
 
 #  get '/movies/:id/similar', to: 'movies#similar', as: 'search_directors'

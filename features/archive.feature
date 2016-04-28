@@ -11,13 +11,13 @@ Feature: Archive
     | NoShow                  | 'This is a game without showing results on' | Charity A      | Charity B      | 100    | 0      | false        | true    |
     
   Scenario: Should see expired games on the archive page
-    When I follow "Archive"
+    When I follow "View Expired Games"
     Then I should be on the archive page
     And I should see "Tutorial" in my table
     And I should see "NoShow" in my table
 
   Scenario: Clicking on an expired game with show_results set to false 
-    When I follow "Archive"
+    When I follow "View Expired Games"
     And I follow "NoShow" in my table
     Then I should be on the expired game info page for "NoShow"
     And I should see "This is a game without showing results on"
@@ -27,7 +27,7 @@ Feature: Archive
     And I should not see "Votes for Charity B: 0"
 
   Scenario: Clicking on an expired game with show_results set to true
-    When I follow "Archive"
+    When I follow "View Expired Games"
     And I follow "Tutorial" in my table
     Then I should be on the expired game info page for "Tutorial"
     And I should see "This is the tutorial for the Giving Game"
