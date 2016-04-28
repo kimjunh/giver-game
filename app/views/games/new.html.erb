@@ -8,7 +8,14 @@
     <div id="container" class="container">
         
         <div class='well'><div id=header>Create a new Giving game</div></div>
-        <%= render 'giving_game_form' %>
+        <div class='form'>
+        <%= form_tag create_game_path, method: :post do %>
+            <%= render 'giving_game_form' %>
+        
+        <div class="actions-form-group">
+            <%= submit_tag 'Submit New Game' %>
+        </div>
+        <% end %>
 
     </div>
 </body>

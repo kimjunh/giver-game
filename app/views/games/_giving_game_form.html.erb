@@ -5,8 +5,7 @@
     });    
 </script>
 
-        <div class='form'>
-            <%= form_tag create_game_path, method: :post do %>
+
             <div class="row">
             <div class=form-header>Name of Game</div>
             <div class='field-form-group'><%= text_field :game, :title, id: 'Title', size: '65' %></div>
@@ -52,8 +51,4 @@
             <div class=form-header>Show Results?</div>
             <div class='field-form-group'><%= check_box :game, :show_results, {}, true, false %></div>
 
-            <div class="actions-form-group">
-                <%= submit_tag 'Submit New Game' %>
-            </div>
-            <% end %>
         </div>

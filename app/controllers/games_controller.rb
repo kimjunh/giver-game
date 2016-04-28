@@ -24,28 +24,28 @@ class GamesController < ApplicationController
   end
   
   def update
-    existing_game = GivingGame.find_by title: params[:game][:title]
     @game = GivingGame.find params[:id]
-    if existing_game and @game.id != existing_game.id
-      flash[:notice] = "The title #{params[:game][:title]} is already taken."
-      redirect_to edit_game_path(current_user.id, params[:id])
-    else
-      @game.assign_attributes(game_params)
-      if @game.valid?
-        @game.save
+    if params[:game]
+      game = GivingGame.new(game_params)
+      if game.valid?
+        @game.assign_attributes(game_params)
         flash[:notice] = "Successfully edited."
         redirect_to user_profile_path(current_user.id)
       else
         totalMessage = "There were the following errors: \n"
         @game.errors.messages.each do |key, message|
+          if params.key? key 
+            params.delete key  
+          end
           totalMessage += "#{key}: #{message} \n"
         end
         flash[:warning] = totalMessage
+        @game.assign_attributes(game_params)
         redirect_to edit_game_path(current_user.id, params[:id])
       end
     end
   end
-  
+
   def create
     success = true 
     game = GivingGame.create(game_params)
