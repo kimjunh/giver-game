@@ -30,7 +30,7 @@ Feature: As a user who wants to play
     And The game "Regular Game" should be able to show results
     And I press "Donate to Charity 3"
     And I should be on the results page for "Regular Game"
-    When I follow "Go Back to Games List"
+    When I follow "Go to Games List"
     Then I should be on the existing games page
     
   Scenario: A user should only be able to play a game once
@@ -40,7 +40,7 @@ Feature: As a user who wants to play
     And The game "Regular Game" should be able to show results
     And I press "Donate to Charity 3"
     And I should be on the results page for "Regular Game"
-    When I follow "Go Back to Games List"
+    When I follow "Go to Games List"
     And I follow "Regular Game" in my table
     And I press "Donate to Charity 3"
     Then I should be on the existing games page
