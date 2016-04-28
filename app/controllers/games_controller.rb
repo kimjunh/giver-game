@@ -105,11 +105,12 @@ class GamesController < ApplicationController
     number_of_games = GivingGame.where(:tutorial => true).count
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
-    @game = games[index]
-    @charityA = @game.charityA_title
-    @charityB = @game.charityB_title
-    @description = @game.description
-    @showResults = @game.show_results
+    # @game = games[index]
+    # @charityA = @game.charityA_title
+    # @charityB = @game.charityB_title
+    # @description = @game.description
+    # @showResults = @game.show_results
+    redirect_to play_game_path(:id => games[index].id)
   end
   
   def check_if_played_and_reroute
@@ -126,7 +127,7 @@ class GamesController < ApplicationController
     if !game.tutorial
       if current_user.played_games.include? game.id
         flash[:warning] = "You have already played that game."
-        redirect_to play_index_path
+        redirect_to play_index_path and return
       else
           current_user.add_to_played_giving_games(game)
       end
