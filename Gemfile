@@ -36,6 +36,8 @@ gem "font-awesome-rails"
 
 # image uploading
 gem "carrierwave"
+gem "mini_magick"
+gem "fog"
 
 #user authentication
 gem 'devise'

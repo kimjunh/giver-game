@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428061159) do
+ActiveRecord::Schema.define(version: 20160428095457) do
 
   create_table "giving_games", force: :cascade do |t|
     t.string   "title",                                   default: "default title"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 20160428061159) do
     t.boolean  "expired",                                 default: false
     t.string   "charityA_image"
     t.string   "charityB_image"
+  end
+
+# this is for amazon s3 file storage services for images potentially for the future
+# pls don't delete the migration or anything related to the uploads model
+  create_table "uploads", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

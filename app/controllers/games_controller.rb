@@ -50,7 +50,9 @@ class GamesController < ApplicationController
   end
 
   def create
-    success = true 
+    success = true
+    params.fetch(:charityA_image, nil)
+    params.fetch(:charityB_image, nil)
     game = GivingGame.create(game_params)
 
     if game.valid?
