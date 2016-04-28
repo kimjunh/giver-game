@@ -9,7 +9,7 @@ Feature: Make Games End
     | title        | id | description                                 | charityA_title | charityB_title | expired | expiration_time          | total_money | per_transaction  | votesA |    
     | Expirein     |  1 | 'This game should expire'                   | Charity A      | Charity B      | true    |                          | 100         | 1                |        |
     | Expire2      |  2 | 'This game should also expire'              | Charity 1      | Charity 2      | false   | 2016-04-20 01:00:00 UTC  | 100         | 1                |        |
-    | Expire3      |  3 | 'This game should also expire too'          | Charity 4      | Charity 5      | false   |                          | 100         | 1                | 99     |
+    | Expire3      |  3 | 'This game should also expire too'          | Charity 4      | Charity 5      | false   |                          | 100         | 1                | 99     | 
     And the following users exist:
     | username           | password   | password_confirmation  |     email             |
     | Traitor_JOSEPHINE  | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
@@ -23,10 +23,11 @@ Feature: Make Games End
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
     When I am on the new games page 
     Then I should see "Expiration Date"
-    And I should see "Money Limit"
+    And I should see "Goal Amount of Money to Reach"
   
   Scenario: If the vote limit is reached, the game should not be played
+    Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
     When I follow "Play a giving game"
-    And I follow "Expire3"
+    And I follow "Expire3" in my table
     And I press "Donate to Charity 4"
     Then I should not see "Expire3"

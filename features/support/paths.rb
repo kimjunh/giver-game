@@ -42,7 +42,7 @@ module NavigationHelpers
       archive_path
     when /^the expired game info page for "([^"]*)"$/
       id = GivingGame.where(:title => $1).first.id
-      archive_info_path(id)
+      archive_game_path(id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

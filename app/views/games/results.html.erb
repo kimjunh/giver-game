@@ -31,6 +31,24 @@
             </div>
         </div>
     </div>
+    <% if current_user.present? and current_user.id == @owner %>
+        <div class="row">
+            <h5><%= @charityA %></h5>
+            <div class="progress">
+              <div class="progress-bar <%= 'progress-bar-success' if @leadingCharity == @charityA %><%= 'progress-bar-danger' if @leadingCharity == @charityB %><%= 'progress-bar-info' if @leadingCharity == nil %>" role="progressbar" aria-valuenow="<%= @votes_progressA %>" aria-valuemin="0" aria-valuemax="<%= @total_money %>" style="width: <%= @votes_progressA %>%">
+                <%= number_to_currency(@current_moneyA) %>/<%= number_to_currency(@total_money) %>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <h5><%= @charityB %></h5>
+            <div class="progress">
+              <div class="progress-bar <%= 'progress-bar-success' if @leadingCharity == @charityB %><%= 'progress-bar-danger' if @leadingCharity == @charityA %><%= 'progress-bar-info' if @leadingCharity == nil %>" role="progressbar" aria-valuenow="<%= @votes_progressB %>" aria-valuemin="0" aria-valuemax="<%= @total_money %>" style="width: <%= @votes_progressB %>%">
+                <%= number_to_currency(@current_moneyB) %>/<%= number_to_currency(@total_money) %>
+              </div>
+            </div>
+        </div>
+    <% end %>
     <div class="row top-buffer">
         <div class="col-lg-6" style="text-align: center">
             <button class="btn <%= 'btn-success' if @leadingCharity == @charityA %><%= 'btn-danger' if @leadingCharity == @charityB %><%= 'btn-primary' if @leadingCharity == nil %> btn-lg" type="button">

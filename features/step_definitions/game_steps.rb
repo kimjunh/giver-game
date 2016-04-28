@@ -10,7 +10,7 @@ Then(/^I should see only "([^"]*)" games$/) do |arg1|
 end
 
 When /^I follow "(.*)" in my table$/ do |game|
-  within('table.games') do
+  within('table.table.table-hover') do
     click_link game
   end
 end
@@ -79,7 +79,7 @@ When /^I upload an image to the form$/ do
 end
 
 Then /^I should see "(.*)" in my table$/ do |game|
-  table_results = page.find('table.games')
+  table_results = page.find('table.table.table-hover')
   table_results.should have_content(game)
 end
 

@@ -34,6 +34,9 @@ gem 'sweetalert-rails'
 # font awesome
 gem "font-awesome-rails"
 
+# date picker
+gem 'bootstrap-datepicker-rails'
+
 #user authentication
 gem 'devise'
 gem 'omniauth'
