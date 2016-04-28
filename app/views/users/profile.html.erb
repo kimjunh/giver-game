@@ -4,23 +4,37 @@
 </head>
 
 <body>
-    <div id=container>
-        <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
-        <div id=header>
-            <%= @user.username %>'s Profile
+    <div class="container">
+        <div class="row">
+            <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
+            <div class="page-header">
+                <h2><%= @user.username %>'s Profile</h2>
+            </div>
         </div>
-        <div id=table-header>
-            Edit Your Games
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 style="margin-bottom: 20px"><i class="fa fa-pencil-square-o" style="margin-right: 10px"></i>Edit Your Games</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left">Game Title</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @games.each do |game| %>
+                                    <tr>
+                                        <td><%= link_to game.title, edit_game_path(current_user.id, game.id)%></a></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <table class=games>
-            <tr>
-             <th>Game Title</th>
-            </tr>
-        <% @games.each do |game| %>
-             <tr>
-                <td><%= link_to game.title, edit_game_path(current_user.id, game.id)%></a></td>
-             </tr>
-          <% end %>
-        </table>
     </div>
 </body>
