@@ -22,9 +22,9 @@ When /^I fill out the form$/ do
     And I fill in "TotalMoney" with "1000"
     And I fill in "AmountPerVote" with "10"
     And I fill in "Charity A" with "Syrian Refugees"
-    And I fill in "Description A" with "Provides money to Syrians displaced by the civil war."
+    And I fill in "DescriptionA" with "Provides money to Syrians displaced by the civil war."
     And I fill in "Charity B" with "Trump Refugees"
-    And I fill in "Description B" with "Donates directly to people leaving America because of Trump's policies"
+    And I fill in "DescriptionB" with "Donates directly to people leaving America because of Trump's policies"
   }
 end
 
@@ -35,9 +35,9 @@ When /^I fill out the form with a second game$/ do
     And I fill in "TotalMoney" with "100"
     And I fill in "AmountPerVote" with "10"
     And I fill in "Charity A" with "Give Directly"
-    And I fill in "Description A" with "Provides money directly to groups of impoverished people."
+    And I fill in "DescriptionA" with "Provides money directly to groups of impoverished people."
     And I fill in "Charity B" with "Malaria Nets"
-    And I fill in "Description B" with "Provides malaria nets to locals."
+    And I fill in "DescriptionB" with "Provides malaria nets to locals."
   }
 end
 
@@ -49,6 +49,18 @@ When /^I fill out the form with negative numbers$/ do
   }
 end
   
+When /^the form is blank$/ do
+  steps %Q{
+    And I fill in "Title" with ""
+    And I fill in "Description" with ""
+    And I fill in "TotalMoney" with ""
+    And I fill in "AmountPerVote" with ""
+    And I fill in "Charity A" with ""
+    And I fill in "DescriptionA" with ""
+    And I fill in "Charity B" with ""
+    And I fill in "DescriptionB" with ""
+  }
+end
 
 When /^I fill out the form without descriptions$/ do
   steps %Q{
