@@ -12,7 +12,6 @@ class GamesController < ApplicationController
       flash[:warning] = "You must be logged in to create a new giving game."
       redirect_to new_user_session_path
     end
-    print("Session[:game] is currently: #{session[:game]}")
     @game = GivingGame.new(session[:game]) || GivingGame.new()
     if @session and @session.key? :game
       @session.delete(:game)
@@ -21,14 +20,12 @@ class GamesController < ApplicationController
   
   def edit
     if session[:game]
-      print "SESSION GAME: #"
       @game = GivingGame.new(session[:game])
       @game.id = params[:id]
       session.delete :game
     else
       @game = GivingGame.find(params[:id])
     end
-    print "HERE'S YOUR GAME: #{@game.id}"
   end
   
   def update
@@ -44,7 +41,7 @@ class GamesController < ApplicationController
         if params.key? key 
           params.delete key  
         end
-        totalMessage += "#{key}: #{message} \n"
+        totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
       flash[:warning] = totalMessage
       session[:game] = params[:game]
@@ -61,14 +58,14 @@ class GamesController < ApplicationController
       flash[:notice] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
-      totalMessage = "There were the following errors: \n"
+      totalMessage = ""
       game.errors.messages.each do |key, message|
         if params[:game].key? key
           params[:game].delete(key)
         end
-        totalMessage += "#{key}: #{message} \n"
+        totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
-      flash[:warning] = totalMessage
+      flash[:danger] = totalMessage
       session[:game] = params[:game]
       success = false
     end
