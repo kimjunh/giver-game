@@ -105,11 +105,6 @@ class GamesController < ApplicationController
     number_of_games = GivingGame.where(:tutorial => true).count
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
-    # @game = games[index]
-    # @charityA = @game.charityA_title
-    # @charityB = @game.charityB_title
-    # @description = @game.description
-    # @showResults = @game.show_results
     redirect_to play_game_path(:id => games[index].id)
   end
   
