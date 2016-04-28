@@ -50,6 +50,9 @@
                 <div class='field-form-group'><%= text_field :game, :per_transaction, id: 'AmountPerVote' %></div>
                 </div>
             </div>
+            
+            <div class="form-header">Expiration Date</div>
+            <div class='field-form-group'><%= text_field :game, :expiration_time, "data-provide" => 'datepicker' %></div>
     
             <div class=form-header>Tutorial?</div>
             <div class='field-form-group'><%= check_box :game, :tutorial, {}, true, false %></div>

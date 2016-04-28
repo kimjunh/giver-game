@@ -11,7 +11,7 @@ Feature: Play a tutorial
   
   Scenario: Go to the tutorial page
     When I follow "home_tutorial"
-    Then I should be on the tutorial page
+    Then I should be on the game page for "Tutorial"
 
   Scenario: Play the sample game
     When I follow "home_tutorial"

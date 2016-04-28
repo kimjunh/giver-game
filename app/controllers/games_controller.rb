@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :tutorial, :show_results, :charityA_image, :charityB_image)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results, :charityA_image, :charityB_image)
   end
   
   def home
@@ -33,17 +33,17 @@ class GamesController < ApplicationController
     game.assign_attributes(game_params)
     if game.valid?
       GivingGame.update(params[:id], game_params)
-      flash[:notice] = "Successfully edited."
+      flash[:success] = "Successfully edited."
       redirect_to user_profile_path(current_user.id)
     else
-      totalMessage = "There were the following errors: \n"
+      totalMessage = ""
       game.errors.messages.each do |key, message|
         if params.key? key 
           params.delete key  
         end
         totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
-      flash[:warning] = totalMessage
+      flash[:danger] = totalMessage
       session[:game] = params[:game]
       redirect_to edit_game_path(current_user.id, params[:id])
     end
@@ -57,7 +57,7 @@ class GamesController < ApplicationController
 
     if game.valid?
       @game = game
-      flash[:notice] = "Giving Game #{@game.title} successfully created."
+      flash[:success] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
       totalMessage = ""
@@ -100,6 +100,8 @@ class GamesController < ApplicationController
       @descriptionA = @game.descriptionA
       @descriptionB = @game.descriptionB
       @showResults = @game.show_results
+      @expiration_time = @game.expiration_time
+      @tutorial = @game.tutorial
     end
   end
 
@@ -107,17 +109,25 @@ class GamesController < ApplicationController
     number_of_games = GivingGame.where(:tutorial => true).count
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
-    @game = games[index]
-    @charityA = @game.charityA_title
-    @charityB = @game.charityB_title
-    @description = @game.description
-    @showResults = @game.show_results
+    # @game = games[index]
+    # @charityA = @game.charityA_title
+    # @charityB = @game.charityB_title
+    # @description = @game.description
+    # @showResults = @game.show_results
+    redirect_to play_game_path(:id => games[index].id)
   end
   
   def check_if_played_and_reroute
     game = GivingGame.find(params[:id])
-    show_results = params[:show_results]
+    charityA = game.charityA_title
+    charityB = game.charityB_title
     charity = params[:charity]
+    if charity == charityA
+      game.voteForA
+    elsif charity == charityB
+      game.voteForB
+    end
+    show_results = game.show_results
     total_moneyA = game.votesA * game.per_transaction
     total_moneyB = game.votesB * game.per_transaction
     money_allowed = game.total_money
@@ -125,18 +135,19 @@ class GamesController < ApplicationController
       game.expired = true
       game.save
     end
-    if current_user.played_games.include? game.id
-      flash[:warning] = "You have already played that game."
-      redirect_to play_index_path
-    else
-      if !game.tutorial
-        current_user.add_to_played_giving_games(game)
-      end
-      if show_results == 'true'
-        redirect_to results_path(:id => game.id, :charity => charity)
+    
+    if !game.tutorial
+      if current_user.present? and current_user.played_games.include? game.id
+        flash[:warning] = "You have already played that game."
+        redirect_to play_index_path and return
       else
-        redirect_to play_index_path(:charity => charity)
+          current_user.add_to_played_giving_games(game)
       end
+    end
+    if show_results == true
+      redirect_to results_path(:id => game.id, :charity => charity)
+    else
+      redirect_to play_index_path(:charity => charity)
     end
   end
   
@@ -158,20 +169,19 @@ class GamesController < ApplicationController
   
   def results
     @game = GivingGame.find(params[:id])
+    @owner = @game.user_id
     @expired = @game.expired
     @charityVotedFor = params[:charity]
     @title = @game.title
     @charityA = @game.charityA_title
     @charityB = @game.charityB_title
-    
-    if @charityVotedFor == @charityA
-      @game.voteForA
-    else
-      @game.voteForB
-    end
-    
     @votesA = @game.votesA
     @votesB = @game.votesB
+    @current_moneyA = @votesA * @game.per_transaction
+    @current_moneyB = @votesB * @game.per_transaction
+    @total_money = @game.total_money
+    @votes_progressA = (@current_moneyA / @total_money) * 100
+    @votes_progressB = (@current_moneyB / @total_money) * 100
     
     # show which charity is in the lead
     if @votesA > @votesB
