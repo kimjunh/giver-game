@@ -1,82 +1,20 @@
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag "home_style.css" %>
+    <link href='https://fonts.googleapis.com/css?family=Poppins:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 </head>
 
 
 <body>
     
     <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
-    
-    <div id="header">
-        Welcome to the Giving Game!
+
+    <!--</br></br></br></br></br></br></br></br></br>-->
+    <div class='home-first-container'>
+    <div id="home-header">
+        <p align='center'><span style='color: white'>Welcome to the </span><span style="color: #F05225">Giving Game</span><span style='color: white'>!</span></p>
     </div>
-    
-    <div id="text-container" class="container">
-    <h3><strong>What is a Giving Game?</strong></h3>
-
-    <p class="lead">
-    In a Giving Game, participants learn about a few pre-selected charities, think 
-    about and discuss their relative merits, and choose which charity will get a 
-    real donation (which is typically sponsored by an outside party). Thus, they are 
-    forced to grapple with a donation decision structured to raise critical issues 
-    about what it means give well, knowing their choices will have real world 
-    consequences. This model makes it easy to learn about effective charitable 
-    giving.
-    </p>
-
-    <h4><b>Why Philanthropy Education is Needed</b></h4>
-
-    <div id="em-container">
-        <p class='text-center'><em>How did you first learn about giving to charity?</em></p>
-    </div>
-
-    <p>
-    For most people, that’s a trick question. Learning about philanthropy in any 
-    sort of structured way is rare. It’s much more common for people to accumulate 
-    up bits and pieces of information, or misinformation, about giving over time. 
-    The result can be a personal “giving philosophy” which itself has never been 
-    given much thought.
-    </p>
-
-    <p>
-    This thoughtless approach carries over to the way many donors actually give, at 
-    a tremendous cost to the people whose lives could be improved by more effective
-    giving. Only 35% of donors conduct any research before making their gifts!
-    </p>
-
-    <p>
-    Even more troubling, the minority of donors who do perform research don’t do so
-    in a way that’s likely to help them give with more impact. Half of those people 
-    spend an hour or less, generally on the website of the charity they’re 
-    considering. The most sought after piece of information is the charity’s 
-    “overhead ratio”, despite the fact that this metric has been roundly rejected 
-    as a measure of charitable effectiveness.
-    </p>
-    
-    <p>
-    Essentially, donors either don’t do research or they merely try to validate 
-    that a charity has no glaring red flags before giving. A mere 3% of donors 
-    researches the relative performance of multiple nonprofits.
-    </p>
-    
-    <p>
-    In fact, few donors- just one in six- even consider maximum impact to be their 
-    primary motivation. Given this situation, nonprofits have little incentive 
-    to report, or even measure, their social impact. This is turn makes it harder 
-    on donors looking for quality information to find what they’re looking for. 
-    Philanthropy education offers the possibility of turning this negative feedback
-    loop into a positive one.
-    </p>
-    
-    <p>
-    The purpose of our Giving Games program is to help create this sort of cultural
-    change by teaching people about charity in an environment specially tailored to
-    promote thoughtful, impactful, and generous giving.
-    </p>
-    </div>
-
-    
+    </br>
     <div id="container" class="container">
         <div class="row">
             <div class="col-sm-8 col-md-offset-2">
@@ -92,4 +30,79 @@
             </div>
         </div>
     </div>
+    </div>
+    
+    <!--</br></br></br></br></br></br></br></br></br></br></br></br></br></br>-->
+    <div class='home-container'>
+        <div id="home-question">
+        <p align='left'>What is a Giving Game?</p></div>
+    
+        <div class ='home-text'><p>
+        In a Giving Game, participants learn about a few pre-selected charities, think 
+        about and discuss their relative merits, and choose which charity will get a 
+        real donation (which is typically sponsored by an outside party). Thus, they are 
+        forced to grapple with a donation decision structured to raise critical issues 
+        about what it means give well, knowing their choices will have real world 
+        consequences. This model makes it easy to learn about effective charitable 
+        giving.
+        </p>
+        </div>
+
+    
+        </br>
+    
+        <div id="home-question">Why Philanthropy Education is Needed</div>
+    
+        <div id="em-container">
+            <p align='center'><em>How did you first learn about giving to charity?</em></p>
+        </div>
+    
+        <div class='home-text'><p>
+        For most people, that’s a trick question. Learning about philanthropy in any 
+        sort of structured way is rare. It’s much more common for people to accumulate 
+        up bits and pieces of information, or misinformation, about giving over time. 
+        The result can be a personal “giving philosophy” which itself has never been 
+        given much thought.
+        </p>
+    
+        <p>
+        This thoughtless approach carries over to the way many donors actually give, at 
+        a tremendous cost to the people whose lives could be improved by more effective
+        giving. Only 35% of donors conduct any research before making their gifts!
+        </p>
+    
+        <p>
+        Even more troubling, the minority of donors who do perform research don’t do so
+        in a way that’s likely to help them give with more impact. Half of those people 
+        spend an hour or less, generally on the website of the charity they’re 
+        considering. The most sought after piece of information is the charity’s 
+        “overhead ratio”, despite the fact that this metric has been roundly rejected 
+        as a measure of charitable effectiveness.
+        </p>
+        
+        <p>
+        Essentially, donors either don’t do research or they merely try to validate 
+        that a charity has no glaring red flags before giving. A mere 3% of donors 
+        researches the relative performance of multiple nonprofits.
+        </p>
+        
+        <p>
+        In fact, few donors- just one in six- even consider maximum impact to be their 
+        primary motivation. Given this situation, nonprofits have little incentive 
+        to report, or even measure, their social impact. This is turn makes it harder 
+        on donors looking for quality information to find what they’re looking for. 
+        Philanthropy education offers the possibility of turning this negative feedback
+        loop into a positive one.
+        </p>
+        
+        <p>
+        The purpose of our Giving Games program is to help create this sort of cultural
+        change by teaching people about charity in an environment specially tailored to
+        promote thoughtful, impactful, and generous giving.
+        </p>
+        </div>
+    
+        
+    </div> 
+    </br></br></br>
 </body>
