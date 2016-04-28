@@ -16,7 +16,7 @@
         <div id=header>Edit Giving game <%=@game.title %> </div>
         <div class="form">
         <%= form_tag update_game_path(current_user.id, @game.id), method: :post do %>
-            <%= render 'giving_game_form' %>
+                <%= render 'giving_game_form' %>
             
             <div class="actions-form-group">
                 <%= submit_tag 'Submit Changes' %>

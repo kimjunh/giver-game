@@ -21,15 +21,19 @@ class GamesController < ApplicationController
   
   def edit
     if session[:game]
+      print "SESSION GAME: #"
       @game = GivingGame.new(session[:game])
+      @game.id = params[:id]
       session.delete :game
     else
       @game = GivingGame.find(params[:id])
     end
+    print "HERE'S YOUR GAME: #{@game.id}"
   end
   
   def update
-    game = GivingGame.new(game_params)
+    game = GivingGame.find(params[:id])
+    game.assign_attributes(game_params)
     if game.valid?
       GivingGame.update(params[:id], game_params)
       flash[:notice] = "Successfully edited."
