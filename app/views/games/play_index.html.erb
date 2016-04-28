@@ -9,10 +9,9 @@
          <div class="col-lg-10 col-lg-offset-1">
             <div class="page-header">
                <div class="pull-right">
-                  <a class="btn btn-default btn-sm" href="archive">
-                     <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                     <span style="padding-left: 5px">Go to expired games</span>
-                  </a>
+                  <%= link_to archive_path, class:'btn btn-default btn-sm' do %>
+                     <i class="fa fa-hourglass-end" aria-hidden="true" style="padding-right: 5px"></i>Go to expired games
+                  <% end %>
                </div>
                <h3>Play an Existing Giving Game</h3>
             </div>

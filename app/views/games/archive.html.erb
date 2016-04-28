@@ -8,11 +8,10 @@
         <div class="col-lg-10 col-lg-offset-1">
             <div class="page-header">
                 <div class="pull-right">
-                  <a class="btn btn-default btn-sm" href="play_index">
-                     <i class="fa fa-child" aria-hidden="true"></i>
-                     <span style="padding-left: 5px">Play a Giving Game</span>
-                  </a>
-               </div>
+                    <%= link_to play_index_path, class:'btn btn-default btn-sm' do %>
+                        <i class="fa fa-child" aria-hidden="true" style="padding-right: 5px"></i>Play a Giving Game
+                    <% end %>
+                </div>
                 <h3>Archive for Expired Giving Games</h3>
             </div>
             <table class="table table-hover">
