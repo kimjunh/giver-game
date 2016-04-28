@@ -7,7 +7,7 @@
     <div id="container" class="container">
         <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
         <div id=header>Edit Giving game <%=@game.title %> </div>
-        <%= form_tag edit, method: :post do %>
+        <%= form_tag update_game_path(current_user.id, @game.id) %>
             <%= render 'giving_game_form' %>
     
         <%= link_to "Back", user_profile_path(current_user.id)%></a>

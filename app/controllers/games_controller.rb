@@ -20,29 +20,31 @@ class GamesController < ApplicationController
   end
   
   def edit
-    @game = GivingGame.find(params[:id])
+    if session[:game]
+      @game = GivingGame.new(session[:game])
+      session.delete :game
+    else
+      @game = GivingGame.find(params[:id])
+    end
   end
   
   def update
-    @game = GivingGame.find params[:id]
-    if params[:game]
-      game = GivingGame.new(game_params)
-      if game.valid?
-        @game.assign_attributes(game_params)
-        flash[:notice] = "Successfully edited."
-        redirect_to user_profile_path(current_user.id)
-      else
-        totalMessage = "There were the following errors: \n"
-        @game.errors.messages.each do |key, message|
-          if params.key? key 
-            params.delete key  
-          end
-          totalMessage += "#{key}: #{message} \n"
+    game = GivingGame.new(game_params)
+    if game.valid?
+      GivingGame.update(params[:id], game_params)
+      flash[:notice] = "Successfully edited."
+      redirect_to user_profile_path(current_user.id)
+    else
+      totalMessage = "There were the following errors: \n"
+      @game.errors.messages.each do |key, message|
+        if params.key? key 
+          params.delete key  
         end
-        flash[:warning] = totalMessage
-        @game.assign_attributes(game_params)
-        redirect_to edit_game_path(current_user.id, params[:id])
+        totalMessage += "#{key}: #{message} \n"
       end
+      flash[:warning] = totalMessage
+      session[:game] = params[:game]
+      redirect_to edit_game_path(current_user.id, params[:id])
     end
   end
 
