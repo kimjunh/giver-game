@@ -31,6 +31,9 @@ gem 'autoprefixer-rails'
 # sweet alert
 gem 'sweetalert-rails'
 
+# font awesome
+gem "font-awesome-rails"
+
 #user authentication
 gem 'devise'
 gem 'omniauth'

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <div class="pull-right">
+                <%= link_to archive_path, class:'btn btn-default' do %>
+                    <i class="fa fa-arrow-left" aria-hidden="true" style="padding-right: 5px"></i>Go Back to Expired Games List
+                <% end %>
+                <% if @showResults == true%>
+                    <%= link_to results_path(params[:id]), class:'btn btn-default' do %>
+                        <i class="fa fa-bar-chart" aria-hidden="true" style="padding-right: 5px"></i>See Results for this Giving Game
+                    <% end %>
+                <% end %>
+            </div>
+            <h1><small>Play the game:</small> <small class="game-name-header"><%=@title %></small></h1>
+        </div>
+    </div>
+    <div class="row top-buffer" style="text-align: center">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4><%=raw @description %></h4>
+            </div>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-lg-6" style="text-align: center">
+            <div style="height: 275px">
+                <img src="http://41.media.tumblr.com/tumblr_mc7xf57QGn1qfg8rlo1_1280.jpg" style="width: 300px; margin-bottom: 50px">
+            </div>
+            <div class="row" style="margin-bottom: 30px">
+                 <div class="col-sm-6 col-sm-offset-3">
+                     <span style="text-align: center"><%= raw @descriptionA %></span>
+                </div>
+            </div>
+            <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
+        </div>
+        <div class="col-lg-6" style="text-align: center">
+            <div style="height: 275px">
+                <img src="https://img.buzzfeed.com/buzzfeed-static/static/2014-07/16/11/enhanced/webdr10/enhanced-20139-1405523602-5.jpg" style="width: 300px; margin-bottom: 50px">
+            </div>
+            <div class="row" style="margin-bottom: 30px">
+                <div class="col-sm-6 col-sm-offset-3">
+                     <span style="text-align: center"><%= raw @descriptionB %></span>
+                </div>
+            </div>
+            <%= button_to "Donate to #{@charityB}", check_played_path(:id =>@game.id, :charity => @charityB, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
+        </div>
+    </div>
+</div>
+
+
+
