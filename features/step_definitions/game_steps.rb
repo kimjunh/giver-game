@@ -92,9 +92,9 @@ And /^The game "(.*)" should not be able to show results$/ do |game|
 end    
 
 When(/^I upload an image called "([^"]*)"$/) do |image|
-  attach_file(:image_A, File.join(RAILS_ROOT, 'features', 'upload-files', "/features/upload-files/#{image}"))
+  attach_file("CharityA-Image", File.absolute_path("features/upload-files/#{image}"))
 end
 
 Then /^I should see the image "(.+)"$/ do |image|
-    page.should have_xpath("//img[@src=\"/public/images/#{image}\"]")
+    page.should have_xpath("//img[@src=\"/public/uploads/giving_game/charityA_image/1/#{image}\"]")
 end
