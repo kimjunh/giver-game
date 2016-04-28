@@ -33,17 +33,17 @@ class GamesController < ApplicationController
     game.assign_attributes(game_params)
     if game.valid?
       GivingGame.update(params[:id], game_params)
-      flash[:notice] = "Successfully edited."
+      flash[:success] = "Successfully edited."
       redirect_to user_profile_path(current_user.id)
     else
-      totalMessage = "There were the following errors: \n"
+      totalMessage = ""
       game.errors.messages.each do |key, message|
         if params.key? key 
           params.delete key  
         end
         totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
-      flash[:warning] = totalMessage
+      flash[:danger] = totalMessage
       session[:game] = params[:game]
       redirect_to edit_game_path(current_user.id, params[:id])
     end
@@ -55,7 +55,7 @@ class GamesController < ApplicationController
 
     if game.valid?
       @game = game
-      flash[:notice] = "Giving Game #{@game.title} successfully created."
+      flash[:success] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
       totalMessage = ""
