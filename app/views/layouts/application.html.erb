@@ -43,11 +43,16 @@
 </nav>
 <body>
 <div class="container">
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class:"alert alert-#{name}"%>
-<% end -%>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+    <% flash.each do |name, msg| -%>
+      <div class="flash"><%= content_tag :div, msg, class:"alert alert-#{name}"%></div>
+    <% end -%>
 
-<%= yield %>
+
+    </div>
+  </div>
+  <%= yield %>
 </div>
 
 </body>

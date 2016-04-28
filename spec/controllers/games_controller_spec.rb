@@ -50,7 +50,7 @@ RSpec.describe GamesController, :type => :controller do
             :tutorial => false}}
       post :create, params
       
-      expect(controller).to set_flash[:warning]
+      expect(controller).to set_flash[:danger]
     end
   end
   

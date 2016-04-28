@@ -33,17 +33,17 @@ class GamesController < ApplicationController
     game.assign_attributes(game_params)
     if game.valid?
       GivingGame.update(params[:id], game_params)
-      flash[:notice] = "Successfully edited."
+      flash[:success] = "Successfully edited."
       redirect_to user_profile_path(current_user.id)
     else
-      totalMessage = "There were the following errors: \n"
+      totalMessage = ""
       game.errors.messages.each do |key, message|
         if params.key? key 
           params.delete key  
         end
         totalMessage += "#{key.to_s().gsub('_', ' ').capitalize} #{message.join("', and'")}; "
       end
-      flash[:warning] = totalMessage
+      flash[:danger] = totalMessage
       session[:game] = params[:game]
       redirect_to edit_game_path(current_user.id, params[:id])
     end
@@ -55,7 +55,7 @@ class GamesController < ApplicationController
 
     if game.valid?
       @game = game
-      flash[:notice] = "Giving Game #{@game.title} successfully created."
+      flash[:success] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
       totalMessage = ""
@@ -78,7 +78,7 @@ class GamesController < ApplicationController
   end
 
   def play_index
-    @games = GivingGame.where("expired = ? OR expiration_time > ?", false, DateTime.now)
+    @games = GivingGame.where("expiration_time > ? OR expiration_time IS NULL AND expired = ?", DateTime.now, false)
     @counter = @games.length
     @charityVotedFor = params[:charity]
   end
@@ -119,22 +119,22 @@ class GamesController < ApplicationController
     total_moneyA = game.votesA * game.per_transaction
     total_moneyB = game.votesB * game.per_transaction
     money_allowed = game.total_money
-    if total_moneyA >= money_allowed or total_moneyB >= money_allowed
+    if money_allowed <= total_moneyA + total_moneyB
       game.expired = true
       game.save
     end
-    if current_user.played_games.include? game.id
-      flash[:warning] = "You have already played that game."
-      redirect_to play_index_path
-    else
-      if !game.tutorial
-        current_user.add_to_played_giving_games(game)
-      end
-      if show_results == 'true'
-        redirect_to results_path(:id => game.id, :charity => charity)
+    if !game.tutorial
+      if current_user.played_games.include? game.id
+        flash[:warning] = "You have already played that game."
+        redirect_to play_index_path
       else
-        redirect_to play_index_path(:charity => charity)
+          current_user.add_to_played_giving_games(game)
       end
+    end
+    if show_results == 'true'
+      redirect_to results_path(:id => game.id, :charity => charity)
+    else
+      redirect_to play_index_path(:charity => charity)
     end
   end
   
