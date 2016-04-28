@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Poppins:400,600,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <nav class="navbar navbar-default">
@@ -41,11 +43,16 @@
 </nav>
 <body>
 <div class="container">
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class:"alert alert-#{name}"%>
-<% end -%>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+    <% flash.each do |name, msg| -%>
+      <div class="flash"><%= content_tag :div, msg, class:"alert alert-#{name}"%></div>
+    <% end -%>
 
-<%= yield %>
+
+    </div>
+  </div>
+  <%= yield %>
 </div>
 
 </body>
