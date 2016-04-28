@@ -2,22 +2,29 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "new_style.css" %>
 </head>
-<% params %>
+
+<script>
+    $(document).on('ready page:load', function () {
+    tinymce.remove();
+    tinymce.init({selector:'textarea'});
+    });    
+</script>
+
 <body>
     <div id="container" class="container">
         <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
         <div id=header>Edit Giving game <%=@game.title %> </div>
         <div class="form">
-        <%= form_tag update_game_path(current_user.id, @game.id) %>
+        <%= form_tag update_game_path(current_user.id, @game.id), method: :post do %>
             <%= render 'giving_game_form' %>
             
             <div class="actions-form-group">
                 <%= submit_tag 'Submit Changes' %>
             </div>
-        
         <% end %>
         </div>
     
         <%= link_to "Back", user_profile_path(current_user.id)%></a>
     </div>
 </body>
+<%= tinymce %>
