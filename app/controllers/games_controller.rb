@@ -41,7 +41,7 @@ class GamesController < ApplicationController
           totalMessage += "#{key}: #{message} \n"
         end
         flash[:warning] = totalMessage
-        redirect_to user_profile_path(current_user.id)
+        redirect_to edit_game_path(current_user.id, params[:id])
       end
     end
   end
