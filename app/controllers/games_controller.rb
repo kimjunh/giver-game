@@ -12,38 +12,50 @@ class GamesController < ApplicationController
       flash[:warning] = "You must be logged in to create a new giving game."
       redirect_to new_user_session_path
     end
-  end
-  
-  def edit
-    @game = GivingGame.find(params[:id])
-  end
-  
-  def update
-    existing_game = GivingGame.find_by title: params[:game][:title]
-    @game = GivingGame.find params[:id]
-    if existing_game and @game.id != existing_game.id
-      flash[:notice] = "The title #{params[:game][:title]} is already taken."
-      redirect_to edit_game_path(current_user.id, params[:id])
-    else
-      @game.assign_attributes(game_params)
-      if @game.valid?
-        @game.save
-        flash[:notice] = "Successfully edited."
-        redirect_to user_profile_path(current_user.id)
-      else
-        totalMessage = "There were the following errors: \n"
-        @game.errors.messages.each do |key, message|
-          totalMessage += "#{key}: #{message} \n"
-        end
-        flash[:warning] = totalMessage
-        redirect_to user_profile_path(current_user.id)
-      end
+    print("Session[:game] is currently: #{session[:game]}")
+    @game = GivingGame.new(session[:game]) || GivingGame.new()
+    if @session and @session.key? :game
+      @session.delete(:game)
     end
   end
   
+  def edit
+    if session[:game]
+      print "SESSION GAME: #"
+      @game = GivingGame.new(session[:game])
+      @game.id = params[:id]
+      session.delete :game
+    else
+      @game = GivingGame.find(params[:id])
+    end
+    print "HERE'S YOUR GAME: #{@game.id}"
+  end
+  
+  def update
+    game = GivingGame.find(params[:id])
+    game.assign_attributes(game_params)
+    if game.valid?
+      GivingGame.update(params[:id], game_params)
+      flash[:notice] = "Successfully edited."
+      redirect_to user_profile_path(current_user.id)
+    else
+      totalMessage = "There were the following errors: \n"
+      game.errors.messages.each do |key, message|
+        if params.key? key 
+          params.delete key  
+        end
+        totalMessage += "#{key}: #{message} \n"
+      end
+      flash[:warning] = totalMessage
+      session[:game] = params[:game]
+      redirect_to edit_game_path(current_user.id, params[:id])
+    end
+  end
+
   def create
     success = true 
     game = GivingGame.create(game_params)
+
     if game.valid?
       @game = game
       flash[:notice] = "Giving Game #{@game.title} successfully created."
@@ -51,9 +63,13 @@ class GamesController < ApplicationController
     else
       totalMessage = "There were the following errors: \n"
       game.errors.messages.each do |key, message|
+        if params[:game].key? key
+          params[:game].delete(key)
+        end
         totalMessage += "#{key}: #{message} \n"
       end
       flash[:warning] = totalMessage
+      session[:game] = params[:game]
       success = false
     end
     
