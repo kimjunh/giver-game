@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160428023351) do
     t.datetime "image_updated_at"
     t.boolean  "show_results"
     t.datetime "expiration_time"
-    t.boolean  "expired",                                 default: false
+    t.boolean  "expired",                                    default: false
   end
 
   create_table "users", force: :cascade do |t|
