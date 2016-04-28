@@ -24,7 +24,7 @@
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
                 <% if @game.charityA_image_identifier.nil? %>
-                    <%= image_tag asset_path("default-photo.jpg"), :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag asset_path("default-image1.png"), :style => "width: 300px; margin-bottom: 50px;"%>
                 <% else %>
                     <%= image_tag @game.charityA_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
                 <% end %>
@@ -39,7 +39,7 @@
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
                 <% if @game.charityB_image_identifier.nil? %>
-                    <%= image_tag asset_path("default-photo.jpg"), :style => "width: 300px; margin-bottom: 50px;"%>
+                    <%= image_tag asset_path("default-image2.png"), :style => "width: 300px; margin-bottom: 50px;"%>
                 <% else %>
                     <%= image_tag @game.charityB_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
                 <% end %>

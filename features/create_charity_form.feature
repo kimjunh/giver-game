@@ -14,7 +14,7 @@ Background:
     When I fill out the form without descriptions
     And I fill in "DescriptionA" with "Description 1."
     And I fill in "DescriptionB" with "Description 2."
-    And I upload an image called "img_1.png"
+    #And I upload an image called "img_1.png"
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game First Game successfully created."

@@ -24,7 +24,11 @@
     <div class="row top-buffer">
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
-                <img src="http://41.media.tumblr.com/tumblr_mc7xf57QGn1qfg8rlo1_1280.jpg" style="width: 300px; margin-bottom: 50px">
+                <% if @game.charityA_image_identifier.nil? %>
+                    <%= image_tag asset_path("default-image1.png"), :style => "width: 300px; margin-bottom: 50px;"%>
+                <% else %>
+                    <%= image_tag @game.charityA_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
+                <% end %>
             </div>
             <div class="row" style="margin-bottom: 30px">
                  <div class="col-sm-6 col-sm-offset-3">
@@ -35,7 +39,11 @@
         </div>
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
-                <img src="https://img.buzzfeed.com/buzzfeed-static/static/2014-07/16/11/enhanced/webdr10/enhanced-20139-1405523602-5.jpg" style="width: 300px; margin-bottom: 50px">
+                <% if @game.charityB_image_identifier.nil? %>
+                    <%= image_tag asset_path("default-image2.png"), :style => "width: 300px; margin-bottom: 50px;"%>
+                <% else %>
+                    <%= image_tag @game.charityB_image_url, :style => "width: 300px; margin-bottom: 50px;"%>
+                <% end %>
             </div>
             <div class="row" style="margin-bottom: 30px">
                 <div class="col-sm-6 col-sm-offset-3">
