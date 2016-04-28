@@ -12,10 +12,12 @@
         <%= form_tag create_game_path, method: :post do %>
             <%= render 'giving_game_form' %>
         
-        <div class="actions-form-group">
-            <%= submit_tag 'Submit New Game' %>
+            <div class="actions-form-group">
+                <%= submit_tag 'Submit New Game' %>
+            </div>
+        <% end %>            
         </div>
-        <% end %>
+        
 
     </div>
 </body>

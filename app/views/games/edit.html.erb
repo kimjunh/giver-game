@@ -7,8 +7,16 @@
     <div id="container" class="container">
         <div id="flash"><% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %></div>
         <div id=header>Edit Giving game <%=@game.title %> </div>
+        <div class="form">
         <%= form_tag update_game_path(current_user.id, @game.id) %>
             <%= render 'giving_game_form' %>
+            
+            <div class="actions-form-group">
+                <%= submit_tag 'Submit Changes' %>
+            </div>
+        
+        <% end %>
+        </div>
     
         <%= link_to "Back", user_profile_path(current_user.id)%></a>
     </div>

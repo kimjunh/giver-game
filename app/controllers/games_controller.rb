@@ -36,7 +36,7 @@ class GamesController < ApplicationController
       redirect_to user_profile_path(current_user.id)
     else
       totalMessage = "There were the following errors: \n"
-      @game.errors.messages.each do |key, message|
+      game.errors.messages.each do |key, message|
         if params.key? key 
           params.delete key  
         end
