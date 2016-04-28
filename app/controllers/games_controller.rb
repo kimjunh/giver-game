@@ -130,6 +130,17 @@ class GamesController < ApplicationController
     @counter = @games.length
   end
   
+  def archive_game
+      @game = GivingGame.find(params[:id])
+      @charityA = @game.charityA_title
+      @charityB = @game.charityB_title
+      @description = @game.description
+      @title = @game.title
+      @descriptionA = @game.descriptionA
+      @descriptionB = @game.descriptionB
+      @showResults = @game.show_results
+  end
+  
   def results
     @game = GivingGame.find(params[:id])
     

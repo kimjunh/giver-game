@@ -19,8 +19,7 @@
                      <span style="text-align: center"><%= raw @descriptionA %></span>
                 </div>
             </div>
-            <!--<%= button_tag "Donate to #{@charityA}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityA}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
-            <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg" %>
+            <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
         </div>
         <div class="col-lg-6" style="text-align: center">
             <div style="height: 275px">
@@ -31,29 +30,9 @@
                      <span style="text-align: center"><%= raw @descriptionB %></span>
                 </div>
             </div>
-            <!--<%= button_tag "Donate to #{@charityB}", :type => "button", :remote => true, :onclick => "vote_success('#{@charityB}', #{@showResults});", :class => "btn btn-primary btn-lg" %>-->
-            <%= button_to "Donate to #{@charityB}", check_played_path(:id =>@game.id, :charity => @charityB, :show_results => @showResults), :class => "btn btn-primary btn-lg" %>
+            <%= button_to "Donate to #{@charityB}", check_played_path(:id =>@game.id, :charity => @charityB, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
         </div>
     </div>
 </div>
-<div class="footer"></div>
 
-<script>
-    var vote_success = function(name, show_results) {
-        sweetAlert({
-            title: 'Donation Successful!',
-            text: 'Your choice: ' + name,
-            type: 'success',
-        }, function() {
-            if (show_results) {
-                if (name == '<%= @charityOne %>') {
-                    window.location = '<%= results_path(:id => @game.id, :charity => @charityOne) %>';
-                } else {
-                    window.location = '<%= results_path(:id => @game.id, :charity => @charityTwo) %>';
-                }
-            } else {
-                window.location = '<%= play_index_path %>';
-            }
-        });
-    };
-</script>
+
