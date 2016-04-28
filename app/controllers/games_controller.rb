@@ -103,6 +103,13 @@ class GamesController < ApplicationController
     game = GivingGame.find(params[:id])
     show_results = params[:show_results]
     charity = params[:charity]
+    total_moneyA = game.votesA * game.per_transaction
+    total_moneyB = game.votesB * game.per_transaction
+    money_allowed = game.total_money
+    if total_moneyA >= money_allowed or total_moneyB >= money_allowed
+      game.expired = true
+      game.save
+    end
     if current_user.played_games.include? game.id
       flash[:warning] = "You have already played that game."
       redirect_to play_index_path
@@ -117,7 +124,11 @@ class GamesController < ApplicationController
       end
     end
   end
+<<<<<<< HEAD
+
+=======
   
+>>>>>>> 3146f77ed55d64aeb7d4eecc1bad74175dd83c25
   def archive
     @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
   end
