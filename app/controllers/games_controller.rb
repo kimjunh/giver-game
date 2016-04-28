@@ -2,9 +2,6 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results)
-    if params[:expiration_time]
-      params[:expiration_time] = Date.civil(params[:expiration_time][:year].to_i, params[:expiration_time][:month].to_i, params[:expiration_time][:day].to_i)
-    end
   end
   
   def home
