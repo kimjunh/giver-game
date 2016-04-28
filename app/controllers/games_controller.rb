@@ -127,6 +127,7 @@ class GamesController < ApplicationController
   
   def archive
     @games = GivingGame.where("expired = ? OR expiration_time < ?", true, DateTime.now)
+    @counter = @games.length
   end
   
   def results
