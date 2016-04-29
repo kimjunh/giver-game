@@ -106,7 +106,7 @@ class GamesController < ApplicationController
   end
 
   def play_index
-    @games = GivingGame.where("expiration_time > ? OR expiration_time IS NULL AND expired = ?", DateTime.now, false)
+    @games = GivingGame.where("expired = ? AND (expiration_time > ? OR expiration_time IS NULL)", false, DateTime.now)
     @counter = @games.length
     @charityVotedFor = params[:charity]
   end
