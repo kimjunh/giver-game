@@ -51,6 +51,21 @@ class GamesController < ApplicationController
 
   def create
     success = true
+    begin 
+      if game_params[:expiration_time]
+        gp = game_params
+        if game_params[:expiration_time] == ''
+          gp[:expiration_time] = nil
+        else
+          gp[:expiration_time] = Date.strptime(game_params[:expiration_time], "%m/%d/%Y")
+        end
+        game_params = gp
+      end
+    rescue
+        flash[:danger] = "Invalid date passed"
+        redirect_to new_game_path
+        return
+    end
     game = GivingGame.create(game_params)
     if game.valid?
       @game = game
@@ -97,7 +112,11 @@ class GamesController < ApplicationController
       @descriptionA = @game.descriptionA
       @descriptionB = @game.descriptionB
       @showResults = @game.show_results
-      @expiration_time = @game.expiration_time
+      if @game.expiration_time?
+        @expiration_time = @game.expiration_time.strftime("%m/%d/%Y")
+      else
+        @expiration_time = 'None'
+      end
       @tutorial = @game.tutorial
     end
   end
@@ -124,8 +143,10 @@ class GamesController < ApplicationController
     total_moneyB = game.votesB * game.per_transaction
     money_allowed = game.total_money
     if money_allowed <= total_moneyA + total_moneyB
-      game.expired = true
-      game.save
+      if !game.tutorial
+        game.expired = true
+        game.save
+      end
     end
     
     if !game.tutorial
