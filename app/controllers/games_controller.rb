@@ -13,13 +13,13 @@ class GamesController < ApplicationController
       redirect_to new_user_session_path
     end
     @game = GivingGame.new(session[:game]) || GivingGame.new()
-    if @session and @session.key? :game
-      @session.delete(:game)
+    if session and session.key? :game
+      session.delete(:game)
     end
   end
   
   def edit
-    if session[:game]
+    if session and session[:game]
       @game = GivingGame.new(session[:game])
       @game.id = params[:id]
       session.delete :game
@@ -79,10 +79,11 @@ class GamesController < ApplicationController
         redirect_to new_game_path
         return
     end
-    game = GivingGame.create(gp)
+    game = GivingGame.new(gp)
     
     if game.valid?
       @game = game
+      game.save()
       flash[:success] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
