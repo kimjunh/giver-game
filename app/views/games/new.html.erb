@@ -12,15 +12,15 @@
 <!--</script>-->
 
 <body>
-    <div id="container" class="container">
+    <div class="container">
         
-        <div class='well'><div id=header>Create a new Giving game</div></div>
+        <div class='page-header' style="text-align: center; margin-bottom: 75px"><h3 style="color: #244354">Create a new Giving game</h3></div>
         <div class='form'>
         <%= form_tag create_game_path, method: :post, multipart: true do %>
             <%= render 'giving_game_form' %>
         
-            <div class="actions-form-group">
-                <%= submit_tag 'Submit New Game', :class => "btn btn-primary btn-sm"%>
+            <div class="actions-form-group" style="margin-top: 25px">
+                <%= submit_tag 'Submit New Game', :class => "btn btn-primary"%>
             </div>
         <% end %>            
         </div>
