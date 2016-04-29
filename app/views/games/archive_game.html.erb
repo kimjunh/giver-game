@@ -23,7 +23,7 @@
     </div>
     <div class="row top-buffer">
         <div class="col-lg-6" style="text-align: center">
-            <div style="height: 275px">
+            <div style="height: 250px; margin-top: 50px;">
                 <% if @game.charityA_image_identifier.nil? %>
                     <%= image_tag asset_path("default-image1.png"), :style => "width: 200px; max-height: 250px;"%>
                 <% else %>
@@ -38,7 +38,7 @@
             <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
         </div>
         <div class="col-lg-6" style="text-align: center">
-            <div style="height: 275px">
+            <div style="height: 250px; margin-top: 50pxx">
                 <% if @game.charityB_image_identifier.nil? %>
                     <%= image_tag asset_path("default-image2.png"), :style => "width: 275px; height: 195px;"%>
                 <% else %>
