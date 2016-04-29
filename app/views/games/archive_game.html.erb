@@ -14,7 +14,7 @@
             <h1><small>Play the game:</small> <small class="game-name-header"><%=@title %></small></h1>
         </div>
     </div>
-    <div class="row top-buffer" style="text-align: center">
+    <div class="row top-buffer" style="text-align: center;">
         <div class="panel panel-default">
             <div class="panel-body">
                 <h4><%= @description %></h4>
@@ -32,7 +32,7 @@
             </div>
             <div class="row" style="margin-bottom: 30px">
                  <div class="col-sm-6 col-sm-offset-3">
-                     <span style="text-align: center"><%= @descriptionA %></span>
+                     <span style="text-align: center; word-wrap: break-word;"><%= @descriptionA %></span>
                 </div>
             </div>
             <%= button_to "Donate to #{@charityA}", check_played_path(:id =>@game.id, :charity => @charityA, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
@@ -47,7 +47,7 @@
             </div>
             <div class="row" style="margin-bottom: 30px">
                 <div class="col-sm-6 col-sm-offset-3">
-                     <span style="text-align: center"><%= @descriptionB %></span>
+                     <span style="text-align: center; word-wrap: break-word;"><%= @descriptionB %></span>
                 </div>
             </div>
             <%= button_to "Donate to #{@charityB}", check_played_path(:id =>@game.id, :charity => @charityB, :show_results => @showResults), :class => "btn btn-primary btn-lg", :disabled => true %>
