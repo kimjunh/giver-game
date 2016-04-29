@@ -129,8 +129,10 @@ class GamesController < ApplicationController
     total_moneyB = game.votesB * game.per_transaction
     money_allowed = game.total_money
     if money_allowed <= total_moneyA + total_moneyB
-      game.expired = true
-      game.save
+      if !game.tutorial
+        game.expired = true
+        game.save
+      end
     end
     
     if !game.tutorial
