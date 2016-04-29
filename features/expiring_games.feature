@@ -10,6 +10,7 @@ Feature: Make Games End
     | Expirein     |  1 | 'This game should expire'                   | Charity A      | Charity B      | true    |                          | 100         | 1                |        |
     | Expire2      |  2 | 'This game should also expire'              | Charity 1      | Charity 2      | false   | 2016-04-20 01:00:00 UTC  | 100         | 1                |        |
     | Expire3      |  3 | 'This game should also expire too'          | Charity 4      | Charity 5      | false   |                          | 100         | 1                | 99     |
+    | game         |  4 | ' meh '                                     | Charity 12     | Charity 234    | false   |                          | 100         | 1                |        |
     And the following users exist:
     | username           | password   | password_confirmation  |     email             |
     | Traitor_JOSEPHINE  | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
@@ -30,3 +31,8 @@ Feature: Make Games End
     And I follow "Expire3"
     And I press "Donate to Charity 4"
     Then I should not see "Expire3"
+    
+  Scenario: w.e.
+    When I follow "Play a giving game"
+    And I follow "game"
+    And I press "Donate to Charity 12"
