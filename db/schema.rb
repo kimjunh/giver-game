@@ -14,17 +14,17 @@
 ActiveRecord::Schema.define(version: 20160428095457) do
 
   create_table "giving_games", force: :cascade do |t|
-    t.string   "title",                                      default: "default title"
-    t.text     "description",                                default: "default description"
+    t.string   "title",                                   default: "default title"
+    t.text     "description",                             default: "default description"
     t.datetime "release_date"
-    t.decimal  "total_money",        precision: 8, scale: 2, default: 10.0
-    t.decimal  "per_transaction",    precision: 8, scale: 2, default: 1.0
+    t.decimal  "total_money",     precision: 8, scale: 2, default: 10.0
+    t.decimal  "per_transaction", precision: 8, scale: 2, default: 1.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "charityA_title",                             default: "Charity A"
-    t.integer  "votesA",                                     default: 0
-    t.string   "charityB_title",                             default: "Charity B"
-    t.integer  "votesB",                                     default: 0
+    t.string   "charityA_title",                          default: "Charity A"
+    t.integer  "votesA",                                  default: 0
+    t.string   "charityB_title",                          default: "Charity B"
+    t.integer  "votesB",                                  default: 0
     t.boolean  "tutorial"
     t.string   "descriptionA"
     t.string   "descriptionB"
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20160428095457) do
     t.string   "charityB_image"
   end
 
-# this is for amazon s3 file storage services for images potentially for the future
-# pls don't delete the migration or anything related to the uploads model
   create_table "uploads", force: :cascade do |t|
     t.string "name"
   end

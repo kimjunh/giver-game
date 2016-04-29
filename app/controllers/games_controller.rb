@@ -51,6 +51,11 @@ class GamesController < ApplicationController
 
   def create
     success = true
+    if game_params[:expiration_time]
+      gp = game_params
+      gp[:expiration_time] = Date.strptime(game_params[:expiration_time], "%m/%d/%Y")
+      game_params = gp
+    end
     game = GivingGame.create(game_params)
     if game.valid?
       @game = game
@@ -97,7 +102,7 @@ class GamesController < ApplicationController
       @descriptionA = @game.descriptionA
       @descriptionB = @game.descriptionB
       @showResults = @game.show_results
-      @expiration_time = @game.expiration_time
+      @expiration_time = @game.expiration_time.strftime("%m/%d/%Y")
       @tutorial = @game.tutorial
     end
   end
@@ -106,11 +111,6 @@ class GamesController < ApplicationController
     number_of_games = GivingGame.where(:tutorial => true).count
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
-    # @game = games[index]
-    # @charityA = @game.charityA_title
-    # @charityB = @game.charityB_title
-    # @description = @game.description
-    # @showResults = @game.show_results
     redirect_to play_game_path(:id => games[index].id)
   end
   
