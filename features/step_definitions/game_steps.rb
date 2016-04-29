@@ -10,7 +10,7 @@ Then(/^I should see only "([^"]*)" games$/) do |arg1|
 end
 
 When /^I follow "(.*)" in my table$/ do |game|
-  within('table.games') do
+  within('table.table.table-hover') do
     click_link game
   end
 end
@@ -79,7 +79,7 @@ When /^I upload an image to the form$/ do
 end
 
 Then /^I should see "(.*)" in my table$/ do |game|
-  table_results = page.find('table.games')
+  table_results = page.find('table.table.table-hover')
   table_results.should have_content(game)
 end
 
@@ -92,9 +92,9 @@ And /^The game "(.*)" should not be able to show results$/ do |game|
 end    
 
 When(/^I upload an image called "([^"]*)"$/) do |image|
-  attach_file(:image_A, File.join(RAILS_ROOT, 'features', 'upload-files', "/features/upload-files/#{image}"))
+  attach_file("CharityA-Image", File.absolute_path("features/upload-files/#{image}"))
 end
 
 Then /^I should see the image "(.+)"$/ do |image|
-    page.should have_xpath("//img[@src=\"/public/images/#{image}\"]")
+   expect(page).to have_xpath("//img[contains(@src,'#{image}')]")
 end

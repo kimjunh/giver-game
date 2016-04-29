@@ -34,6 +34,13 @@ gem 'sweetalert-rails'
 # font awesome
 gem "font-awesome-rails"
 
+# date picker
+gem 'bootstrap-datepicker-rails'
+# image uploading
+gem "carrierwave"
+gem "mini_magick"
+gem "fog"
+
 #user authentication
 gem 'devise'
 gem 'omniauth'

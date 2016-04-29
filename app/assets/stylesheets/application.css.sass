@@ -14,6 +14,7 @@
  *= require_self
  *= require sweet-alert
  *= require font-awesome
+ *= require bootstrap-datepicker3
  */
 // .col-centered
 //   float: none
@@ -38,6 +39,15 @@
   font-family: 'Poppins', sans-serif
   // text-align: left
   
+.navbar-brand a
+  color: #F05225
+  font-family: 'Arvo', serif
+  font-weight: bold
+
+.navbar-brand a:hover
+  color: #F05225
+  text-decoration: none
+  
 #home-header
   font-size: 60px
   font-family: 'Arvo', serif
@@ -54,21 +64,27 @@
   margin: 0px 25px 0px 25px
   
 .home-first-container
-  // margin: 10% 0% 14% 0%
+  // margin: 0px 20px 0px 20px
+  
+  // width: 100%
   padding: 15% 0% 15% 0%
   background-color: #244354
-  margin: -5% -6% 0% -6%
+  margin: 0% -6% 0% -6%
+  // width: 100%
+  // padding: 0px
   
 .row
   font-family: 'Poppins', sans-serif
   
-.home-container
+//this is for the text
+.home-container 
   // background-color: purple
-  margin: 20px 20px 0px 20px
+  margin: 2% 5% 0% 5%
+  padding: 0px 60px 0px 60px
   // background-color: purple
 .home-text p
   color: #244354
-  // color: purple
+
 #home-question p
   color: #244354
   // color: purple
@@ -81,23 +97,30 @@
 .col-sm-4
   // background-color: green
   
+#home-text-question p
+  font-family: 'Karla', sans-serif
+  font-weight: bold
+  
+  
+//play_index
   
 #index-header
   font-family: 'Poppins', sans-serif
   font-size: 30px
   font-weight: 600
   margin: 2% 0% 2% 0%
-.games
+.table
   font-family: 'Karla', sans-serif
   font-weight: 400
   
-.games th 
+.table th 
   background-color: #244354	
   text-align: left
   padding: 0px 15px 0px 15px
+  color: #FDE78E
   
   
-.games td
+.table td
   padding: 0px 15px 0px 15px
   
 // tr:hover 

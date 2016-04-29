@@ -16,3 +16,4 @@
 //= require_tree .
 //= require sweet-alert
 //= require tinymce
+//= require bootstrap-datepicker

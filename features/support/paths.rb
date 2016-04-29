@@ -19,7 +19,8 @@ module NavigationHelpers
     when /^the existing games page$/
       play_index_path
     when /^the tutorial page$/
-      tutorial_game_path
+      id = GivingGame.where(:title => "Tutorial").first.id
+      play_game_path(id)
     when /^the new games page$/
       new_game_path
     when /^the results page for "([^"]*)"$/
@@ -42,7 +43,7 @@ module NavigationHelpers
       archive_path
     when /^the expired game info page for "([^"]*)"$/
       id = GivingGame.where(:title => $1).first.id
-      archive_info_path(id)
+      archive_game_path(id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
