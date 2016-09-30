@@ -81,9 +81,8 @@ Deploy to Heroku:
 
 1. Login to Heroku
  
-```
-$ heroku login  
-```
+    $ heroku login
+
 
 2. Push to Heroku  
 
