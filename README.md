@@ -27,40 +27,38 @@ Setup
 1. Install ruby, rvm, rails, cucumber.  
 2. Clone this repo  
 
-    ```
+
     $ git clone git@github.com:Nsrose/giver-game.git  
-    ```
-    
+
+
 3. Run the following:
     
-    ```
+    
     $ bundle install --without production
-    
-    $ bundle exec rake db:migrate
-    
+    $ bundle exec rake db:migrate    
     $ rake db:seed
-    ```
-    
+
+
 4. Run locally:  
 
-    ```
+
     $ rail s
-    ```
+
 
 
 Testing
 -------
 1. Test features (BDD):  
 
-    ```
+
     $ rake features  
-    ```
-    
+
+
 2. Unit tests (TDD):
   
-    ```
+
     $ rake spec  
-    ```
+
 
 Deploying
 ---------
@@ -81,18 +79,17 @@ Deploy to Heroku:
 
 1. Login to Heroku
  
+ 
     $ heroku login
 
 
 2. Push to Heroku  
 
-```
-$ git add .
+
+    $ git add .  
+    $ git commit -m "ready to deploy"
+    $ git push heroku master
   
-$ git commit -m "ready to deploy"
-  
-$ git push heroku master
-  
-```
+
 
 
