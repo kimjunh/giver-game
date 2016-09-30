@@ -2,6 +2,8 @@
 
 Giver-game application for CS169 / Effective Altruists of Berkeley
 
+https://gentle-plateau-16169.herokuapp.com/
+
 =================
 
 CodeClimate:
