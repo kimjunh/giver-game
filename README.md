@@ -71,9 +71,7 @@ Push to Travis and CodeClimate:
 
     
     $ git add .
-      
     $ git commit -m "ready to check build and code status"
-      
     $ git push origin master
       
     
