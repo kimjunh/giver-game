@@ -82,8 +82,14 @@ Deploy to Heroku:
  
     $ heroku login
 
+2. If this is your first time deploying, run this command:  
 
-2. Push to Heroku  
+
+    $ git remote add heroku https://git.heroku.com/gentle-plateau-16169.git  
+    
+
+
+3. Push to Heroku  
 
 
     $ git add .  
