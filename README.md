@@ -69,32 +69,33 @@ this will *not* deploy to Heroku.
 
 Push to Travis and CodeClimate:
 
-    ```
+    
     $ git add .
       
     $ git commit -m "ready to check build and code status"
       
     $ git push origin master
       
-    ```
+    
 
 
 Deploy to Heroku:  
+
 1. Login to Heroku
-  
-    ```
-    $ heroku login  
-    ```
-    
+ 
+```
+$ heroku login  
+```
+
 2. Push to Heroku  
 
-    ```
-    $ git add .
-      
-    $ git commit -m "ready to deploy"
-      
-    $ git push heroku master
-      
-    ```
+```
+$ git add .
+  
+$ git commit -m "ready to deploy"
+  
+$ git push heroku master
+  
+```
 
 
