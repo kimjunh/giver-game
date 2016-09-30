@@ -29,12 +29,16 @@ Setup
     ```
     $ git clone git@github.com:Nsrose/giver-game.git  
     ```
-3. Run the following:    
+3. Run the following:
+    
     ```
     $ bundle install --without production
+    
     $ bundle exec rake db:migrate
+    
     $ rake db:seed
     ```
+    
 4. Run locally:  
     ```
     $ rail s
