@@ -31,13 +31,13 @@ Setup
     ```
 3. Run the following:    
     ```
-    $ bundle install --without production  
-    $ bundle exec rake db:migrate  
-    $ rake db:seed  
+    $ bundle install --without production
+    $ bundle exec rake db:migrate
+    $ rake db:seed
     ```
 4. Run locally:  
     ```
-    $ rail s  
+    $ rail s
     ```
 
 Testing
@@ -68,6 +68,7 @@ Deploy to Heroku:
     ```
     $ heroku login  
     ```
+    
 2. Push to Heroku  
     ```
     $ git add .  
