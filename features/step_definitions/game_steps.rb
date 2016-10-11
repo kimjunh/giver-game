@@ -41,7 +41,7 @@ When /^I fill out the form with a second game$/ do
   }
 end
 
-When /^I fill out the form with for a game with (.*) $/ do |arguments|
+When /^I fill out the form with values (.*)$/ do |arguments|
   dict = {}
   args = arguments.split(",")
   args.each { |pair| 
@@ -49,10 +49,9 @@ When /^I fill out the form with for a game with (.*) $/ do |arguments|
     dict[split_pair[0]] = split_pair[1]
   }
   dict.each { |key, arg| 
-    steps %Q{ And I fill in "#{key}" with "#{arg}"}
+    steps %Q{ And I fill in #{key} with #{arg}}
   }
 end
-
 
 
 When /^I fill out the form with negative numbers$/ do

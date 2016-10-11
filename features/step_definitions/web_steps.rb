@@ -110,6 +110,12 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
+Then /^(?:|I )should see "([^"]*)" appear[s]? "([\d]*)" time[s]?$/ do |text, number|
+  regexp = Regexp.new(text)
+  number = number.to_i
+  page.find(:xpath, '//body').text.split(regexp).length.should == number + 1
+end
+
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
