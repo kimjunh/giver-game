@@ -29,7 +29,23 @@ Background:
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game New Game successfully created."
+  
+  Scenario: Create the third (private) game
+    Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
+    When I am on the new games page
+    And I fill out the form with values "Title": "Secret New Game","Description": "Descriptive description to describe","TotalMoney": "100","AmountPerVote": "10","Charity A": "Give Directly","DescriptionA": "Provides money directly to groups of impoverished people.","Charity B": "Malaria Nets","DescriptionB": "Provides malaria nets to locals."
+    Then the "private_game" checkbox should be checked
+    And I press "Submit New Game"
+    Then I should be on the home page
+    And I should see "Giving Game Private New Game successfully created."
+    When I go to the existing games page
+    Then I should not see: "Secret New Game"
+    Then I should see only "2" games
+    When I go to the user page for "Traitor_JOSEPHINE"
 
+
+    
+    
   Scenario: Check for both games in the index page
     When I am on the existing games page
     Then I should see: "First game", "Second game", "$10", "$1"
