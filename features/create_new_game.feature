@@ -30,6 +30,8 @@ Background:
     Then I should be on the home page
     And I should see "Giving Game New Game successfully created."
 
+    
+    
   Scenario: Check for both games in the index page
     When I am on the existing games page
     Then I should see: "First game", "Second game", "$10", "$1"
@@ -95,4 +97,5 @@ Background:
     Then I should be on the new games page
     And I should see "is not a number"
     Then I should see "Descriptive description to describe"
+
 
