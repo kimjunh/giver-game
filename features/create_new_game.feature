@@ -29,8 +29,6 @@ Feature: Create a new game
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game New Game successfully created."
-
-    
     
   Scenario: Check for both games in the index page
     When I am on the existing games page
