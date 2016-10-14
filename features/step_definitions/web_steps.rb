@@ -98,6 +98,7 @@ When /^(?:|I )choose "([^"]*)"$/ do |field|
   choose(field)
 end
 
+
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
@@ -108,6 +109,12 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   else
     assert page.has_content?(text)
   end
+end
+
+Then /^(?:|I )should see "([^"]*)" appear[s]? "([\d]*)" time[s]?$/ do |text, number|
+  regexp = Regexp.new(text)
+  number = number.to_i
+  page.find(:xpath, '//body').text.split(regexp).length.should == number + 1
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
@@ -217,6 +224,28 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
+  with_scope(parent) do
+    field_checked = find_field(label)['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_false
+    else
+      assert !field_checked
+    end
+  end
+end
+
+Then /^the "([^"]*)" radio button(?: within (.*))? should be chosen$/ do |label, parent|
+  with_scope(parent) do
+    field_checked = find_field(label)['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
+Then /^the "([^"]*)" radio button(?: within (.*))? should not be chosen$/ do |label, parent|
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
