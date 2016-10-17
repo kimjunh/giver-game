@@ -19,3 +19,10 @@ matrix:
 #addons:
 #  code_climate:
 #    repo_token: 549c22f4e2db072df829fc14ceaef0ac4db510d2896bff73517d4feb17a7d6cd
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec
+  - bundle exec cucumber
+after_script:
+  - bundle exec rake send_to_codeclimate 
