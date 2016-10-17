@@ -1,25 +1,7 @@
-require 'securerandom'
-
 class GamesController < ApplicationController
 
   def game_params
-    params.require(:game).permit(:title,
-                                 :is_private,
-                                 :resource_id,
-                                 :description,
-                                 :total_money,
-                                 :per_transaction,
-                                 :charityA_title,
-                                 :descriptionA,
-                                 :charityB_title,
-                                 :descriptionB,
-                                 :expiration_time,
-                                 :tutorial,
-                                 :show_results,
-                                 :charityA_image,
-                                 :charityB_image,
-                                 :charityA_image_cache,
-                                 :charityB_image_cache)
+    params.require(:game).permit(:title, :description, :total_money, :per_transaction, :charityA_title, :descriptionA, :charityB_title, :descriptionB, :expiration_time, :tutorial, :show_results, :charityA_image, :charityB_image, :charityA_image_cache, :charityB_image_cache)
   end
   
   def home
@@ -39,15 +21,15 @@ class GamesController < ApplicationController
   def edit
     if session and session[:game]
       @game = GivingGame.new(session[:game])
-      @game.resource_id = params[:resource_id]
+      @game.id = params[:id]
       session.delete :game
     else
-      @game = GivingGame.where(:resource_id => params[:resource_id])[0]
+      @game = GivingGame.find(params[:id])
     end
   end
   
   def update
-    game = GivingGame.where(:resource_id => params[:resource_id]).first
+    game = GivingGame.find(params[:id])
     gp = game_params
     begin 
       if gp[:expiration_time]
@@ -64,7 +46,7 @@ class GamesController < ApplicationController
     end
     game.assign_attributes(gp)
     if game.valid?
-      GivingGame.update(game.id, gp)
+      GivingGame.update(params[:id], gp)
       flash[:success] = "Successfully edited."
       redirect_to user_profile_path(current_user.id)
     else
@@ -77,7 +59,7 @@ class GamesController < ApplicationController
       end
       flash[:danger] = totalMessage
       session[:game] = params[:game]
-      redirect_to edit_game_path(current_user.id, params[:resource_id])
+      redirect_to edit_game_path(current_user.id, params[:id])
     end
   end
 
@@ -97,26 +79,12 @@ class GamesController < ApplicationController
         redirect_to new_game_path
         return
     end
-
     game = GivingGame.new(gp)
-
+    
     if game.valid?
-      game.save() ## need to have game in database in order to have an id
-      if game.is_private?
-        game.resource_id =  SecureRandom.hex
-      else
-        game.resource_id =  game.id
-      end
-      
-      game.save()
-
       @game = game
-      message = "Giving Game #{@game.title} successfully created."
-      if game.is_private
-        full_game_url = "#{request.host_with_port}/games/play/#{game.resource_id}"
-        message += " Your private game URL: " + full_game_url
-      end
-      flash[:success] = message
+      game.save()
+      flash[:success] = "Giving Game #{@game.title} successfully created."
       current_user.add_to_created_giving_games(game)
     else
       totalMessage = ""
@@ -140,13 +108,12 @@ class GamesController < ApplicationController
 
   def play_index
     @games = GivingGame.where("expired = ? AND (expiration_time > ? OR expiration_time IS NULL)", false, DateTime.now)
-    @games = @games.where(:is_private => false)
     @counter = @games.length
     @charityVotedFor = params[:charity]
   end
   
   def play_game
-    chosen_game = GivingGame.where(:resource_id => params[:resource_id])[0]
+    chosen_game = GivingGame.find(params[:id])
 
     if current_user.nil? and !chosen_game.tutorial?
       flash[:warning] = "You must be logged in to play an actual giving game."
@@ -173,7 +140,7 @@ class GamesController < ApplicationController
     number_of_games = GivingGame.where(:tutorial => true).count
     index = rand(number_of_games)
     games = GivingGame.where(:tutorial => true).collect{|i| i}
-    redirect_to play_game_path(:resource_id => games[index].resource_id)
+    redirect_to play_game_path(:id => games[index].id)
   end
   
   def check_if_played_and_reroute
@@ -206,7 +173,7 @@ class GamesController < ApplicationController
       end
     end
     if game.show_results == true
-      redirect_to results_path(:resource_id => game.resource_id, :charity => charity)
+      redirect_to results_path(:id => game.id, :charity => charity)
     else
       redirect_to play_index_path(:charity => charity)
     end
@@ -218,7 +185,7 @@ class GamesController < ApplicationController
   end
   
   def archive_game
-      @game = GivingGame.where(:resource_id => params[:resource_id])[0]
+      @game = GivingGame.find(params[:id])
       @charityA = @game.charityA_title
       @charityB = @game.charityB_title
       @description = @game.description
@@ -229,7 +196,7 @@ class GamesController < ApplicationController
   end
   
   def results
-    @game = GivingGame.where(:resource_id => params[:resource_id]).first
+    @game = GivingGame.find(params[:id])
     @owner = @game.user_id
     @expired = @game.expired
     @charityVotedFor = params[:charity]

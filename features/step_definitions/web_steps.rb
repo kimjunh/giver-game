@@ -49,10 +49,6 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^(?:|I )visit the url (.+)$/ do |page_name|
-  visit(page_name)
-end
-
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -118,7 +114,7 @@ end
 Then /^(?:|I )should see "([^"]*)" appear[s]? "([\d]*)" time[s]?$/ do |text, number|
   regexp = Regexp.new(text)
   number = number.to_i
-  expect(page).to have_content(text, count: number)
+  page.find(:xpath, '//body').text.split(regexp).length.should == number + 1
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
@@ -242,7 +238,7 @@ Then /^the "([^"]*)" radio button(?: within (.*))? should be chosen$/ do |label,
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
-      field_checked.should be_truthy
+      field_checked.should be_true
     else
       assert field_checked
     end
@@ -253,7 +249,7 @@ Then /^the "([^"]*)" radio button(?: within (.*))? should not be chosen$/ do |la
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
-      field_checked.should be_falsy
+      field_checked.should be_false
     else
       assert !field_checked
     end
