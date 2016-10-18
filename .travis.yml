@@ -6,7 +6,7 @@ rvm:
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024M --debug"
-#    - CODECLIMATE_REPO_TOKEN=549c22f4e2db072df829fc14ceaef0ac4db510d2896bff73517d4feb17a7d6cd
+    - CODECLIMATE_REPO_TOKEN=bc50de8e845843997603c5a3a5b19c9f42c1b42e469bc41b8e6a1b7f416dd9de
     
 script: 
   - RAILS_ENV=test bundle exec rake db:migrate --trace
@@ -16,9 +16,9 @@ matrix:
   allow_failures:
     - rvm: 1.9.3
   fast_finish: true
-#addons:
-#  code_climate:
-#    repo_token: 549c22f4e2db072df829fc14ceaef0ac4db510d2896bff73517d4feb17a7d6cd
+addons:
+  code_climate:
+    repo_token: bc50de8e845843997603c5a3a5b19c9f42c1b42e469bc41b8e6a1b7f416dd9de
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
