@@ -9,6 +9,9 @@ https://gentle-plateau-16169.herokuapp.com/
 CodeClimate:
 [![Code Climate](https://codeclimate.com/github/Nsrose/giver-game/badges/gpa.svg)](https://codeclimate.com/github/Nsrose/giver-game)
 
+Coverage:
+[![Test Coverage](https://codeclimate.com/github/Nsrose/giver-game/badges/coverage.svg)](https://codeclimate.com/github/Nsrose/giver-game/coverage)
+
 TravisCI:
 [![Build Status](https://travis-ci.org/Nsrose/giver-game.svg?branch=master)](https://travis-ci.org/Nsrose/giver-game)
 
