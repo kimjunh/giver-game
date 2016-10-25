@@ -16,7 +16,7 @@ Background:
   Scenario: Create the third (private) game
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
     When I create a private game called "Secret New Game"
-    And I should see "Giving Game Secret New Game successfully created. Your private game URL: "
+    Then I should see "Giving Game Secret New Game successfully created. Your private game URL: "
     When I go to the existing games page
     Then I should not see "Secret New Game"
     Then I should see only "2" games
@@ -28,7 +28,7 @@ Background:
   Scenario: Create the third (public) game
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
     When I create a game called "Not Secret New Game"
-    And I should see "Giving Game Not Secret New Game successfully created."
+    Then I should see "Giving Game Not Secret New Game successfully created."
     When I go to the existing games page
     Then I should see "Not Secret New Game"
     Then I should see only "3" games
