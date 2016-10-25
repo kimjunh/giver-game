@@ -1,0 +1,26 @@
+Private Games
+------------
+
+A private game will have url of /games/play/<4 byte random string>
+They will be not be listed on the "all" games page.
+
+Creation
+if not private:
+    Save everything as before, no changes
+else:
+    game.is_private = true
+    game.private_id = new random string(4 bytes)
+    game.save()
+    flash[:notice] += "New private game url: /games/play/<private_id>"
+
+
+
+Access:
+If you try to go to a private game's actual id (i.e. /games/play/:id),
+the controller should check if the game to be rendered is_private. If so, display 404.
+
+If you go to /games/play/<private_id>, the controller will take :id to mean private_id
+ex) if game doesn't exist with :id, try looking for a private game where private_id == :id.
+If no match on either, show 404.
+If match for :id but game is private, show 404
+If match for private_id == :id and game is private, render that game as the game and play as normal.

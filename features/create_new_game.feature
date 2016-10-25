@@ -3,16 +3,16 @@ Feature: Create a new game
   I want to be able to create a new giving game
   So that I can start my own giving game with my selected charities
 
-Background:
-
-  Given the following games exist:
-  | title       | description                                | per_transaction | charityA_title | charityB_title |
-  | First game  | something something                        |      10         | A charity      | what           |
-  | Second game | something something else                   |      1          | Another one    | cold           |
-
-  Given the following users exist:
-  | username           | password   | password_confirmation  |     email             |
-  | Traitor_JOSEPHINE   | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
+  Background:
+  
+    Given the following games exist:
+    | title       | description                                | per_transaction | charityA_title | charityB_title | resource_id |
+    | First game  | something something                        |      10         | A charity      | what           | 1           |
+    | Second game | something something else                   |      1          | Another one    | cold           | 2           |
+  
+    Given the following users exist:
+    | username           | password   | password_confirmation  |     email             |
+    | Traitor_JOSEPHINE   | TRAITORJOE |  TRAITORJOE            |  j0e@tr8er.org        |
 
   Scenario: Create the first game
     Given I am logged in as "j0e@tr8er.org" with password "TRAITORJOE"
@@ -29,7 +29,7 @@ Background:
     And I press "Submit New Game"
     Then I should be on the home page
     And I should see "Giving Game New Game successfully created."
-
+    
   Scenario: Check for both games in the index page
     When I am on the existing games page
     Then I should see: "First game", "Second game", "$10", "$1"
@@ -95,4 +95,5 @@ Background:
     Then I should be on the new games page
     And I should see "is not a number"
     Then I should see "Descriptive description to describe"
+
 

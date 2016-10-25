@@ -5,7 +5,7 @@ Then(/^I should see: "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/) do |arg1, arg
   step "I should see \"#{arg4}\""
 end
 
-Then(/^I should see only "([^"]*)" games$/) do |arg1|
+Then(/^I should see only "([^"]*)" games?$/) do |arg1|
   step "I should see \"Total Number of Games: #{arg1}\""
 end
 
@@ -40,6 +40,19 @@ When /^I fill out the form with a second game$/ do
     And I fill in "DescriptionB" with "Provides malaria nets to locals."
   }
 end
+
+When /^I fill out the form with values (.*)$/ do |arguments|
+  dict = {}
+  args = arguments.split(",")
+  args.each { |pair| 
+    split_pair = pair.split(": ")
+    dict[split_pair[0]] = split_pair[1]
+  }
+  dict.each { |key, arg| 
+    steps %Q{ And I fill in #{key} with #{arg}}
+  }
+end
+
 
 When /^I fill out the form with negative numbers$/ do
   steps %Q{
@@ -95,6 +108,21 @@ When(/^I upload an image called "([^"]*)"$/) do |image|
   attach_file("CharityA-Image", File.absolute_path("features/upload-files/#{image}"))
 end
 
+
 Then /^I should see the image "(.+)"$/ do |image|
    expect(page).to have_xpath("//img[contains(@src,'#{image}')]")
+end
+
+When /^I create a( private)? game called "(.*)"$/ do |secret, name|
+  steps %Q{
+    When I am on the new games page
+    And I fill out the form with values "Title": "#{name}","Description": "Descriptive description to describe","TotalMoney": "100","AmountPerVote": "10","Charity A": "Give Directly","DescriptionA": "Provides money directly to groups of impoverished people.","Charity B": "Malaria Nets","DescriptionB": "Provides malaria nets to locals."
+    Then the "private_game" radio button should be chosen
+  }
+  if not secret
+    steps %Q{When I choose "public_game"}
+  end
+  steps %Q{
+    And I press "Submit New Game"
+  }
 end
